@@ -107,16 +107,7 @@ public class Ciudadano extends Persona {
 
     public Ciudadano() {
     }
-
-    public Ciudadano(String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular) {
-        super(dni, nombre, apellido, email, celular);
-        this.patologia = patologia;
-        this.ambitoLab = ambitoLab;
-        this.domicilio = domicilio;
-        this.localidad = localidad;
-        this.Provincia = Provincia;
-    }
-
+    
     public Ciudadano(int idCiudadano, String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular) {
         super(dni, nombre, apellido, email, celular);
         this.idCiudadano = idCiudadano;
@@ -127,6 +118,16 @@ public class Ciudadano extends Persona {
         this.Provincia = Provincia;
     }
 
+    public Ciudadano(String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular) {
+        super(dni, nombre, apellido, email, celular);
+        this.patologia = patologia;
+        this.ambitoLab = ambitoLab;
+        this.domicilio = domicilio;
+        this.localidad = localidad;
+        this.Provincia = Provincia;
+    }
     
+    
+
     
 }
