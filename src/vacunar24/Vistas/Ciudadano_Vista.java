@@ -139,7 +139,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jBElim.setText("Eliminar");
         jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 282, -1, -1));
 
-        jTextField7.setText("Buscador...");
+        jTextField7.setText("Buscar...");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -155,7 +155,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jLabel1.setText("Posee Patologías:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("REGISTRO Y CONTROL DE CIUDADANOS:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 533, -1));
