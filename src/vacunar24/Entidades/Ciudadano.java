@@ -105,11 +105,19 @@ public class Ciudadano extends Persona {
         this.celular = celular;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public Ciudadano() {
     }
-    
-    public Ciudadano(int idCiudadano, String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular) {
-        super(dni, nombre, apellido, email, celular);
+
+    public Ciudadano(int idCiudadano, String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular, boolean estado) {
+        super(dni, nombre, apellido, email, celular, estado);
         this.idCiudadano = idCiudadano;
         this.patologia = patologia;
         this.ambitoLab = ambitoLab;
@@ -118,15 +126,20 @@ public class Ciudadano extends Persona {
         this.Provincia = Provincia;
     }
 
-    public Ciudadano(String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular) {
-        super(dni, nombre, apellido, email, celular);
+    public Ciudadano(String patologia, String ambitoLab, String domicilio, String localidad, String Provincia, int dni, String nombre, String apellido, String email, String celular, boolean estado) {
+        super(dni, nombre, apellido, email, celular, estado);
         this.patologia = patologia;
         this.ambitoLab = ambitoLab;
         this.domicilio = domicilio;
         this.localidad = localidad;
         this.Provincia = Provincia;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", patologia=" + patologia + ", ambitoLab=" + ambitoLab + ", domicilio=" + domicilio + ", localidad=" + localidad + ", Provincia=" + Provincia + '}';
+    }
+
     
 
     
