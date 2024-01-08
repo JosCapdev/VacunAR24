@@ -69,18 +69,33 @@ public class Profesional extends Persona {
         this.celular = celular;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public Profesional() {
     }
 
-    public Profesional(int matricula, int dni, String nombre, String apellido, String email, String celular) {
-        super(dni, nombre, apellido, email, celular);
-        this.matricula = matricula;
-    }
-
-    public Profesional(int idProfesional, int matricula, int dni, String nombre, String apellido, String email, String celular) {
-        super(dni, nombre, apellido, email, celular);
+    public Profesional(int idProfesional, int matricula, int dni, String nombre, String apellido, String email, String celular, boolean estado) {
+        super(dni, nombre, apellido, email, celular, estado);
         this.idProfesional = idProfesional;
         this.matricula = matricula;
     }
+
+    public Profesional(int matricula, int dni, String nombre, String apellido, String email, String celular, boolean estado) {
+        super(dni, nombre, apellido, email, celular, estado);
+        this.matricula = matricula;
+    }
+
+    @Override
+    public String toString() {
+        return "Profesional{" + "idProfesional=" + idProfesional + ", matricula=" + matricula + '}';
+    }
+
+
     
 }
