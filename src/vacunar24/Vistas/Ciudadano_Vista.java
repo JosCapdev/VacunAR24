@@ -106,6 +106,11 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jPanel1.add(jCProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 130, -1));
 
         jBLimpiar.setText("Limpiar Campos");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 275, -1, -1));
 
         jCBAmbito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salud", "Educacion", "Fuerzas de Seguridad", "Fuerzas Armadas", "Bomberos", "Comercio", "Saneamiento", "Transporte Esencial", "Mantenimiento de los servicios básicos", "Otros", " ", " ", " ", " " }));
@@ -237,7 +242,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
             String amb = (String) jCBAmbito.getSelectedItem();
             String patolog;
             patolog = jCBS.isSelected() ? jTPatolog.getText() : "No tiene";
-            cv = new Ciudadano(patolog, amb,dom,Localidad,Prov,dni,nombre,apellido,email,telef);
+            cv = new Ciudadano(patolog, amb,dom,Localidad,Prov,dni,nombre,apellido,email,telef,true);
              
              limpiarCampos();
 
@@ -260,6 +265,10 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jCBN.setSelected(false);
         jTPatolog.enable(true);
     }//GEN-LAST:event_jCBSActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
