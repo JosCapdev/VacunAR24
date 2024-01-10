@@ -40,6 +40,8 @@ public class Menu extends javax.swing.JFrame {
         jLVacuna = new javax.swing.JLabel();
         jPFondoCel = new javax.swing.JPanel();
         Escritorio = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
@@ -99,7 +101,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 110, -1));
+        backgroundPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 110, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -130,7 +132,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 130, 70));
+        backgroundPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 130, 70));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -161,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 110, 70));
+        backgroundPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 110, 70));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -192,7 +194,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 120, 70));
+        backgroundPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 120, 70));
 
         jPFondoCel.setBackground(new java.awt.Color(51, 153, 255));
         jPFondoCel.setPreferredSize(new java.awt.Dimension(667, 320));
@@ -228,6 +230,32 @@ public class Menu extends javax.swing.JFrame {
         );
 
         backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 850, 420));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel1.setText("Laboratorios");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        backgroundPanel.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 130, 70));
 
         getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 490));
 
@@ -301,6 +329,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLProfesional;
     private javax.swing.JLabel jLTurno;
     private javax.swing.JLabel jLVacuna;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPFondoCel;
     private javax.swing.JPanel jPanel1;
@@ -308,5 +337,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 }
