@@ -59,9 +59,9 @@ public class CiudadanoData {
         }
     }
 
-    public void modificarProducto(Ciudadano ciud) {
+    public void modificarCiudadano(Ciudadano ciud) {
         String query = "UPDATE ciudadano SET dni=?, nombre=?, apellido=?, email=?, celular=?, patologia=?,"
-                + " ambitoLab=?, domicilio=?, localidad=?, Provincia=?, estado= ?  WHERE idProducto=? ";
+                + " ambitoLab=?, domicilio=?, localidad=?, Provincia=?, estado= ?  WHERE idCiudadano=? ";
                 
         try {
             PreparedStatement ps = con.prepareStatement(query);
@@ -103,7 +103,7 @@ public class CiudadanoData {
 
     public Ciudadano buscarCiudadanoId(int id) {
         String sql = "SELECT dni, nombre, apellido, email, celular, patologia,ambitoLab, domicilio, localidad,"
-                + " Provincia FROM Cudadano WHERE idCiudadano=? AND estado = 1";
+                + " Provincia FROM Ciudadano WHERE idCiudadano=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -135,8 +135,8 @@ public class CiudadanoData {
 
     public ArrayList<Ciudadano> listarCiudadanos() {
 
-        String sql = "SELECT dni, nombre, apellido, email, celular, patologia,ambitoLab, domicilio, localidad,"
-                + "Provincia FROM Cudadano WHERE estado = 1 ";
+        String sql = "SELECT idCiudadano, dni, nombre, apellido, email, celular, patologia,ambitoLab, domicilio, localidad,"
+                + "Provincia FROM Ciudadano WHERE estado = 1 ";
         ArrayList<Ciudadano> ciudadanos = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
