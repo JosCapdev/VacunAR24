@@ -18,6 +18,7 @@ public class Vacuna {
     private double medida;
     private LocalDate fechaVto;
     private boolean colocada;
+    private boolean estado;
 
     public int getIdVacuna() {
         return idVacuna;
@@ -67,27 +68,35 @@ public class Vacuna {
         this.colocada = colocada;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public Vacuna() {
-        this.colocada = false;
     }
 
-    public Vacuna(int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada) {
-        this.numSerieDosis = numSerieDosis;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaVto = fechaVto;
-        this.colocada = colocada=false;
-    }
-
-    public Vacuna(int idVacuna, int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada) {
+    public Vacuna(int idVacuna, int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada, boolean estado) {
         this.idVacuna = idVacuna;
         this.numSerieDosis = numSerieDosis;
         this.marca = marca;
         this.medida = medida;
         this.fechaVto = fechaVto;
-        this.colocada = colocada=false;
+        this.colocada = colocada;
+        this.estado = estado;
     }
-    
-    
+
+    public Vacuna(int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada, boolean estado) {
+        this.numSerieDosis = numSerieDosis;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaVto = fechaVto;
+        this.colocada = colocada;
+        this.estado = estado;
+    }
+
     
 }
