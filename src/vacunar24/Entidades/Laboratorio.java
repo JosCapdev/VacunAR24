@@ -15,6 +15,7 @@ public class Laboratorio {
     private String nomLaboratorio;
     private String pais;
     private String domComercial;
+    private boolean estado;
 
     public int getIdLaboratorio() {
         return idLaboratorio;
@@ -56,23 +57,34 @@ public class Laboratorio {
         this.domComercial = domComercial;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public Laboratorio() {
     }
 
-    public Laboratorio(int cuit, String nomLaboratorio, String pais, String domComercial) {
-        this.cuit = cuit;
-        this.nomLaboratorio = nomLaboratorio;
-        this.pais = pais;
-        this.domComercial = domComercial;
-    }
-
-    public Laboratorio(int idLaboratorio, int cuit, String nomLaboratorio, String pais, String domComercial) {
+    public Laboratorio(int idLaboratorio, int cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
         this.idLaboratorio = idLaboratorio;
         this.cuit = cuit;
         this.nomLaboratorio = nomLaboratorio;
         this.pais = pais;
         this.domComercial = domComercial;
+        this.estado = estado;
     }
-    
+
+    public Laboratorio(int cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
+        this.cuit = cuit;
+        this.nomLaboratorio = nomLaboratorio;
+        this.pais = pais;
+        this.domComercial = domComercial;
+        this.estado = estado;
+    }
+
+   
     
 }
