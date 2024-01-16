@@ -116,14 +116,14 @@ public class ProfesionalData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Profesional");
+            JOptionPane.showMessageDialog(null, "Error de Conexion..."+ex.getMessage());
         }
         return prof;
     }
 
     public ArrayList<Profesional> listarProfesionales() {
 
-        String sql = "SELECT idProfesional, dni, nombre, apellido, email, celular, matricula, estado FROM Profesional WHERE estado = 1";
+        String sql = "SELECT idProfesional, dni, nombre, apellido, email, celular, matricula FROM Profesional WHERE estado = 1";
         ArrayList<Profesional> profesionales = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -143,7 +143,7 @@ public class ProfesionalData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudadano");
+            JOptionPane.showMessageDialog(null, "Error de Conexion..."+ex.getMessage());
         }
         return profesionales;
     }
