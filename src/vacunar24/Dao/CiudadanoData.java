@@ -128,7 +128,7 @@ public class CiudadanoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudadano");
+            JOptionPane.showMessageDialog(null, "Error de Conexion..."+ex.getMessage());
         }
         return ciud;
     }
@@ -160,7 +160,7 @@ public class CiudadanoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudadano");
+            JOptionPane.showMessageDialog(null, "Error de Conexion..."+ex.getMessage());
         }
         return ciudadanos;
     }
