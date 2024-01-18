@@ -5,7 +5,10 @@
  */
 package vacunar24.Vistas;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunar24.Dao.CiudadanoData;
 import vacunar24.Entidades.Ciudadano;
 
 /**
@@ -14,11 +17,20 @@ import vacunar24.Entidades.Ciudadano;
  */
 public class Ciudadano_Vista extends javax.swing.JInternalFrame {
 
-    private Ciudadano cv = new Ciudadano();
-    
+    private Ciudadano cv;
+    private CiudadanoData cd;
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
+
     public Ciudadano_Vista() {
+        cv=new Ciudadano();
+        cd=new CiudadanoData();
         initComponents();
-        
+        armarCabecera();
+
     }
 
     /**
@@ -45,9 +57,9 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jCBAmbito = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTCiud = new javax.swing.JTable();
         jBElim = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        jTBuscador = new javax.swing.JTextField();
         jBMod = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,14 +74,19 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(881, 350));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBAgregar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jBAgregar.setText("+");
+        jBAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jBAgregar.setText("Agregar");
         jBAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBAgregarMouseClicked(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 265, 84, -1));
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 90, -1));
 
         jTNombre.setText("Nombre");
         jPanel1.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
@@ -111,7 +128,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 275, -1, -1));
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         jCBAmbito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salud", "Educacion", "Fuerzas de Seguridad", "Fuerzas Armadas", "Bomberos", "Comercio", "Saneamiento", "Transporte Esencial", "Mantenimiento de los servicios básicos", "Otros", " ", " ", " ", " " }));
         jCBAmbito.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +143,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jLabel2.setText("Ambito Laboral:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTCiud.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -137,20 +154,25 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTCiud);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 65, 580, 211));
 
         jBElim.setText("Eliminar");
         jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(736, 282, -1, -1));
 
-        jTextField7.setText("Buscar...");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+        jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 23, 277, -1));
+        jTBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTBuscadorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 23, 277, -1));
 
         jBMod.setText("modificar");
         jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(634, 282, -1, -1));
@@ -225,11 +247,30 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBAmbitoActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTBuscadorActionPerformed
 
     private void jBAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBAgregarMouseClicked
+
+    }//GEN-LAST:event_jBAgregarMouseClicked
+
+    private void jCBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBNActionPerformed
+        jCBS.setSelected(false);
+        jTPatolog.enable(false);
+
+    }//GEN-LAST:event_jCBNActionPerformed
+
+    private void jCBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSActionPerformed
+        jCBN.setSelected(false);
+        jTPatolog.enable(true);
+    }//GEN-LAST:event_jCBSActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         try {
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
@@ -242,33 +283,21 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
             String amb = (String) jCBAmbito.getSelectedItem();
             String patolog;
             patolog = jCBS.isSelected() ? jTPatolog.getText() : "No tiene";
-            cv = new Ciudadano(patolog, amb,dom,Localidad,Prov,dni,nombre,apellido,email,telef,true);
-             
-             limpiarCampos();
+            cv = new Ciudadano(patolog, amb, dom, Localidad, Prov, dni, nombre, apellido, email, telef, true);
+            cd.guardarCiudadano(cv);
+            limpiarCampos();
 
-            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatible");
             limpiarCampos();
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
-    }//GEN-LAST:event_jBAgregarMouseClicked
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
-    private void jCBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBNActionPerformed
-        jCBS.setSelected(false);
-        jTPatolog.enable(false);
-        
-    }//GEN-LAST:event_jCBNActionPerformed
-
-    private void jCBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSActionPerformed
-        jCBN.setSelected(false);
-        jTPatolog.enable(true);
-    }//GEN-LAST:event_jCBSActionPerformed
-
-    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-        limpiarCampos();
-    }//GEN-LAST:event_jBLimpiarActionPerformed
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,6 +316,8 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTApellido;
+    private javax.swing.JTextField jTBuscador;
+    private javax.swing.JTable jTCiud;
     private javax.swing.JTextField jTDni;
     private javax.swing.JTextField jTDom;
     private javax.swing.JTextField jTLocalidad;
@@ -294,10 +325,28 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTPatolog;
     private javax.swing.JTextField jTTel;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
-    
+
+       private void armarCabecera() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("Codigo");
+        filaCabecera.add("Dni");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Apellido");
+        filaCabecera.add("Email");
+        filaCabecera.add("Telefono");
+        filaCabecera.add("Patologia");
+        filaCabecera.add("AmbLaboral");
+        filaCabecera.add("Domicilio");
+        filaCabecera.add("Localidad");
+        filaCabecera.add("Provincia");
+        filaCabecera.add("estado");
+        for (Object it : filaCabecera) {
+            modelo.addColumn(it);
+        }
+        jTCiud.setModel(modelo);
+
+    }
     public void limpiarCampos() {
 
         jTNombre.setText("");
@@ -315,5 +364,5 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         cv = null;
 
     }
-    
+
 }
