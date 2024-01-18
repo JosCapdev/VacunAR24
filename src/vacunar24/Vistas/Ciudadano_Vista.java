@@ -74,7 +74,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(881, 350));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jBAgregar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         jBAgregar.setText("Agregar");
         jBAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
