@@ -21,9 +21,9 @@ public class AgregarCiudadano extends javax.swing.JDialog {
 
     public AgregarCiudadano(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        cv=new Ciudadano();
-        cd=new CiudadanoData();
-        mod=false;
+        cv = new Ciudadano();
+        cd = new CiudadanoData();
+        mod = false;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -195,12 +195,12 @@ public class AgregarCiudadano extends javax.swing.JDialog {
             String patolog;
             patolog = jTPatolog.getText().isEmpty() ? "No posee" : jTPatolog.getText();
             cv = new Ciudadano(patolog, amb, dom, Localidad, Prov, dni, nombre, apellido, email, telef, true);
-            if(mod){
-            cd.modificarCiudadano(cv);
-            mod=false;
-            dispose();
-            }else{
-            cd.guardarCiudadano(cv);
+            if (mod) {
+                cd.modificarCiudadano(cv);
+                mod = false;
+                dispose();
+            } else {
+                cd.guardarCiudadano(cv);
             }
             limpiarCampos();
 
@@ -384,5 +384,5 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     public void setMod(boolean mod) {
         this.mod = mod;
     }
-    
+
 }
