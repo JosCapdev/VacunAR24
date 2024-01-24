@@ -17,11 +17,13 @@ public class AgregarCiudadano extends javax.swing.JDialog {
 
     private Ciudadano cv;
     private CiudadanoData cd;
+    private boolean mod;
 
     public AgregarCiudadano(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         cv=new Ciudadano();
         cd=new CiudadanoData();
+        mod=false;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -36,7 +38,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLT = new javax.swing.JLabel();
         jTNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,10 +67,10 @@ public class AgregarCiudadano extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("DATOS DEL CIUDADANO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 14, -1, -1));
+        jLT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLT.setForeground(new java.awt.Color(51, 51, 51));
+        jLT.setText("DATOS DEL CIUDADANO");
+        jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 14, -1, -1));
         jPanel1.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
@@ -146,7 +148,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
         jPanel1.add(jTDom, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 160, -1));
 
-        jButton1.setText("Agregar");
+        jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -193,7 +195,13 @@ public class AgregarCiudadano extends javax.swing.JDialog {
             String patolog;
             patolog = jTPatolog.getText().isEmpty() ? "No posee" : jTPatolog.getText();
             cv = new Ciudadano(patolog, amb, dom, Localidad, Prov, dni, nombre, apellido, email, telef, true);
+            if(mod){
+            cd.modificarCiudadano(cv);
+            mod=false;
+            dispose();
+            }else{
             cd.guardarCiudadano(cv);
+            }
             limpiarCampos();
 
         } catch (NumberFormatException e) {
@@ -251,7 +259,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCBAmbito;
     private javax.swing.JComboBox<String> jCBProv;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLT;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -288,4 +296,93 @@ public class AgregarCiudadano extends javax.swing.JDialog {
         cv = null;
 
     }
+
+    public javax.swing.JComboBox<String> getjCBAmbito() {
+        return jCBAmbito;
+    }
+
+    public void setjCBAmbito(javax.swing.JComboBox<String> jCBAmbito) {
+        this.jCBAmbito = jCBAmbito;
+    }
+
+    public javax.swing.JComboBox<String> getjCBProv() {
+        return jCBProv;
+    }
+
+    public void setjCBProv(javax.swing.JComboBox<String> jCBProv) {
+        this.jCBProv = jCBProv;
+    }
+
+    public javax.swing.JTextField getjTApellido() {
+        return jTApellido;
+    }
+
+    public void setjTApellido(javax.swing.JTextField jTApellido) {
+        this.jTApellido = jTApellido;
+    }
+
+    public javax.swing.JTextField getjTDni() {
+        return jTDni;
+    }
+
+    public void setjTDni(javax.swing.JTextField jTDni) {
+        this.jTDni = jTDni;
+    }
+
+    public javax.swing.JTextField getjTDom() {
+        return jTDom;
+    }
+
+    public void setjTDom(javax.swing.JTextField jTDom) {
+        this.jTDom = jTDom;
+    }
+
+    public javax.swing.JTextField getjTLocalidad() {
+        return jTLocalidad;
+    }
+
+    public void setjTLocalidad(javax.swing.JTextField jTLocalidad) {
+        this.jTLocalidad = jTLocalidad;
+    }
+
+    public javax.swing.JTextField getjTMail() {
+        return jTMail;
+    }
+
+    public void setjTMail(javax.swing.JTextField jTMail) {
+        this.jTMail = jTMail;
+    }
+
+    public javax.swing.JTextField getjTNombre() {
+        return jTNombre;
+    }
+
+    public void setjTNombre(javax.swing.JTextField jTNombre) {
+        this.jTNombre = jTNombre;
+    }
+
+    public javax.swing.JTextField getjTPatolog() {
+        return jTPatolog;
+    }
+
+    public void setjTPatolog(javax.swing.JTextField jTPatolog) {
+        this.jTPatolog = jTPatolog;
+    }
+
+    public javax.swing.JTextField getjTTel() {
+        return jTTel;
+    }
+
+    public void setjTTel(javax.swing.JTextField jTTel) {
+        this.jTTel = jTTel;
+    }
+
+    public boolean isMod() {
+        return mod;
+    }
+
+    public void setMod(boolean mod) {
+        this.mod = mod;
+    }
+    
 }
