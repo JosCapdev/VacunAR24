@@ -13,7 +13,6 @@ import java.sql.Date;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import vacunar24.Entidades.Laboratorio;
 import vacunar24.Entidades.Vacuna;
 
 /**
