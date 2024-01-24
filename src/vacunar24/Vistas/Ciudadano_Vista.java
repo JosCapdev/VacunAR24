@@ -51,7 +51,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jTBuscador = new javax.swing.JTextField();
         jBMod = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1300, 550));
@@ -97,6 +97,11 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jPanel1.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, 277, -1));
 
         jBMod.setText("modificar");
+        jBMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModActionPerformed(evt);
+            }
+        });
         jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1044, 482, 110, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -104,13 +109,13 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jLabel3.setText("REGISTRO Y CONTROL DE CIUDADANOS:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 533, -1));
 
-        jButton1.setText("Agregar Ciudadano");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAgregar.setText("Agregar Ciudadano");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 190, -1));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 190, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,17 +156,39 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jTBuscador.setText("");
     }//GEN-LAST:event_jTBuscadorMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         Frame f = JOptionPane.getFrameForComponent(this);
         AgregarCiudadano ag = new AgregarCiudadano(f,true);
         ag.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
+        if(jTCiud.getSelectedRow()>=0){
+        Frame f = JOptionPane.getFrameForComponent(this);
+        AgregarCiudadano ag = new AgregarCiudadano(f,true);
+        cv = cd.buscarCiudadanoId((int) jTCiud.getValueAt(jTCiud.getSelectedRow(),0));
+        ag.getjTNombre().setText(cv.getNombre());
+        ag.getjTApellido().setText(cv.getApellido());
+        ag.getjTDni().setText(cv.getDni()+"");
+        ag.getjTMail().setText(cv.getEmail());
+        ag.getjTTel().setText(cv.getCelular());
+        ag.getjCBProv().setSelectedItem(cv.getProvincia());
+        ag.getjTLocalidad().setText(cv.getLocalidad());
+        ag.getjTDom().setText(cv.getDomicilio());
+        ag.getjCBAmbito().setSelectedItem(cv.getAmbitoLab());
+        ag.getjTPatolog().setText(cv.getPatologia());
+        ag.setMod(true);
+        ag.show();
+        }else{
+            JOptionPane.showMessageDialog(this,"Seleccione el Ciudadano a modificar...");
+        }
+    }//GEN-LAST:event_jBModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBElim;
     private javax.swing.JButton jBMod;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
