@@ -47,12 +47,12 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
-        setPreferredSize(new java.awt.Dimension(850, 550));
+        setPreferredSize(new java.awt.Dimension(1320, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
         backgroundPanel.setForeground(new java.awt.Color(0, 0, 0));
-        backgroundPanel.setPreferredSize(new java.awt.Dimension(900, 450));
+        backgroundPanel.setPreferredSize(new java.awt.Dimension(1250, 450));
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,7 +103,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 110, -1));
+        backgroundPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -134,7 +134,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 130, 70));
+        backgroundPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 130, 70));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -165,7 +165,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 110, 70));
+        backgroundPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 110, 70));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -196,42 +196,42 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 120, 70));
+        backgroundPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 120, 70));
 
         jPFondoCel.setBackground(new java.awt.Color(51, 153, 255));
         jPFondoCel.setPreferredSize(new java.awt.Dimension(667, 320));
 
         Escritorio.setBackground(new java.awt.Color(255, 255, 255));
-        Escritorio.setPreferredSize(new java.awt.Dimension(894, 500));
+        Escritorio.setPreferredSize(new java.awt.Dimension(1024, 550));
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 1304, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPFondoCelLayout = new javax.swing.GroupLayout(jPFondoCel);
         jPFondoCel.setLayout(jPFondoCelLayout);
         jPFondoCelLayout.setHorizontalGroup(
             jPFondoCelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPFondoCelLayout.createSequentialGroup()
-                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPFondoCelLayout.createSequentialGroup()
+                .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1304, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPFondoCelLayout.setVerticalGroup(
             jPFondoCelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPFondoCelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1020, 700));
+        backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1310, 700));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -257,9 +257,9 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 130, 70));
+        backgroundPanel.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 0, 130, 70));
 
-        getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 490));
+        getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1300, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
