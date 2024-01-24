@@ -39,6 +39,12 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(1300, 550));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,22 +53,19 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("CONTROL Y REGISTRO DE LABORATORIOS:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 308, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 142, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 140, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 142, -1));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 142, -1));
 
-        jTextField1.setText("CUIT");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 61, 142, -1));
-
-        jTextField2.setText("Nombre de Laboratorio");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 103, -1, -1));
-
-        jTextField3.setText("País");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 145, 142, -1));
-
-        jTextField4.setText("Dominio Comercial");
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 187, 142, -1));
-
-        jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jButton1.setText("+");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 89, -1));
+        jButton1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 89, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,16 +80,36 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 52, 643, 220));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 1110, 270));
 
         jButton2.setText("Limpiar Campos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
 
         jButton3.setText("Eliminar");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 350, -1, -1));
 
         jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 350, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Dominio Comercial:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Cuit:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Nombre del Laboratorio:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("País:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +125,10 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -109,6 +136,10 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
