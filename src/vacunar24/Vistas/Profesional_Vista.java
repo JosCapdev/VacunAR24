@@ -43,6 +43,8 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jTBuscar = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(1300, 550));
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -113,7 +115,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
         );
 
         pack();
