@@ -21,16 +21,16 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     private Ciudadano cv;
     private CiudadanoData cd;
     private DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean isCellEditable(int fila, int columna) {
+        public boolean isCellEditable(int row, int colum) {
             return false;
         }
     };
 
     public Ciudadano_Vista() {
-        cv=new Ciudadano();
-        cd=new CiudadanoData();
+        cv = new Ciudadano();
+        cd = new CiudadanoData();
         initComponents();
-        armarCabecera();
+//        armarCabecera();
 
     }
 
@@ -67,20 +67,60 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
 
         jTCiud.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Dni", "Nombre", "Apellido", "Email", "Telefono", "Patologia", "AmbLaboral", "Provincia", "Localidad", "Domicilio", "estado"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTCiud.setFocusable(false);
+        jTCiud.getTableHeader().setResizingAllowed(false);
+        jTCiud.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTCiud);
+        if (jTCiud.getColumnModel().getColumnCount() > 0) {
+            jTCiud.getColumnModel().getColumn(0).setResizable(false);
+            jTCiud.getColumnModel().getColumn(0).setPreferredWidth(15);
+            jTCiud.getColumnModel().getColumn(1).setResizable(false);
+            jTCiud.getColumnModel().getColumn(2).setResizable(false);
+            jTCiud.getColumnModel().getColumn(3).setResizable(false);
+            jTCiud.getColumnModel().getColumn(4).setResizable(false);
+            jTCiud.getColumnModel().getColumn(5).setResizable(false);
+            jTCiud.getColumnModel().getColumn(6).setResizable(false);
+            jTCiud.getColumnModel().getColumn(7).setResizable(false);
+            jTCiud.getColumnModel().getColumn(8).setResizable(false);
+            jTCiud.getColumnModel().getColumn(9).setResizable(false);
+            jTCiud.getColumnModel().getColumn(9).setPreferredWidth(50);
+            jTCiud.getColumnModel().getColumn(10).setResizable(false);
+            jTCiud.getColumnModel().getColumn(11).setResizable(false);
+            jTCiud.getColumnModel().getColumn(11).setPreferredWidth(10);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1290, 380));
 
         jBElim.setText("Eliminar");
+        jBElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBElimActionPerformed(evt);
+            }
+        });
         jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1176, 482, 100, 40));
 
         jTBuscador.setText("Buscar...");
@@ -158,31 +198,39 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         Frame f = JOptionPane.getFrameForComponent(this);
-        AgregarCiudadano ag = new AgregarCiudadano(f,true);
+        AgregarCiudadano ag = new AgregarCiudadano(f, true);
         ag.show();
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
-        if(jTCiud.getSelectedRow()>=0){
-        Frame f = JOptionPane.getFrameForComponent(this);
-        AgregarCiudadano ag = new AgregarCiudadano(f,true);
-        cv = cd.buscarCiudadanoId((int) jTCiud.getValueAt(jTCiud.getSelectedRow(),0));
-        ag.getjTNombre().setText(cv.getNombre());
-        ag.getjTApellido().setText(cv.getApellido());
-        ag.getjTDni().setText(cv.getDni()+"");
-        ag.getjTMail().setText(cv.getEmail());
-        ag.getjTTel().setText(cv.getCelular());
-        ag.getjCBProv().setSelectedItem(cv.getProvincia());
-        ag.getjTLocalidad().setText(cv.getLocalidad());
-        ag.getjTDom().setText(cv.getDomicilio());
-        ag.getjCBAmbito().setSelectedItem(cv.getAmbitoLab());
-        ag.getjTPatolog().setText(cv.getPatologia());
-        ag.setMod(true);
-        ag.show();
-        }else{
-            JOptionPane.showMessageDialog(this,"Seleccione el Ciudadano a modificar...");
+        if (jTCiud.getSelectedRow() >= 0) {
+            Frame f = JOptionPane.getFrameForComponent(this);
+            AgregarCiudadano ag = new AgregarCiudadano(f, true);
+            cv = cd.buscarCiudadanoId((int) jTCiud.getValueAt(jTCiud.getSelectedRow(), 0));
+            ag.getjTNombre().setText(cv.getNombre());
+            ag.getjTApellido().setText(cv.getApellido());
+            ag.getjTDni().setText(cv.getDni() + "");
+            ag.getjTMail().setText(cv.getEmail());
+            ag.getjTTel().setText(cv.getCelular());
+            ag.getjCBProv().setSelectedItem(cv.getProvincia());
+            ag.getjTLocalidad().setText(cv.getLocalidad());
+            ag.getjTDom().setText(cv.getDomicilio());
+            ag.getjCBAmbito().setSelectedItem(cv.getAmbitoLab());
+            ag.getjTPatolog().setText(cv.getPatologia());
+            ag.setMod(true);
+            ag.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un ciudadano en la tabla...");
         }
     }//GEN-LAST:event_jBModActionPerformed
+
+    private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
+     if (jTCiud.getSelectedRow() >= 0) {    
+         cd.eliminarCiudadano((int) jTCiud.getValueAt(jTCiud.getSelectedRow(), 0));  
+     } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un Ciudadano en la tabla...");
+        }
+    }//GEN-LAST:event_jBElimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,24 +245,24 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTCiud;
     // End of variables declaration//GEN-END:variables
 
-       private void armarCabecera() {
-        ArrayList<Object> filaCabecera = new ArrayList<>();
-        filaCabecera.add("Codigo");
-        filaCabecera.add("Dni");
-        filaCabecera.add("Nombre");
-        filaCabecera.add("Apellido");
-        filaCabecera.add("Email");
-        filaCabecera.add("Telefono");
-        filaCabecera.add("Patologia");
-        filaCabecera.add("AmbLaboral");
-        filaCabecera.add("Domicilio");
-        filaCabecera.add("Localidad");
-        filaCabecera.add("Provincia");
-        filaCabecera.add("estado");
-        for (Object it : filaCabecera) {
-            modelo.addColumn(it);
-        }
-        jTCiud.setModel(modelo);
-
-    }
+//    private void armarCabecera() {
+//        ArrayList<Object> filaCabecera = new ArrayList<>();
+//        filaCabecera.add("Codigo");
+//        filaCabecera.add("Dni");
+//        filaCabecera.add("Nombre");
+//        filaCabecera.add("Apellido");
+//        filaCabecera.add("Email");
+//        filaCabecera.add("Telefono");
+//        filaCabecera.add("Patologia");
+//        filaCabecera.add("AmbLaboral");
+//        filaCabecera.add("Domicilio");
+//        filaCabecera.add("Localidad");
+//        filaCabecera.add("Provincia");
+//        filaCabecera.add("estado");
+//        for (Object it : filaCabecera) {
+//            modelo.addColumn(it);
+//        }
+//        jTCiud.setModel(modelo);
+//
+//    }
 }
