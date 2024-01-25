@@ -55,7 +55,7 @@ public class ProfesionalData {
         }
     }
 
-    public void modificarProducto(Profesional prof) {
+    public void modificarProfesional(Profesional prof) {
         String query = "UPDATE Profesional SET dni=?, nombre=?, apellido=?, email=?, celular=?, matricula=?,"
                 + " estado= ?  WHERE idProfesional=? ";
 
