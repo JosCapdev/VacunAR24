@@ -5,17 +5,36 @@
  */
 package vacunar24.Vistas;
 
+import java.awt.Frame;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunar24.Dao.ProfesionalData;
+import vacunar24.Entidades.Profesional;
+
 /**
  *
  * @author Jose
  */
 public class Profesional_Vista extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form Profesional_Vista
-     */
+    private Profesional prof;
+    private ProfesionalData profD;
+    private ArrayList<Profesional> listaProf;
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int row, int colum) {
+            return false;
+        }
+    };
+    private Frame f = JOptionPane.getFrameForComponent(this);
+    private AgregarProfesional ap = new AgregarProfesional(f, true);
     public Profesional_Vista() {
+        prof = new Profesional();
+        profD = new ProfesionalData();
+        listaProf = new ArrayList();
         initComponents();
+        armarCabecera();
+        llenarTabla();
+        
     }
 
     /**
@@ -30,22 +49,20 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTBuscar = new javax.swing.JTextField();
+        jTProf = new javax.swing.JTable();
+        jBAgregar = new javax.swing.JButton();
+        jBElim = new javax.swing.JButton();
+        jBMod = new javax.swing.JButton();
+        jTBuscador = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1300, 550));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel1MouseMoved(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -53,7 +70,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         jLabel1.setText("REGISTRO Y CONTROL DE PROFESIONALES:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 20));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTProf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -64,48 +81,41 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTProf);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 650, 220));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1260, 390));
 
-        jTextField1.setText("Nombre");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jBAgregar.setText("Agregar Profesional");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, -1));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 465, 190, 40));
 
-        jTextField2.setText("Apellido");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, -1));
+        jBElim.setText("Eliminar");
+        jBElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBElimActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 470, 100, 40));
 
-        jTextField3.setText("DNI");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, -1));
+        jBMod.setText("Modificar");
+        jBMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 470, 120, 40));
 
-        jTextField4.setText("Correo Electronico");
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 130, -1));
-
-        jTextField5.setText("Telefono");
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 130, -1));
-
-        jTextField6.setText("Matricula");
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, -1));
-
-        jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jButton1.setText("+");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 80, -1));
-
-        jButton2.setText("Limpiar Campos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
-
-        jButton3.setText("Eliminar");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 290, -1, -1));
-
-        jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, -1, -1));
-
-        jTBuscar.setText("Buscar...");
-        jPanel1.add(jTBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 170, -1));
+        jTBuscador.setText("Buscar...");
+        jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTBuscadorKeyReleased(evt);
+            }
+        });
+        jPanel1.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 280, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,26 +131,89 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        ap.show();
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
+    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
+        if (jTProf.getSelectedRow() >= 0) {
+            prof = new Profesional();
+            prof = profD.buscarProfesionalId((int) jTProf.getValueAt(jTProf.getSelectedRow(), 0));
+            ap.getjTNombre().setText(prof.getNombre());
+            ap.getjTApellido().setText(prof.getApellido());
+            ap.getjTDni().setText(prof.getDni()+"");
+            ap.getjTMail().setText(prof.getEmail());
+            ap.getjTTel().setText(prof.getCelular());
+            ap.getjTMatricula().setText(prof.getMatricula()+"");
+            ap.setMod(true);
+            ap.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un profesional en la tabla...");
+        }
+    }//GEN-LAST:event_jBModActionPerformed
+
+    private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
+        if (jTProf.getSelectedRow() >= 0) {
+            profD.eliminarProfesional((int) jTProf.getValueAt(jTProf.getSelectedRow(), 0));
+            actT();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un profesional en la tabla...");
+        }
+    }//GEN-LAST:event_jBElimActionPerformed
+
+    private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
+        if(ap.isAct()){
+            actT();
+        }
+    }//GEN-LAST:event_jPanel1MouseMoved
+
+    private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
+        modelo.setNumRows(0);
+        for(Profesional p:listaProf){
+            if(p.getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())||p.getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+               || p.getIdProfesional()== Integer.parseInt(jTBuscador.getText())){
+                modelo.addRow(new Object[]{p.getIdProfesional(),p.getDni(),p.getNombre(),p.getApellido(),
+            p.getEmail(),p.getCelular(),p.getMatricula(),p.isEstado()});
+            }
+        }
+    }//GEN-LAST:event_jTBuscadorKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBElim;
+    private javax.swing.JButton jBMod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTBuscar;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTBuscador;
+    private javax.swing.JTable jTProf;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("Codigo");
+        filaCabecera.add("Dni");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Apellido");
+        filaCabecera.add("Email");
+        filaCabecera.add("Telefono");
+        filaCabecera.add("Matricula");
+        filaCabecera.add("Estado");
+        for (Object it : filaCabecera) {
+            modelo.addColumn(it);
+        }
+        jTProf.setModel(modelo);
+    }
+    private void llenarTabla() {
+        listaProf = profD.listarProfesionales();
+        listaProf.stream().forEach(p -> {
+            modelo.addRow(new Object[]{p.getIdProfesional(),p.getDni(),p.getNombre(),p.getApellido(),
+            p.getEmail(),p.getCelular(),p.getMatricula(),p.isEstado()});
+        });
+    }
+    private void actT(){
+        modelo.setNumRows(0);
+            llenarTabla();
+            ap.setAct(false);
+    }
 }
