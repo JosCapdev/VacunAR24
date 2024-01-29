@@ -8,7 +8,6 @@ package vacunar24.Vistas;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import vacunar24.Dao.ProfesionalData;
-import vacunar24.Entidades.Ciudadano;
 import vacunar24.Entidades.Profesional;
 
 /**
@@ -20,12 +19,14 @@ public class AgregarProfesional extends javax.swing.JDialog {
     private Profesional prof;
     private ProfesionalData profD;
     private boolean mod;
+    private boolean act;
 
     public AgregarProfesional(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         prof = new Profesional();
         profD = new ProfesionalData();
         mod = false;
+        act = false;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -53,8 +54,8 @@ public class AgregarProfesional extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTMatricula = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
+        jBLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,16 +103,21 @@ public class AgregarProfesional extends javax.swing.JDialog {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
         jPanel1.add(jTMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 160, -1));
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 160, -1));
 
-        jButton2.setText("Limpiar Campos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
+        jBLimpiar.setText("Limpiar Campos");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,7 +133,7 @@ public class AgregarProfesional extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
@@ -139,9 +145,11 @@ public class AgregarProfesional extends javax.swing.JDialog {
             if (mod) {
                 profD.modificarProfesional(prof);
                 mod = false;
+                act = true;
                 dispose();
             } else {
                 profD.guardarProfesional(prof);
+                act = true;
             }
             limpiarCampos();
 
@@ -151,7 +159,11 @@ public class AgregarProfesional extends javax.swing.JDialog {
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +209,8 @@ public class AgregarProfesional extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JLabel jLT;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -281,6 +293,14 @@ public class AgregarProfesional extends javax.swing.JDialog {
 
     public void setjTTel(JTextField jTTel) {
         this.jTTel = jTTel;
+    }
+
+    public boolean isAct() {
+        return act;
+    }
+
+    public void setAct(boolean act) {
+        this.act = act;
     }
 
 }
