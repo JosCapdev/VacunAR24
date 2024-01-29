@@ -99,9 +99,9 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 jTBuscadorMouseClicked(evt);
             }
         });
-        jTBuscador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTBuscadorActionPerformed(evt);
+        jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTBuscadorKeyReleased(evt);
             }
         });
         jPanel1.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, 277, -1));
@@ -160,10 +160,6 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jPanel1MouseMoved
 
-    private void jTBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTBuscadorActionPerformed
-
     private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
         jTBuscador.setText("");
     }//GEN-LAST:event_jTBuscadorMouseClicked
@@ -202,6 +198,17 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBElimActionPerformed
 
+    private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
+        modelo.setNumRows(0);
+        for(Ciudadano c:listaCiud){
+            if(c.getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())||c.getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+               || c.getIdCiudadano()== Integer.parseInt(jTBuscador.getText())){
+                modelo.addRow(new Object[]{c.getIdCiudadano(), c.getDni(),c.getNombre(), c.getApellido(), c.getEmail(), c.getCelular(), c.getPatologia(), c.getAmbitoLab(),
+                c.getDomicilio(), c.getLocalidad(), c.getProvincia(), c.isEstado()});
+            }
+        }
+    }//GEN-LAST:event_jTBuscadorKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
@@ -228,7 +235,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         filaCabecera.add("Domicilio");
         filaCabecera.add("Localidad");
         filaCabecera.add("Provincia");
-        filaCabecera.add("estado");
+        filaCabecera.add("Estado");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
