@@ -18,12 +18,16 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     private Ciudadano cv;
     private CiudadanoData cd;
     private boolean mod;
+    private boolean act;
+
+    ;
 
     public AgregarCiudadano(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         cv = new Ciudadano();
         cd = new CiudadanoData();
         mod = false;
+        act = false;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -198,9 +202,11 @@ public class AgregarCiudadano extends javax.swing.JDialog {
             if (mod) {
                 cd.modificarCiudadano(cv);
                 mod = false;
+                act = true;
                 dispose();
             } else {
                 cd.guardarCiudadano(cv);
+                act = true;
             }
             limpiarCampos();
 
@@ -385,4 +391,11 @@ public class AgregarCiudadano extends javax.swing.JDialog {
         this.mod = mod;
     }
 
+    public boolean isAct() {
+        return act;
+    }
+
+    public void setAct(boolean act) {
+        this.act = act;
+    }
 }
