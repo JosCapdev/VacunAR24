@@ -20,12 +20,14 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
 
     private Ciudadano cv;
     private CiudadanoData cd;
-    private ArrayList <Ciudadano> listaCiud ;
+    private ArrayList<Ciudadano> listaCiud;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
         }
     };
+    private Frame f = JOptionPane.getFrameForComponent(this);
+    private AgregarCiudadano ag = new AgregarCiudadano(f, true);
 
     public Ciudadano_Vista() {
         cv = new Ciudadano();
@@ -153,7 +155,9 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-
+        if(ag.isAct()){
+            actT();
+        }
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorActionPerformed
@@ -165,15 +169,12 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTBuscadorMouseClicked
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        Frame f = JOptionPane.getFrameForComponent(this);
-        AgregarCiudadano ag = new AgregarCiudadano(f, true);
         ag.show();
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
         if (jTCiud.getSelectedRow() >= 0) {
-            Frame f = JOptionPane.getFrameForComponent(this);
-            AgregarCiudadano ag = new AgregarCiudadano(f, true);
+            cv = new Ciudadano();
             cv = cd.buscarCiudadanoId((int) jTCiud.getValueAt(jTCiud.getSelectedRow(), 0));
             ag.getjTNombre().setText(cv.getNombre());
             ag.getjTApellido().setText(cv.getApellido());
@@ -193,9 +194,10 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBModActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
-     if (jTCiud.getSelectedRow() >= 0) {    
-         cd.eliminarCiudadano((int) jTCiud.getValueAt(jTCiud.getSelectedRow(), 0));  
-     } else {
+        if (jTCiud.getSelectedRow() >= 0) {
+            cd.eliminarCiudadano((int) jTCiud.getValueAt(jTCiud.getSelectedRow(), 0));
+            actT();
+        } else {
             JOptionPane.showMessageDialog(this, "Seleccione un Ciudadano en la tabla...");
         }
     }//GEN-LAST:event_jBElimActionPerformed
@@ -233,10 +235,18 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         jTCiud.setModel(modelo);
 
     }
-    private void llenarTabla(){
-        listaCiud.add(new Ciudadano(1,"no tiene","salud","dom1","ciudad","mendoza",1234123,"Juan","Perez","mail_1","261",true));
-        listaCiud.stream().forEach(c -> {modelo.addRow(new Object[]{c.getIdCiudadano(),c.getDni(),
-        c.getNombre(),c.getApellido(),c.getEmail(),c.getCelular(),c.getPatologia(),c.getAmbitoLab(),
-        c.getDomicilio(),c.getLocalidad(),c.getProvincia(),c.isEstado()});});
+    private void llenarTabla() {
+//        listaCiud = cd.listarCiudadanos();
+        listaCiud.add(new Ciudadano(1, "no tiene", "salud", "dom1", "ciudad", "mendoza", 1234123, "Juan", "Perez", "mail_1", "261", true));
+        listaCiud.stream().forEach(c -> {
+            modelo.addRow(new Object[]{c.getIdCiudadano(), c.getDni(),
+                c.getNombre(), c.getApellido(), c.getEmail(), c.getCelular(), c.getPatologia(), c.getAmbitoLab(),
+                c.getDomicilio(), c.getLocalidad(), c.getProvincia(), c.isEstado()});
+        });
+    }
+    private void actT(){
+        modelo.setNumRows(0);
+            llenarTabla();
+            ag.setAct(false);
     }
 }
