@@ -19,6 +19,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     private CiudadanoData cd;
     private boolean mod;
     private boolean act;
+    private int idMod;
 
     ;
 
@@ -28,6 +29,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
         cd = new CiudadanoData();
         mod = false;
         act = false;
+        idMod=0;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -185,6 +187,7 @@ public class AgregarCiudadano extends javax.swing.JDialog {
             patolog = jTPatolog.getText().isEmpty() ? "No posee" : jTPatolog.getText();
             cv = new Ciudadano(patolog, amb, dom, Localidad, Prov, dni, nombre, apellido, email, telef, true);
             if (mod) {
+                cv = new Ciudadano(idMod,patolog, amb, dom, Localidad, Prov, dni, nombre, apellido, email, telef, true);
                 cd.modificarCiudadano(cv);
                 mod = false;
                 act = true;
@@ -387,4 +390,13 @@ public class AgregarCiudadano extends javax.swing.JDialog {
     public void setAct(boolean act) {
         this.act = act;
     }
+
+    public int getIdMod() {
+        return idMod;
+    }
+
+    public void setIdMod(int idMod) {
+        this.idMod = idMod;
+    }
+    
 }
