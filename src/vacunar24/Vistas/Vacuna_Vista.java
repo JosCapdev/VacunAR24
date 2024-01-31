@@ -5,17 +5,38 @@
  */
 package vacunar24.Vistas;
 
+import java.awt.Frame;
+import java.sql.Date;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunar24.Dao.VacunaData;
+import vacunar24.Entidades.Vacuna;
+
 /**
  *
  * @author Jose
  */
 public class Vacuna_Vista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Vacuna_Vista
-     */
+    private Vacuna vac;
+    private VacunaData vacD;
+    private ArrayList<Vacuna> listaVac;
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int row, int colum) {
+            return false;
+        }
+    };
+    private Frame f = JOptionPane.getFrameForComponent(this);
+    private AgregarVacuna av = new AgregarVacuna(f, true);
+
     public Vacuna_Vista() {
+        vac = new Vacuna();
+        vacD = new VacunaData();
+        listaVac = new ArrayList();
         initComponents();
+        armarCabecera();
+        llenarTabla();
     }
 
     /**
@@ -30,19 +51,24 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTVac = new javax.swing.JTable();
         jBAgregar = new javax.swing.JButton();
         jBMod = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel1MouseMoved(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("REGISTRO Y CONTROL DE VACUNAS:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTVac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,15 +79,35 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTVac);
 
-        jBAgregar.setText("Agregar");
+        jBAgregar.setText("Agregar vacuna");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         jBMod.setText("Modificar");
+        jBMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModActionPerformed(evt);
+            }
+        });
 
         jBElim.setText("Eliminar");
+        jBElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBElimActionPerformed(evt);
+            }
+        });
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTBuscadorKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,6 +162,49 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        av.show();
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
+        if (jTVac.getSelectedRow() >= 0) {
+            vac = vacD.buscarVacunaId((int) jTVac.getValueAt(jTVac.getSelectedRow(), 0));
+            av.getjTNumS().setText(vac.getNumSerieDosis() + "");
+            av.getjTMarca().setText(vac.getMarca());
+            av.getjTMedida().setText(vac.getMedida() + "");
+            av.getjDCFecha().setDate(Date.valueOf(vac.getFechaVto()));
+            av.setIdMod(vac.getIdVacuna());
+            av.setMod(true);
+            av.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una vacuna en la tabla...");
+        }
+    }//GEN-LAST:event_jBModActionPerformed
+
+    private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
+        if (jTVac.getSelectedRow() >= 0) {
+            vacD.eliminarVacuna((int) jTVac.getValueAt(jTVac.getSelectedRow(), 0));
+            actT();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una vacuna en la tabla...");
+        }
+    }//GEN-LAST:event_jBElimActionPerformed
+
+    private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
+        if (av.isAct()) {
+            actT();
+        }
+    }//GEN-LAST:event_jPanel1MouseMoved
+
+    private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
+        modelo.setNumRows(0);
+        for (Vacuna v : listaVac) {
+            if (v.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || v.getNumSerieDosis() == Integer.parseInt(jTBuscador.getText())
+                    || v.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
+                modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(), v.getFechaVto()});
+            }
+        }
+    }//GEN-LAST:event_jTBuscadorKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
@@ -125,6 +214,33 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTBuscador;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTVac;
     // End of variables declaration//GEN-END:variables
+    private void armarCabecera() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("Codigo");
+        filaCabecera.add("N°Serie");
+        filaCabecera.add("Marca");
+        filaCabecera.add("Medida");
+        filaCabecera.add("Fecha de Vencimiento");
+        filaCabecera.add("Estado");
+        for (Object it : filaCabecera) {
+            modelo.addColumn(it);
+        }
+        jTVac.setModel(modelo);
+    }
+
+    private void llenarTabla() {
+        listaVac = vacD.listarVacunas();
+        listaVac.stream().forEach(v -> {
+            modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(),
+                v.getFechaVto(), v.isEstado()});
+        });
+    }
+
+    private void actT() {
+        modelo.setNumRows(0);
+        llenarTabla();
+        av.setAct(false);
+    }
 }
