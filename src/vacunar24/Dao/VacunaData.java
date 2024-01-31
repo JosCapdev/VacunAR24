@@ -117,7 +117,33 @@ public class VacunaData {
         }
         return vac;
     }
+    
+ public Vacuna buscarVacunaSerie(int serie) {
+        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada FROM Vacuna"
+                + " WHERE numSerieDosis=? AND estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, serie);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                vac = new Vacuna();
+                vac.setIdVacuna(rs.getInt("idVacuna"));
+                vac.setNumSerieDosis(serie);
+                vac.setMarca(rs.getString("marca"));
+                vac.setMedida(rs.getDouble("medida"));
+                vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
+                vac.setColocada(rs.getBoolean("colocada"));
+                vac.setEstado(true);
 
+            } else {
+                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return vac;
+    }   
     public ArrayList<Vacuna> listarVacunas() {
 
         String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada FROM Vacuna WHERE estado = 1";
