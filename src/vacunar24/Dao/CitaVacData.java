@@ -5,10 +5,149 @@
  */
 package vacunar24.Dao;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import vacunar24.Entidades.CitaVacunacion;
+
 /**
  *
  * @author Jose
  */
 public class CitaVacData {
+     private Connection con = null;
+     private CitaVacunacion citaV;
+     private CiudadanoData cd;
+     private VacunaData vacD;
+
+    public CitaVacData() {
+        this.con = Conexion.getConexion();
+        citaV = new CitaVacunacion();
+        cd = new CiudadanoData();
+        vacD = new VacunaData();
+    }
+
+    public void guardarCita(CitaVacunacion citaV) {
+        String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
+                + " numSerieDosis,estado) VALUES (?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,citaV.getPersona().getIdCiudadano());
+            ps.setInt(2,citaV.getCodRefuerzo());
+            ps.setDate(3,Date.valueOf(citaV.getFechaHoraCita()));
+            ps.setString(4,citaV.getCentroVacunacion());
+            ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
+            ps.setInt(6, citaV.getDosis().getNumSerieDosis());
+            ps.setBoolean(7, true);
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                citaV.setIdCitaVacunacion(rs.getInt(1));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo tener el ID...");
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Guardado!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
+        }
+    }
+
+    public void modificarCitaVac(CitaVacunacion citaV) {
+        String query = "UPDATE CitaVacunacion SET idCiudadano = ?, codRefuerzo = ?, fechaHoraCita = ?,"
+                + "centroVacunacion = ?,fechaHoraColocada = ?,numSerieDosis = ? WHERE idCitaVacunacion = ?";
+
+        try {
+             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,citaV.getPersona().getIdCiudadano());
+            ps.setInt(2,citaV.getCodRefuerzo());
+            ps.setDate(3,Date.valueOf(citaV.getFechaHoraCita()));
+            ps.setString(4,citaV.getCentroVacunacion());
+            ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
+            ps.setInt(6, citaV.getDosis().getNumSerieDosis());
+            ps.setInt(7, citaV.getIdCitaVacunacion());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Cita Modificada");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
+        }
+    }
+
+    public void eliminarCita(int id) {
+        String query = "UPDATE CitaVacunacion SET estado = 0 WHERE idCitaVacunacion = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Cita eliminada");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
+        }
+    }
+
+    public CitaVacunacion buscarCitaId(int id) {
+        String sql = "SELECT idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
+                + " numSerieDosis FROM CitaVacunacion WHERE idCitaVacunacion = ? AND estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                citaV = new CitaVacunacion();
+                citaV.setIdCitaVacunacion(id);
+                citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
+                citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                citaV.setFechaHoraCita(rs.getDate("fechaHoraCita").toLocalDate());
+                citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return citaV;
+    }
+
+    public ArrayList<CitaVacunacion> listarCitas() {
+
+        String sql = "SELECT idCitaVacunacion,idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
+                + " numSerieDosis FROM CitaVacunacion WHERE estado = 1";
+        ArrayList<CitaVacunacion> citas = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                citaV = new CitaVacunacion();
+                citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
+                citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
+                citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                citaV.setFechaHoraCita(rs.getDate("fechaHoraCita").toLocalDate());
+                citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
+                citas.add(citaV);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return citas;
+    }
     
 }
