@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jPFondoCel = new javax.swing.JPanel();
         Escritorio = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLLaboratorio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
@@ -236,9 +236,14 @@ public class Menu extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText("Laboratorios");
+        jLLaboratorio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLLaboratorio.setForeground(new java.awt.Color(51, 153, 255));
+        jLLaboratorio.setText("Laboratorios");
+        jLLaboratorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLLaboratorioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -246,14 +251,14 @@ public class Menu extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1)
+                .addComponent(jLLaboratorio)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addComponent(jLLaboratorio)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -288,6 +293,14 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(prof);
         prof.setVisible(true);
     }//GEN-LAST:event_jLProfesionalMouseClicked
+
+    private void jLLaboratorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLLaboratorioMouseClicked
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Laboratorio_Vista lab = new Laboratorio_Vista();
+        Escritorio.add(lab);
+        lab.setVisible(true);
+    }//GEN-LAST:event_jLLaboratorioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -328,10 +341,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Escritorio;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel jLCiudadano;
+    private javax.swing.JLabel jLLaboratorio;
     private javax.swing.JLabel jLProfesional;
     private javax.swing.JLabel jLTurno;
     private javax.swing.JLabel jLVacuna;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPFondoCel;
     private javax.swing.JPanel jPanel1;
