@@ -28,7 +28,7 @@ public class VacunaData {
         vac = new Vacuna();
     }
 
-    public void guardarLaboratorio(Vacuna vac) {
+    public void guardarVacuna(Vacuna vac) {
         String query = "INSERT INTO Vacuna( numSerieDosis, marca, medida, fechaVto, colocada,"
                 + " estado) VALUES (?,?,?,?,?,?)";
         try {
