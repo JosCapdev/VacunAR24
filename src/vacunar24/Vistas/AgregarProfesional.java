@@ -20,6 +20,7 @@ public class AgregarProfesional extends javax.swing.JDialog {
     private ProfesionalData profD;
     private boolean mod;
     private boolean act;
+    private int idMod;
 
     public AgregarProfesional(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,6 +28,7 @@ public class AgregarProfesional extends javax.swing.JDialog {
         profD = new ProfesionalData();
         mod = false;
         act = false;
+        idMod=0;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -143,6 +145,7 @@ public class AgregarProfesional extends javax.swing.JDialog {
             int mat = Integer.parseInt(jTMatricula.getText());
             prof = new Profesional(mat, dni, nombre, apellido, email, telef, true);
             if (mod) {
+                prof = new Profesional(idMod,mat, dni, nombre, apellido, email, telef, true);
                 profD.modificarProfesional(prof);
                 mod = false;
                 act = true;
@@ -301,6 +304,14 @@ public class AgregarProfesional extends javax.swing.JDialog {
 
     public void setAct(boolean act) {
         this.act = act;
+    }
+
+    public int getIdMod() {
+        return idMod;
+    }
+
+    public void setIdMod(int idMod) {
+        this.idMod = idMod;
     }
 
 }
