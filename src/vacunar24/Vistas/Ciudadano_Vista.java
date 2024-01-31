@@ -182,6 +182,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
             ag.getjTDom().setText(cv.getDomicilio());
             ag.getjCBAmbito().setSelectedItem(cv.getAmbitoLab());
             ag.getjTPatolog().setText(cv.getPatologia());
+            ag.setIdMod(cv.getIdCiudadano());
             ag.setMod(true);
             ag.show();
         } else {
