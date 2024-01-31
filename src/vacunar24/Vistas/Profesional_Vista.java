@@ -145,6 +145,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
             ap.getjTMail().setText(prof.getEmail());
             ap.getjTTel().setText(prof.getCelular());
             ap.getjTMatricula().setText(prof.getMatricula()+"");
+            ap.setIdMod(prof.getIdProfesional());
             ap.setMod(true);
             ap.show();
         } else {
