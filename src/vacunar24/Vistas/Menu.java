@@ -85,6 +85,11 @@ public class Menu extends javax.swing.JFrame {
         jLTurno.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLTurno.setForeground(new java.awt.Color(51, 153, 255));
         jLTurno.setText("Turnos");
+        jLTurno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLTurnoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -301,6 +306,14 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(lab);
         lab.setVisible(true);
     }//GEN-LAST:event_jLLaboratorioMouseClicked
+
+    private void jLTurnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLTurnoMouseClicked
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        CitaVac_Vista citaV = new CitaVac_Vista();
+        Escritorio.add(citaV);
+        citaV.setVisible(true);
+    }//GEN-LAST:event_jLTurnoMouseClicked
 
     /**
      * @param args the command line arguments
