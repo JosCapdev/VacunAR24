@@ -10,8 +10,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import vacunar24.Dao.CitaVacData;
 import vacunar24.Dao.VacunaData;
 import vacunar24.Entidades.Vacuna;
+import vacunar24.Entidades.CitaVacunacion;
 
 /**
  *
@@ -19,9 +21,9 @@ import vacunar24.Entidades.Vacuna;
  */
 public class CitaVac_Vista extends javax.swing.JInternalFrame {
 
-    private Vacuna vac;
-    private VacunaData vacD;
-    private ArrayList<Vacuna> listaVac;
+    private CitaVacunacion citaV;
+    private CitaVacData citaVD;
+    private ArrayList<CitaVacunacion> listaCitaV;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
@@ -31,9 +33,9 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     private AgregarVacuna av = new AgregarVacuna(f, true);
 
     public CitaVac_Vista() {
-        vac = new Vacuna();
-        vacD = new VacunaData();
-        listaVac = new ArrayList();
+        citaV = new CitaVacunacion();
+        citaVD = new CitaVacData();
+        listaCitaV = new ArrayList();
         initComponents();
         armarCabecera();
         llenarTabla();
@@ -66,7 +68,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("CITAS DE VACUNACION:");
+        jLabel1.setText("TURNOS DE VACUNACION:");
 
         jTCV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,25 +170,25 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
 
     private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
         if (jTCV.getSelectedRow() >= 0) {
-            vac = vacD.buscarVacunaId((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
-            av.getjTNumS().setText(vac.getNumSerieDosis() + "");
-            av.getjTMarca().setText(vac.getMarca());
-            av.getjTMedida().setText(vac.getMedida() + "");
-            av.getjDCFecha().setDate(Date.valueOf(vac.getFechaVto()));
-            av.setIdMod(vac.getIdVacuna());
+            citaV = citaVD.buscarCitaId((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
+            av.getjTNumS().setText(citaV.getNumSerieDosis() + "");
+            av.getjTMarca().setText(citaV.getMarca());
+            av.getjTMedida().setText(citaV.getMedida() + "");
+            av.getjDCFecha().setDate(Date.valueOf(citaV.getFechaVto()));
+            av.setIdMod(citaV.getIdVacuna());
             av.setMod(true);
             av.show();
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una vacuna en la tabla...");
+            JOptionPane.showMessageDialog(this, "Seleccione un turno en la tabla...");
         }
     }//GEN-LAST:event_jBModActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
         if (jTCV.getSelectedRow() >= 0) {
-            vacD.eliminarVacuna((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
+            citaVD.eliminarCita((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
             actT();
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una vacuna en la tabla...");
+            JOptionPane.showMessageDialog(this, "Seleccione un turno en la tabla...");
         }
     }//GEN-LAST:event_jBElimActionPerformed
 
@@ -198,10 +200,10 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         modelo.setNumRows(0);
-        for (Vacuna v : listaVac) {
-            if (v.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || v.getNumSerieDosis() == Integer.parseInt(jTBuscador.getText())
-                    || v.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
-                modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(), v.getFechaVto()});
+        for (CitaVacunacio cv : listaCitaV) {
+            if (cv.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getNumSerieDosis() == Integer.parseInt(jTBuscador.getText())
+                    || cv.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
+                modelo.addRow(new Object[]{cv.getIdVacuna(), cv.getNumSerieDosis(), cv.getMarca(), cv.getMedida(), cv.getFechaVto()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
@@ -219,11 +221,12 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Codigo");
-        filaCabecera.add("N°Serie");
-        filaCabecera.add("Marca");
-        filaCabecera.add("Medida");
-        filaCabecera.add("Fecha de Vencimiento");
-        filaCabecera.add("Estado");
+        filaCabecera.add("idCiudadano");
+        filaCabecera.add("Codigo refuerzo");
+        filaCabecera.add("FechaHoraTurno");
+        filaCabecera.add("Centro Vacunatorio");
+        filaCabecera.add("FechaHoraColocacion");
+        filaCabecera.add("Dosis N°Serie");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
@@ -231,8 +234,8 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
-        listaVac = vacD.listarVacunas();
-        listaVac.stream().forEach(v -> {
+        listaCitaV = citaVD.listarVacunas();
+        listaCitaV.stream().forEach(v -> {
             modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(),
                 v.getFechaVto(), v.isEstado()});
         });
