@@ -11,9 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunar24.Entidades.CitaVacunacion;
+import vacunar24.Entidades.Ciudadano;
 
 /**
  *
@@ -22,12 +25,14 @@ import vacunar24.Entidades.CitaVacunacion;
 public class CitaVacData {
      private Connection con = null;
      private CitaVacunacion citaV;
+     private Ciudadano c;
      private CiudadanoData cd;
      private VacunaData vacD;
 
     public CitaVacData() {
         this.con = Conexion.getConexion();
         citaV = new CitaVacunacion();
+        c = new Ciudadano();
         cd = new CiudadanoData();
         vacD = new VacunaData();
     }
@@ -35,11 +40,11 @@ public class CitaVacData {
     public void guardarCita(CitaVacunacion citaV) {
         String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
                 + " numSerieDosis,estado) VALUES (?,?,?,?,?,?,?)";
-        try {
+        try {           
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,citaV.getPersona().getIdCiudadano());
             ps.setInt(2,citaV.getCodRefuerzo());
-            ps.setDate(3,Date.valueOf(citaV.getFechaHoraCita()));
+            ps.setString(3,citaV.getFechaHoraCita());
             ps.setString(4,citaV.getCentroVacunacion());
             ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
             ps.setInt(6, citaV.getDosis().getNumSerieDosis());
@@ -108,7 +113,7 @@ public class CitaVacData {
                 citaV.setIdCitaVacunacion(id);
                 citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
-                citaV.setFechaHoraCita(rs.getDate("fechaHoraCita").toLocalDate());
+                citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
                 citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
@@ -137,7 +142,7 @@ public class CitaVacData {
                 citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
                 citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
-                citaV.setFechaHoraCita(rs.getDate("fechaHoraCita").toLocalDate());
+                citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
                 citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
