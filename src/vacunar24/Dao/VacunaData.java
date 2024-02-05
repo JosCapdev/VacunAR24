@@ -47,6 +47,11 @@ public class VacunaData {
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo tener el ID...");
             }
+            if (rs.next()) {
+                vac.setNumSerieDosis(rs.getInt(1));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo tener el numero de Serie...");
+            }
             ps.close();
             JOptionPane.showMessageDialog(null, "Guardado!");
         } catch (SQLException ex) {
@@ -55,7 +60,7 @@ public class VacunaData {
     }
 
     public void modificarVacuna(Vacuna vac) {
-        String query = "UPDATE Laboratorio SET numSerieDosis=?, marca=?, medida=?, fechaVto=?,"
+        String query = "UPDATE Vacuna SET numSerieDosis=?, marca=?, medida=?, fechaVto=?,"
                 + " ,colocada=?, estado= ?  WHERE idLaboratorio=? ";
 
         try {
@@ -146,7 +151,7 @@ public class VacunaData {
     }   
     public ArrayList<Vacuna> listarVacunas() {
 
-        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada FROM Vacuna WHERE estado = 1";
+        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada FROM Vacuna";
         ArrayList<Vacuna> vacunas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -168,5 +173,32 @@ public class VacunaData {
             JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
         }
         return vacunas;
+    }
+    
+     public Vacuna VacunaMayorCant() {
+        String sql = "SELECT idVacuna,numSerieDosis, marca, medida, fechaVto, colocada,cantidad FROM Vacuna"
+                + " WHERE MAX(cantidad)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                vac = new Vacuna();
+                vac.setIdVacuna(rs.getInt("idVacuna"));
+                vac.setNumSerieDosis(rs.getInt("numSerieDosis"));
+                vac.setMarca(rs.getString("marca"));
+                vac.setMedida(rs.getDouble("medida"));
+                vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
+                vac.setColocada(rs.getBoolean("colocada"));
+                vac.setCantidad(rs.getInt("cantidad"));
+                vac.setEstado(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return vac;
     }
 }
