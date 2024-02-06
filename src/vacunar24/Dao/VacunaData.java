@@ -30,7 +30,7 @@ public class VacunaData {
 
     public void guardarVacuna(Vacuna vac) {
         String query = "INSERT INTO Vacuna( numSerieDosis, marca, medida, fechaVto, colocada,"
-                + " estado) VALUES (?,?,?,?,?,?)";
+                + " cantidad, estado) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, vac.getNumSerieDosis());
@@ -38,7 +38,8 @@ public class VacunaData {
             ps.setDouble(3, vac.getMedida());
             ps.setDate(4, Date.valueOf(vac.getFechaVto()));
             ps.setBoolean(5, vac.isColocada());
-            ps.setBoolean(6, true);
+            ps.setInt(6, vac.getCantidad());
+            ps.setBoolean(7, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -61,7 +62,7 @@ public class VacunaData {
 
     public void modificarVacuna(Vacuna vac) {
         String query = "UPDATE Vacuna SET numSerieDosis=?, marca=?, medida=?, fechaVto=?,"
-                + " ,colocada=?, estado= ?  WHERE idLaboratorio=? ";
+                + " ,colocada=?, cantidad=?, estado= ?  WHERE idLaboratorio=? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
@@ -70,7 +71,8 @@ public class VacunaData {
             ps.setDouble(3, vac.getMedida());
             ps.setDate(4, Date.valueOf(vac.getFechaVto()));
             ps.setBoolean(5, vac.isColocada());
-            ps.setBoolean(6, true);
+            ps.setInt(6, vac.getCantidad());
+            ps.setBoolean(7, true);
             ps.setInt(8, vac.getIdVacuna());
             int exito = ps.executeUpdate();
             if (exito == 1) {
@@ -97,7 +99,7 @@ public class VacunaData {
     }
 
     public Vacuna buscarVacunaId(int id) {
-        String sql = "SELECT numSerieDosis, marca, medida, fechaVto, colocada FROM Vacuna"
+        String sql = "SELECT numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
                 + " WHERE idVacuna=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -111,6 +113,7 @@ public class VacunaData {
                 vac.setMedida(rs.getDouble("medida"));
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
                 vac.setColocada(rs.getBoolean("colocada"));
+                vac.setCantidad(rs.getInt("cantidad"));
                 vac.setEstado(true);
 
             } else {
@@ -124,7 +127,7 @@ public class VacunaData {
     }
     
  public Vacuna buscarVacunaSerie(int serie) {
-        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada FROM Vacuna"
+        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
                 + " WHERE numSerieDosis=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -138,6 +141,7 @@ public class VacunaData {
                 vac.setMedida(rs.getDouble("medida"));
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
                 vac.setColocada(rs.getBoolean("colocada"));
+                vac.setCantidad(rs.getInt("cantidad"));
                 vac.setEstado(true);
 
             } else {
@@ -151,7 +155,7 @@ public class VacunaData {
     }   
     public ArrayList<Vacuna> listarVacunas() {
 
-        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada FROM Vacuna";
+        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna";
         ArrayList<Vacuna> vacunas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -165,6 +169,7 @@ public class VacunaData {
                 vac.setMedida(rs.getDouble("medida"));
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
                 vac.setColocada(rs.getBoolean("colocada"));
+                vac.setCantidad(rs.getInt("cantidad"));
                 vac.setEstado(true);
                 vacunas.add(vac);
             }
