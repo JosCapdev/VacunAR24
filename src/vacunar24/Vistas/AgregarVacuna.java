@@ -55,6 +55,8 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jBGuardar = new javax.swing.JButton();
         jBLimpiar = new javax.swing.JButton();
         jDCFecha = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jSCant = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,8 +83,8 @@ public class AgregarVacuna extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Medida:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        jLabel5.setText("cantidad:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
@@ -95,7 +97,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 160, -1));
 
         jBLimpiar.setText("Limpiar Campos");
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +105,14 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
         jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 160, 30));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("Medida:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        jPanel1.add(jSCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +122,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,9 +134,10 @@ public class AgregarVacuna extends javax.swing.JDialog {
             String marca = jTMarca.getText();
             double medida = Double.parseDouble(jTMedida.getText());
             LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            vac = new Vacuna(numSerie,marca,medida,fecha,false,true);
+            int cant = (int) jSCant.getValue();
+            vac = new Vacuna(numSerie,marca,medida,fecha,false,cant,true);
             if (mod) {
-                vac = new Vacuna(idMod,numSerie,marca,medida,fecha,false,true);
+                vac = new Vacuna(idMod,numSerie,marca,medida,fecha,false,cant,true);
                 vacD.modificarVacuna(vac);
                 mod = false;
                 act = true;
@@ -205,7 +214,9 @@ public class AgregarVacuna extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSCant;
     private javax.swing.JTextField jTMarca;
     private javax.swing.JTextField jTMedida;
     private javax.swing.JTextField jTNumS;
@@ -216,6 +227,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jTNumS.setText("");
         jTMarca.setText("");
         jTMedida.setText("");
+        jSCant.setValue(0);
         jDCFecha=null;
         vac = null;
 
