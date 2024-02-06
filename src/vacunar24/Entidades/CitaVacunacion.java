@@ -6,7 +6,6 @@
 package vacunar24.Entidades;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  *
