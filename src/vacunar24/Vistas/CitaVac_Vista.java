@@ -6,13 +6,10 @@
 package vacunar24.Vistas;
 
 import java.awt.Frame;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vacunar24.Dao.CitaVacData;
-import vacunar24.Dao.VacunaData;
-import vacunar24.Entidades.Vacuna;
 import vacunar24.Entidades.CitaVacunacion;
 
 /**
@@ -30,7 +27,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         }
     };
     private Frame f = JOptionPane.getFrameForComponent(this);
-    private AgregarVacuna av = new AgregarVacuna(f, true);
+    private AgregarCita ac = new AgregarCita(f, true);
 
     public CitaVac_Vista() {
         citaV = new CitaVacunacion();
@@ -54,8 +51,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCV = new javax.swing.JTable();
-        jBAgregar = new javax.swing.JButton();
-        jBMod = new javax.swing.JButton();
+        jBNuevo = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
 
@@ -83,21 +79,14 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTCV);
 
-        jBAgregar.setText("Agregar vacuna");
-        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+        jBNuevo.setText("Nuevo Turno");
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAgregarActionPerformed(evt);
+                jBNuevoActionPerformed(evt);
             }
         });
 
-        jBMod.setText("Modificar");
-        jBMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModActionPerformed(evt);
-            }
-        });
-
-        jBElim.setText("Eliminar");
+        jBElim.setText("Eliminar Turno");
         jBElim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBElimActionPerformed(evt);
@@ -126,12 +115,10 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBMod)
-                .addGap(45, 45, 45)
-                .addComponent(jBElim)
-                .addGap(15, 15, 15))
+                .addComponent(jBElim, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +131,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAgregar)
-                    .addComponent(jBMod)
+                    .addComponent(jBNuevo)
                     .addComponent(jBElim))
                 .addGap(16, 16, 16))
         );
@@ -164,24 +150,9 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        av.show();
-    }//GEN-LAST:event_jBAgregarActionPerformed
-
-    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
-        if (jTCV.getSelectedRow() >= 0) {
-            citaV = citaVD.buscarCitaId((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
-            av.getjTNumS().setText(citaV.getNumSerieDosis() + "");
-            av.getjTMarca().setText(citaV.getMarca());
-            av.getjTMedida().setText(citaV.getMedida() + "");
-            av.getjDCFecha().setDate(Date.valueOf(citaV.getFechaVto()));
-            av.setIdMod(citaV.getIdVacuna());
-            av.setMod(true);
-            av.show();
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un turno en la tabla...");
-        }
-    }//GEN-LAST:event_jBModActionPerformed
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        ac.show();
+    }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
         if (jTCV.getSelectedRow() >= 0) {
@@ -193,25 +164,25 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBElimActionPerformed
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-        if (av.isAct()) {
+        if (ac.isAct()) {
             actT();
         }
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         modelo.setNumRows(0);
-        for (CitaVacunacio cv : listaCitaV) {
-            if (cv.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getNumSerieDosis() == Integer.parseInt(jTBuscador.getText())
-                    || cv.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
-                modelo.addRow(new Object[]{cv.getIdVacuna(), cv.getNumSerieDosis(), cv.getMarca(), cv.getMedida(), cv.getFechaVto()});
+        for (CitaVacunacion cv : listaCitaV) {
+            if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+                    || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
+                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBElim;
-    private javax.swing.JButton jBMod;
+    private javax.swing.JButton jBNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -226,7 +197,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         filaCabecera.add("FechaHoraTurno");
         filaCabecera.add("Centro Vacunatorio");
         filaCabecera.add("FechaHoraColocacion");
-        filaCabecera.add("Dosis N°Serie");
+        filaCabecera.add("Dosis");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
@@ -234,16 +205,16 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
-        listaCitaV = citaVD.listarVacunas();
-        listaCitaV.stream().forEach(v -> {
-            modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(),
-                v.getFechaVto(), v.isEstado()});
+        listaCitaV = citaVD.listarCitas();
+        listaCitaV.stream().forEach(cv -> {
+            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
         });
     }
 
     private void actT() {
         modelo.setNumRows(0);
         llenarTabla();
-        av.setAct(false);
+        ac.setAct(false);
     }
 }
