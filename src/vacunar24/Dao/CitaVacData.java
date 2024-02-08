@@ -72,7 +72,7 @@ public class CitaVacData {
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,citaV.getPersona().getIdCiudadano());
             ps.setInt(2,citaV.getCodRefuerzo());
-            ps.setDate(3,Date.valueOf(citaV.getFechaHoraCita()));
+            ps.setString(3,citaV.getFechaHoraCita());
             ps.setString(4,citaV.getCentroVacunacion());
             ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
             ps.setInt(6, citaV.getDosis().getNumSerieDosis());
