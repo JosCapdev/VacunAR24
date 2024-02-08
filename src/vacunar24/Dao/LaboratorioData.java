@@ -64,7 +64,7 @@ public class LaboratorioData {
             ps.setString(3, lab.getPais());
             ps.setString(4, lab.getDomComercial());
             ps.setBoolean(5, true);
-            ps.setInt(8, lab.getIdLaboratorio());
+            ps.setInt(6, lab.getIdLaboratorio());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Laboratorio Modificado");
