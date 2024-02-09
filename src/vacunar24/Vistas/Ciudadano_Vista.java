@@ -200,7 +200,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBElimActionPerformed
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
-        modelo.setNumRows(0);
+        borrarFilas();
         for(Ciudadano c:listaCiud){
             if(c.getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())||c.getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                || c.getIdCiudadano()== Integer.parseInt(jTBuscador.getText())){
@@ -244,7 +244,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
 
     }
     private void llenarTabla() {
-//        listaCiud = cd.listarCiudadanos();
+        listaCiud = cd.listarCiudadanos();
         listaCiud.add(new Ciudadano(1, "no tiene", "salud", "dom1", "ciudad", "mendoza", 1234123, "Juan", "Perez", "mail_1", "261", true));
         listaCiud.stream().forEach(c -> {
             modelo.addRow(new Object[]{c.getIdCiudadano(), c.getDni(),
@@ -252,9 +252,15 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 c.getDomicilio(), c.getLocalidad(), c.getProvincia(), c.isEstado()});
         });
     }
+        private void borrarFilas(){
+        int i = jTCiud.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT(){
-        modelo.setNumRows(0);
-            llenarTabla();
-            ag.setAct(false);
+        borrarFilas();
+        llenarTabla();
+        ag.setAct(false);
     }
 }
