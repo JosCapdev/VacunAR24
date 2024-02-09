@@ -37,7 +37,7 @@ public class ProfesionalData {
             ps.setString(2, prof.getNombre());
             ps.setString(3, prof.getApellido());
             ps.setString(4, prof.getEmail());
-            ps.setString(4, prof.getCelular());
+            ps.setString(5, prof.getCelular());
             ps.setInt(6, prof.getMatricula());
             ps.setBoolean(7, true);
             ps.executeUpdate();
@@ -65,7 +65,7 @@ public class ProfesionalData {
             ps.setString(2, prof.getNombre());
             ps.setString(3, prof.getApellido());
             ps.setString(4, prof.getEmail());
-            ps.setString(4, prof.getCelular());
+            ps.setString(5, prof.getCelular());
             ps.setInt(6, prof.getMatricula());
             ps.setBoolean(7, true);
             ps.setInt(8, prof.getIdProfesional());
