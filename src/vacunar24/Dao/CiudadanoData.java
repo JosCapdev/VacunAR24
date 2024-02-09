@@ -37,7 +37,7 @@ public class CiudadanoData {
             ps.setString(2, ciud.getNombre());
             ps.setString(3, ciud.getApellido());
             ps.setString(4, ciud.getEmail());
-            ps.setString(4, ciud.getCelular());
+            ps.setString(5, ciud.getCelular());
             ps.setString(6, ciud.getPatologia());
             ps.setString(7, ciud.getAmbitoLab());
             ps.setString(8, ciud.getDomicilio());
@@ -69,7 +69,7 @@ public class CiudadanoData {
             ps.setString(2, ciud.getNombre());
             ps.setString(3, ciud.getApellido());
             ps.setString(4, ciud.getEmail());
-            ps.setString(4, ciud.getCelular());
+            ps.setString(5, ciud.getCelular());
             ps.setString(6, ciud.getPatologia());
             ps.setString(7, ciud.getAmbitoLab());
             ps.setString(8, ciud.getDomicilio());
