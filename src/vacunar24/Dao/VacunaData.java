@@ -48,11 +48,6 @@ public class VacunaData {
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo tener el ID...");
             }
-            if (rs.next()) {
-                vac.setNumSerieDosis(rs.getInt(1));
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo tener el numero de Serie...");
-            }
             ps.close();
             JOptionPane.showMessageDialog(null, "Guardado!");
         } catch (SQLException ex) {
