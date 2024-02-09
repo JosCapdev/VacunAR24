@@ -54,7 +54,7 @@ public class LaboratorioData {
     }
 
     public void modificarLaboratorio(Laboratorio lab) {
-        String query = "UPDATE Laboratorio SET cuit=?, nomLaboratorio=?, pais=?, domComercial=?,"
+        String query = "UPDATE Laboratorio SET cuit=?, nombLaboratorio=?, pais=?, domComercial=?,"
                 + " estado= ?  WHERE idLaboratorio=? ";
 
         try {
