@@ -39,7 +39,7 @@ public class CitaVacData {
 
     public void guardarCita(CitaVacunacion citaV) {
         String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis,estado) VALUES (?,?,?,?,?,?,?)";
+                + " numSerieDosis) VALUES (?,?,?,?,?,?)";
         try {           
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,citaV.getPersona().getIdCiudadano());
@@ -48,7 +48,6 @@ public class CitaVacData {
             ps.setString(4,citaV.getCentroVacunacion());
             ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
             ps.setInt(6, citaV.getDosis().getNumSerieDosis());
-            ps.setBoolean(7, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -103,7 +102,7 @@ public class CitaVacData {
 
     public CitaVacunacion buscarCitaId(int id) {
         String sql = "SELECT idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis FROM CitaVacunacion WHERE idCitaVacunacion = ? AND estado = 1";
+                + " numSerieDosis FROM CitaVacunacion WHERE idCitaVacunacion = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -119,7 +118,7 @@ public class CitaVacData {
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
 
             } else {
-                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
+                JOptionPane.showMessageDialog(null, "no existe la Cita");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -127,11 +126,37 @@ public class CitaVacData {
         }
         return citaV;
     }
+    public CitaVacunacion buscarCitaCiud(int id) {
+        String sql = "SELECT idCitaVacunacion, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
+                + " numSerieDosis FROM CitaVacunacion WHERE idCiudadano = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                citaV = new CitaVacunacion();
+                citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
+                citaV.setPersona(cd.buscarCiudadanoId(rs.getInt(id)));
+                citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
+                citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Nuevo Paciente");
+                citaV=null;
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return citaV;
+    }
     public ArrayList<CitaVacunacion> listarCitas() {
 
-        String sql = "SELECT idCitaVacunacion,idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis FROM CitaVacunacion WHERE estado = 1";
+        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
+                + " numSerieDosis FROM CitaVacunacion";
         ArrayList<CitaVacunacion> citas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -139,6 +164,7 @@ public class CitaVacData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 citaV = new CitaVacunacion();
+                cd= new CiudadanoData();
                 citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
                 citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
