@@ -17,6 +17,11 @@ public class Laboratorio {
     private String domComercial;
     private boolean estado;
 
+    @Override
+    public String toString() {
+        return "Laboratorio{" + "idLaboratorio=" + idLaboratorio + ", cuit=" + cuit + ", nomLaboratorio=" + nomLaboratorio + ", pais=" + pais + ", domComercial=" + domComercial + ", estado=" + estado + '}';
+    }
+
     public int getIdLaboratorio() {
         return idLaboratorio;
     }
