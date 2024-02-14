@@ -137,7 +137,7 @@ public class Ciudadano extends Persona {
 
     @Override
     public String toString() {
-        return "Ciudadano{" + "idCiudadano=" + idCiudadano + ", patologia=" + patologia + ", ambitoLab=" + ambitoLab + ", domicilio=" + domicilio + ", localidad=" + localidad + ", Provincia=" + Provincia + '}';
+        return idCiudadano+" "+dni+" "+nombre +" "+apellido+" " + email + " " + celular + " " + patologia + " "+ambitoLab +" "+domicilio +" "+ localidad+" "+Provincia;
     }
 
     
