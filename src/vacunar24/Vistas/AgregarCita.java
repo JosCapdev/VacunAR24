@@ -45,6 +45,7 @@ public class AgregarCita extends javax.swing.JDialog {
         vacD= new VacunaData();
         listaC = new ArrayList();
         listaCitas = new ArrayList();
+        f1=null;
         mod = false;
         act = false;
         idMod = 0;
@@ -244,12 +245,14 @@ public class AgregarCita extends javax.swing.JDialog {
     }
 
     public void ultTurno() {
+        listaCitas= citaVD.listarCitas();
+        f1=LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
         for (CitaVacunacion cv : listaCitas) {
             LocalDateTime f0 = LocalDateTime.parse(cv.getFechaHoraCita());
-            if (f0.isAfter(f1) || f1 == null) {
-                f1 = f0;
+            if (f0.toLocalDate().isEqual(f1.toLocalDate()) && f0.toLocalTime()== f1.toLocalTime()) {
+                f1 = LocalDateTime.of(f0.toLocalDate(), f1.toLocalTime().plusMinutes(30));
             }
-
+            System.out.println("fecha ult t"+f0+" --"+f1);
         }
     }
 
