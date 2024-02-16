@@ -6,8 +6,6 @@
 package vacunar24.Entidades;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 /**
  *
  * @author Jose
@@ -16,7 +14,7 @@ public class CitaVacunacion {
     private int idCitaVacunacion;
     private Ciudadano persona;
     private int codRefuerzo;
-    private LocalDateTime fechaHoraCita;
+    private String fechaHoraCita;
     private String centroVacunacion;
     private LocalDate fechaHoraColoc;
     private Vacuna dosis;
@@ -45,11 +43,11 @@ public class CitaVacunacion {
         this.codRefuerzo = codRefuerzo;
     }
 
-    public LocalDateTime getFechaHoraCita() {
+    public String getFechaHoraCita() {
         return fechaHoraCita;
     }
 
-    public void setFechaHoraCita(LocalDateTime fechaHoraCita) {
+    public void setFechaHoraCita(String fechaHoraCita) {
         this.fechaHoraCita = fechaHoraCita;
     }
 
@@ -80,7 +78,7 @@ public class CitaVacunacion {
     public CitaVacunacion() {
     }
 
-    public CitaVacunacion(int idCitaVacunacion, Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
+    public CitaVacunacion(int idCitaVacunacion, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
         this.idCitaVacunacion = idCitaVacunacion;
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
@@ -90,7 +88,7 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
+    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
