@@ -144,7 +144,7 @@ public class CitaVacData {
         }
         return idF;
     }
-        public int buscarUltFech() {
+        public int buscarUltFech(int id) {
         String sql = "SELECT MAX(idCitaVacunacion) idCitaVacunacion FROM CitaVacunacion WHERE idCiudadano = ?";
         int idF=0;
         try {
@@ -155,6 +155,23 @@ public class CitaVacData {
                 idF= rs.getInt("idCitaVacunacion");     
             } else {
                 JOptionPane.showMessageDialog(null, "Nuevo Paciente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return idF;
+    }
+        public int buscarUltTurno() {
+        String sql = "SELECT MAX(idCitaVacunacion) idCitaVacunacion FROM CitaVacunacion";
+        int idF=0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                idF= rs.getInt("idCitaVacunacion");     
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro ningun turno agendado..");
             }
             ps.close();
         } catch (SQLException ex) {
