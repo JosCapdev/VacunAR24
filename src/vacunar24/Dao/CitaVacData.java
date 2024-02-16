@@ -118,7 +118,7 @@ public class CitaVacData {
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
 
             } else {
-                JOptionPane.showMessageDialog(null, "no existe la Cita");
+                JOptionPane.showMessageDialog(null, "Nuevo Paciente...");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -126,32 +126,23 @@ public class CitaVacData {
         }
         return citaV;
     }
-    public CitaVacunacion buscarCitaCiud(int id) {
-        String sql = "SELECT idCitaVacunacion, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis FROM CitaVacunacion WHERE idCiudadano = ? ";
+    public int buscarUltCitaCiud(int id) {
+        String sql = "SELECT MAX(idCitaVacunacion) idCitaVacunacion FROM CitaVacunacion WHERE idCiudadano = ?";
+        int idF=0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                citaV = new CitaVacunacion();
-                citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
-                citaV.setPersona(cd.buscarCiudadanoId(rs.getInt(id)));
-                citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
-                citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
-                citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
-                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
-                citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
-
+                idF= rs.getInt("idCitaVacunacion");     
             } else {
                 JOptionPane.showMessageDialog(null, "Nuevo Paciente");
-                citaV=null;
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
         }
-        return citaV;
+        return idF;
     }
     public ArrayList<CitaVacunacion> listarCitas() {
 
