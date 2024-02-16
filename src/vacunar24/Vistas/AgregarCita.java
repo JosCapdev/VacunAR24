@@ -8,6 +8,7 @@ package vacunar24.Vistas;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunar24.Dao.CitaVacData;
@@ -51,7 +52,6 @@ public class AgregarCita extends javax.swing.JDialog {
         idMod = 0;
         initComponents();
         llenarDatos();
-        ultTurno();
         System.out.println("turno "+fechaTurno().getDayOfMonth()+"/"+fechaTurno().getMonthValue()+" "+fechaTurno().toLocalTime());
         this.setLocationRelativeTo(null);
     }
@@ -124,12 +124,14 @@ public class AgregarCita extends javax.swing.JDialog {
             Ciudadano ciud = (Ciudadano) jCBC.getSelectedItem();
             int cod = 1;
             int idUlt=citaVD.buscarUltCitaCiud(ciud.getIdCiudadano());
+            System.out.println("idult "+idUlt);
             CitaVacunacion cita= new CitaVacunacion();
-            citaV = citaVD.buscarCitaId(idUlt);
-            if(citaV.getCodRefuerzo()>=0){
+            if(idUlt!=0){
+                idUlt = citaVD.buscarUltCitaCiud(ciud.getIdCiudadano());
+                citaV = citaVD.buscarCitaId(idUlt);
                 cod=citaV.getCodRefuerzo()+1;
                 System.out.println("codigo "+cod);
-            }
+            };
             cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
             cita.setCodRefuerzo(cod);
             cita.setFechaHoraCita(fechaTurno().toString());
@@ -244,28 +246,19 @@ public class AgregarCita extends javax.swing.JDialog {
         }
     }
 
-    public void ultTurno() {
-        listaCitas= citaVD.listarCitas();
-        f1=LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
-        for (CitaVacunacion cv : listaCitas) {
-            LocalDateTime f0 = LocalDateTime.parse(cv.getFechaHoraCita());
-            if (f0.toLocalDate().isEqual(f1.toLocalDate()) && f0.toLocalTime()== f1.toLocalTime()) {
-                f1 = LocalDateTime.of(f0.toLocalDate(), f1.toLocalTime().plusMinutes(30));
-            }
-            System.out.println("fecha ult t"+f0+" --"+f1);
-        }
-    }
-
     public LocalDateTime fechaTurno() {
-        ultTurno();
-        LocalDateTime fech = f1 != null ? f1 : LocalDateTime.now();
-        if (fech.isBefore(LocalDateTime.of(fech.toLocalDate(), LocalTime.of(19, 30)))
-                && fech.isAfter(LocalDateTime.of(f1.toLocalDate(), LocalTime.of(8, 30)))) {
-            fech.plusMinutes(30);
+        citaV= citaVD.buscarCitaId(citaVD.buscarUltTurno());
+        f1=citaV.getFechaHoraCita()!= null ? LocalDateTime.parse(citaV.getFechaHoraCita()): null;
+        System.out.println("f11 "+f1);
+        LocalDateTime fech = f1 != null ? f1 : LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
+        if (fech.toLocalTime().isBefore(LocalTime.of(19, 30))
+                && fech.toLocalTime().isAfter(LocalTime.of(8, 00))){
+            fech=fech.plusMinutes(30);
         } else {
-            fech.plusDays(1);
+            fech=fech.plusDays(1);
             fech = LocalDateTime.of(fech.toLocalDate(), LocalTime.of(8, 30));
         }
+        System.out.println("fech final "+fech.plusMinutes(30));
         return fech;
     }
 
