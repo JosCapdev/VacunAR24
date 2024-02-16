@@ -102,15 +102,14 @@ public class CiudadanoData {
     }
 
     public Ciudadano buscarCiudadanoId(int id) {
-        String sql = "SELECT dni, nombre, apellido, email, celular, patologia,ambitoLab, domicilio, localidad,"
-                + " Provincia FROM Ciudadano WHERE idCiudadano=? AND estado = 1";
+        String sql = "SELECT idCiudadano, dni, nombre, apellido, email, celular, patologia,ambitoLab, domicilio, localidad,Provincia FROM Ciudadano WHERE idCiudadano=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 ciud = new Ciudadano();
-                ciud.setIdCiudadano(id);
+                ciud.setIdCiudadano(rs.getInt("idCiudadano"));
                 ciud.setDni(rs.getInt("dni"));
                 ciud.setNombre(rs.getString("nombre"));
                 ciud.setApellido(rs.getString("apellido"));
