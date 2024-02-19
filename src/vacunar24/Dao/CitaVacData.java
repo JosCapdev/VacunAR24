@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -38,16 +37,15 @@ public class CitaVacData {
     }
 
     public void guardarCita(CitaVacunacion citaV) {
-        String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,"
+                + " numSerieDosis) VALUES (?,?,?,?,?)";
         try {           
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,citaV.getPersona().getIdCiudadano());
             ps.setInt(2,citaV.getCodRefuerzo());
             ps.setString(3,citaV.getFechaHoraCita());
             ps.setString(4,citaV.getCentroVacunacion());
-            ps.setDate(5,Date.valueOf(citaV.getFechaHoraColoc()));
-            ps.setInt(6, citaV.getDosis().getNumSerieDosis());
+            ps.setInt(5, citaV.getDosis().getNumSerieDosis());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -86,7 +84,7 @@ public class CitaVacData {
     }
 
     public void eliminarCita(int id) {
-        String query = "UPDATE CitaVacunacion SET estado = 0 WHERE idCitaVacunacion = ?";
+        String query = "DELETE FROM Citavacunacion WHERE idCitaVacunacion = ?";
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, id);
@@ -114,7 +112,9 @@ public class CitaVacData {
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                if(rs.getDate("fechaHoraColocada")!=null){
                 citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                }
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
 
             } else {
@@ -196,7 +196,9 @@ public class CitaVacData {
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                if(rs.getDate("fechaHoraColocada")!=null){
                 citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                }
                 citaV.setDosis(vacD.buscarVacunaSerie(rs.getInt("numSerieDosis")));
                 citas.add(citaV);
             }
