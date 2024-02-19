@@ -8,7 +8,6 @@ package vacunar24.Vistas;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunar24.Dao.CitaVacData;
@@ -46,14 +45,13 @@ public class AgregarCita extends javax.swing.JDialog {
         vacD= new VacunaData();
         listaC = new ArrayList();
         listaCitas = new ArrayList();
-        f1=null;
+        listaVac = new ArrayList();
+        f1=null; 
         mod = false;
         act = false;
         idMod = 0;
         initComponents();
         llenarDatos();
-        System.out.println("turno "+fechaTurno().getDayOfMonth()+"/"+fechaTurno().getMonthValue()+" "+fechaTurno().toLocalTime());
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -124,48 +122,18 @@ public class AgregarCita extends javax.swing.JDialog {
             Ciudadano ciud = (Ciudadano) jCBC.getSelectedItem();
             int cod = 1;
             int idUlt=citaVD.buscarUltCitaCiud(ciud.getIdCiudadano());
-            System.out.println("idult "+idUlt);
             CitaVacunacion cita= new CitaVacunacion();
             if(idUlt!=0){
                 idUlt = citaVD.buscarUltCitaCiud(ciud.getIdCiudadano());
-                citaV = citaVD.buscarCitaId(idUlt);
-                cod=citaV.getCodRefuerzo()+1;
-                System.out.println("codigo "+cod);
-            };
-            cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
+                cita = citaVD.buscarCitaId(idUlt);
+                cod=cita.getCodRefuerzo()+1;
+            }else{
+                cita.setDosis(buscarVacMayorCant());
+                cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
+            }
             cita.setCodRefuerzo(cod);
             cita.setFechaHoraCita(fechaTurno().toString());
             cita.setCentroVacunacion("Centro de " + ciud.getLocalidad());
-            cita.setFechaHoraColoc(LocalDate.now());
-            cita.setDosis(vacD.buscarVacunaId(3));
-//            if (citaV.getDosis() == null) {
-//                citaV.setDosis(vacD.VacunaMayorCant());
-//            }
-//            listaC.add(ciud);
-//            f1 = LocalDateTime.of(f1.toLocalDate(), LocalTime.of(8, 30));
-//            if (listaC.size() == 16) {
-//                for (Ciudadano c : listaC) {
-//                    for (CitaVacunacion cv : listaCitas) {
-//                        if (c.getIdCiudadano() == cv.getPersona().getIdCiudadano()) {
-//                            citaV = cv;
-//                        } else {
-//                            citaV = new CitaVacunacion();
-//                            citaV.setPersona(c);
-//                        }
-//                        int cod = citaV.getCodRefuerzo();
-//                        citaV.setCodRefuerzo(cod == 0 ? 1 : cod + 1);
-//                        f1.plusMinutes(30);
-//                        citaV.setFechaHoraCita(f1.toString());
-//                        citaV.setCentroVacunacion("Centro de " + c.getLocalidad());
-//                        citaV.setFechaHoraColoc(null);
-//                        if (citaV.getDosis() == null) {
-//                            citaV.setDosis(vacD.VacunaMayorCant());
-//                        }
-//                    }
-//                    citaVD.guardarCita(citaV);
-//                }
-//                f1.plusDays(1);
-//            }
             citaVD.guardarCita(cita);
             act = true;
             JOptionPane.showMessageDialog(null, "Turno Creado para " + cita.getPersona().getNombre() + " "
@@ -173,7 +141,7 @@ public class AgregarCita extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatibles");
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Llenar Campos");
         }
     }//GEN-LAST:event_jBCrearActionPerformed
 
@@ -249,7 +217,6 @@ public class AgregarCita extends javax.swing.JDialog {
     public LocalDateTime fechaTurno() {
         citaV= citaVD.buscarCitaId(citaVD.buscarUltTurno());
         f1=citaV.getFechaHoraCita()!= null ? LocalDateTime.parse(citaV.getFechaHoraCita()): null;
-        System.out.println("f11 "+f1);
         LocalDateTime fech = f1 != null ? f1 : LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
         if (fech.toLocalTime().isBefore(LocalTime.of(19, 30))
                 && fech.toLocalTime().isAfter(LocalTime.of(8, 00))){
@@ -258,10 +225,21 @@ public class AgregarCita extends javax.swing.JDialog {
             fech=fech.plusDays(1);
             fech = LocalDateTime.of(fech.toLocalDate(), LocalTime.of(8, 30));
         }
-        System.out.println("fech final "+fech.plusMinutes(30));
         return fech;
     }
 
+    public Vacuna buscarVacMayorCant(){
+        listaVac = vacD.listarVacunas();
+        Vacuna vacuna = new Vacuna();
+        int cant=0;
+        for (Vacuna vac : listaVac) {
+            if(vac.getCantidad()> cant){
+                cant= vac.getCantidad();
+                vacuna=vac;
+            }
+        }
+        return vacuna;
+    }
     public boolean isAct() {
         return act;
     }
