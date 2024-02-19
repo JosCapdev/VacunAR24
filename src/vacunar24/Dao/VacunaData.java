@@ -174,31 +174,5 @@ public class VacunaData {
         }
         return vacunas;
     }
-    
-     public Vacuna VacunaMayorCant() {
-        String sql = "SELECT idVacuna,numSerieDosis, marca, medida, fechaVto, colocada,cantidad FROM Vacuna"
-                + " WHERE MAX(cantidad)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                vac = new Vacuna();
-                vac.setIdVacuna(rs.getInt("idVacuna"));
-                vac.setNumSerieDosis(rs.getInt("numSerieDosis"));
-                vac.setMarca(rs.getString("marca"));
-                vac.setMedida(rs.getDouble("medida"));
-                vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
-                vac.setColocada(rs.getBoolean("colocada"));
-                vac.setCantidad(rs.getInt("cantidad"));
-                vac.setEstado(true);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
-        }
-        return vac;
-    }
+   
 }
