@@ -150,7 +150,7 @@ public class VacunaData {
     }   
     public ArrayList<Vacuna> listarVacunas() {
 
-        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna";
+        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna WHERE estado=1";
         ArrayList<Vacuna> vacunas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
