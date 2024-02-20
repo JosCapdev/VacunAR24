@@ -33,7 +33,7 @@ public class LaboratorioData {
                 + " estado) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, lab.getCuit());
+            ps.setLong(1, lab.getCuit());
             ps.setString(2, lab.getNomLaboratorio());
             ps.setString(3, lab.getPais());
             ps.setString(4, lab.getDomComercial());
@@ -59,7 +59,7 @@ public class LaboratorioData {
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, lab.getCuit());
+            ps.setLong(1, lab.getCuit());
             ps.setString(2, lab.getNomLaboratorio());
             ps.setString(3, lab.getPais());
             ps.setString(4, lab.getDomComercial());
@@ -99,7 +99,7 @@ public class LaboratorioData {
             if (rs.next()) {
                 lab = new Laboratorio();
                 lab.setIdLaboratorio(id);
-                lab.setCuit(rs.getInt("cuit"));
+                lab.setCuit(rs.getLong("cuit"));
                 lab.setNomLaboratorio(rs.getString("nombLaboratorio"));
                 lab.setPais(rs.getString("pais"));
                 lab.setDomComercial(rs.getString("domComercial"));
@@ -126,7 +126,7 @@ public class LaboratorioData {
             while (rs.next()) {
                 lab = new Laboratorio();
                 lab.setIdLaboratorio(rs.getInt("idLaboratorio"));
-                lab.setCuit(rs.getInt("cuit"));
+                lab.setCuit(rs.getLong("cuit"));
                 lab.setNomLaboratorio(rs.getString("nombLaboratorio"));
                 lab.setPais(rs.getString("pais"));
                 lab.setDomComercial(rs.getString("domComercial"));
