@@ -120,7 +120,7 @@ public class AgregarLaboratorio extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            int cuit = Integer.parseInt(jTCuit.getText());
+            long cuit = Long.parseLong(jTCuit.getText());
             String nomL = jTNomL.getText();
             String pais = jTPais.getText();
             String domC = jTDomC.getText();
@@ -139,7 +139,6 @@ public class AgregarLaboratorio extends javax.swing.JDialog {
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatible");
-            limpiarCampos();
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
