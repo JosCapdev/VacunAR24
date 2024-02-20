@@ -29,7 +29,6 @@ public class AgregarCita extends javax.swing.JDialog {
     private CiudadanoData cd;
     private VacunaData vacD;
     private ArrayList<Ciudadano> listaC;
-    private ArrayList<CitaVacunacion> listaCitas;
     private ArrayList<Vacuna> listaVac;
     private boolean mod;
     private boolean act;
@@ -44,13 +43,13 @@ public class AgregarCita extends javax.swing.JDialog {
         cd = new CiudadanoData();
         vacD= new VacunaData();
         listaC = new ArrayList();
-        listaCitas = new ArrayList();
         listaVac = new ArrayList();
         f1=null; 
         mod = false;
         act = false;
         idMod = 0;
         initComponents();
+        this.setLocationRelativeTo(null);
         llenarDatos();
     }
 
