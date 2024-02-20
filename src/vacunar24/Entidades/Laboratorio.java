@@ -11,7 +11,7 @@ package vacunar24.Entidades;
  */
 public class Laboratorio {
     private int idLaboratorio;
-    private int cuit;
+    private long cuit;
     private String nomLaboratorio;
     private String pais;
     private String domComercial;
@@ -30,11 +30,11 @@ public class Laboratorio {
         this.idLaboratorio = idLaboratorio;
     }
 
-    public int getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
@@ -73,7 +73,7 @@ public class Laboratorio {
     public Laboratorio() {
     }
 
-    public Laboratorio(int idLaboratorio, int cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
+    public Laboratorio(int idLaboratorio, long cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
         this.idLaboratorio = idLaboratorio;
         this.cuit = cuit;
         this.nomLaboratorio = nomLaboratorio;
@@ -82,7 +82,7 @@ public class Laboratorio {
         this.estado = estado;
     }
 
-    public Laboratorio(int cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
+    public Laboratorio(long cuit, String nomLaboratorio, String pais, String domComercial, boolean estado) {
         this.cuit = cuit;
         this.nomLaboratorio = nomLaboratorio;
         this.pais = pais;
