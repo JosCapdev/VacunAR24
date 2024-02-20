@@ -228,7 +228,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jTMarca.setText("");
         jTMedida.setText("");
         jSCant.setValue(0);
-        jDCFecha=null;
+        jDCFecha.setDate(null);
         vac = null;
 
     }
