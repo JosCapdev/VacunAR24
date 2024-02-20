@@ -57,6 +57,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                   <Component id="jBAgregar" min="-2" pref="121" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="jBPedido" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jBMod" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
@@ -80,6 +82,7 @@
                       <Component id="jBAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBMod" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBElim" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
@@ -150,6 +153,11 @@
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTBuscadorKeyReleased"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBPedido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Realizar un pedido"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
