@@ -46,6 +46,8 @@ public class Menu extends javax.swing.JFrame {
         Escritorio = new javax.swing.JPanel();
         jPanelLaboratorio = new javax.swing.JPanel();
         jLLaboratorio = new javax.swing.JLabel();
+        jPanelHome = new javax.swing.JPanel();
+        jLHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
@@ -301,6 +303,43 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 0, 130, 70));
 
+        jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHome.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
+
+        jLHome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLHome.setForeground(new java.awt.Color(51, 153, 255));
+        jLHome.setText("Inicio");
+        jLHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLHomeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLHomeMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
+        jPanelHome.setLayout(jPanelHomeLayout);
+        jPanelHomeLayout.setHorizontalGroup(
+            jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(jLHome)
+                .addGap(16, 16, 16))
+        );
+        jPanelHomeLayout.setVerticalGroup(
+            jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLHome)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        backgroundPanel.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 110, -1));
+
         getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1300, 790));
 
         pack();
@@ -398,6 +437,18 @@ public class Menu extends javax.swing.JFrame {
         jLLaboratorio.setForeground(new Color(51, 153, 255));
     }//GEN-LAST:event_jLLaboratorioMouseExited
 
+    private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLHomeMouseClicked
+
+    private void jLHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLHomeMouseEntered
+
+    private void jLHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLHomeMouseExited
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -434,6 +485,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Escritorio;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel jLCiudadano;
+    private javax.swing.JLabel jLHome;
     private javax.swing.JLabel jLLaboratorio;
     private javax.swing.JLabel jLProfesional;
     private javax.swing.JLabel jLTurno;
@@ -442,6 +494,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPFondoCel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCiudadano;
+    private javax.swing.JPanel jPanelHome;
     private javax.swing.JPanel jPanelLaboratorio;
     private javax.swing.JPanel jPanelProfesional;
     private javax.swing.JPanel jPanelTurno;
