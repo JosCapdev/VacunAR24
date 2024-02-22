@@ -179,6 +179,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
             av.getjTMarca().setText(vac.getMarca());
             av.getjTMedida().setText(vac.getMedida() + "");
             av.getjDCFecha().setDate(Date.valueOf(vac.getFechaVto()));
+            av.getjSCant().setValue(vac.getCantidad());
             av.setIdMod(vac.getIdVacuna());
             av.setMod(true);
             av.show();
@@ -226,10 +227,10 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Codigo");
-        filaCabecera.add("N°Serie");
         filaCabecera.add("Marca");
         filaCabecera.add("Medida");
         filaCabecera.add("Fecha de Vencimiento");
+        filaCabecera.add("Cantidad");
         filaCabecera.add("Estado");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
@@ -240,8 +241,8 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private void llenarTabla() {
         listaVac = vacD.listarVacunas();
         listaVac.stream().forEach(v -> {
-            modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(),
-                v.getFechaVto(), v.isEstado()});
+            modelo.addRow(new Object[]{v.getIdVacuna(), v.getMarca(), v.getMedida(),
+                v.getFechaVto(), v.getCantidad(), v.isEstado()});
         });
     }
 
