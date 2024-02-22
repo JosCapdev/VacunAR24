@@ -288,5 +288,13 @@ public class AgregarVacuna extends javax.swing.JDialog {
     public void setjTNumS(javax.swing.JTextField jTNumS) {
         this.jTNumS = jTNumS;
     }
+
+    public javax.swing.JSpinner getjSCant() {
+        return jSCant;
+    }
+
+    public void setjSCant(javax.swing.JSpinner jSCant) {
+        this.jSCant = jSCant;
+    }
     
 }
