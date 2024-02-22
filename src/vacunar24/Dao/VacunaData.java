@@ -29,17 +29,16 @@ public class VacunaData {
     }
 
     public void guardarVacuna(Vacuna vac) {
-        String query = "INSERT INTO Vacuna( numSerieDosis, marca, medida, fechaVto, colocada,"
-                + " cantidad, estado) VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Vacuna( marca, medida, fechaVto, colocada,"
+                + " cantidad, estado) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, vac.getNumSerieDosis());
-            ps.setString(2, vac.getMarca());
-            ps.setDouble(3, vac.getMedida());
-            ps.setDate(4, Date.valueOf(vac.getFechaVto()));
-            ps.setBoolean(5, vac.isColocada());
-            ps.setInt(6, vac.getCantidad());
-            ps.setBoolean(7, true);
+            ps.setString(1, vac.getMarca());
+            ps.setDouble(2, vac.getMedida());
+            ps.setDate(3, Date.valueOf(vac.getFechaVto()));
+            ps.setBoolean(4, vac.isColocada());
+            ps.setInt(5, vac.getCantidad());
+            ps.setBoolean(6, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -57,7 +56,7 @@ public class VacunaData {
 
     public void modificarVacuna(Vacuna vac) {
         String query = "UPDATE Vacuna SET numSerieDosis=?, marca=?, medida=?, fechaVto=?,"
-                + " ,colocada=?, cantidad=?, estado= ?  WHERE idLaboratorio=? ";
+                + " colocada=?, cantidad=?, estado= ?  WHERE idVacuna=? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
