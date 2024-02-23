@@ -438,15 +438,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLLaboratorioMouseExited
 
     private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
-        // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
     }//GEN-LAST:event_jLHomeMouseClicked
 
     private void jLHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseEntered
-        // TODO add your handling code here:
+        jPanelHome.setBackground(new Color(51, 153, 255));
+        jLHome.setForeground(Color.WHITE);
     }//GEN-LAST:event_jLHomeMouseEntered
 
     private void jLHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseExited
-        // TODO add your handling code here:
+        jPanelHome.setBackground(Color.WHITE);
+        jLHome.setForeground(new Color(51, 153, 255));
     }//GEN-LAST:event_jLHomeMouseExited
 
     public static void main(String args[]) {
