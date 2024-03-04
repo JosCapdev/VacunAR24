@@ -13,7 +13,6 @@ import java.time.LocalDate;
  */
 public class Vacuna {
     private int idVacuna;
-    private int numSerieDosis;
     private String marca;
     private double medida;
     private LocalDate fechaVto;
@@ -28,15 +27,7 @@ public class Vacuna {
     public void setIdVacuna(int idVacuna) {
         this.idVacuna = idVacuna;
     }
-
-    public int getNumSerieDosis() {
-        return numSerieDosis;
-    }
-
-    public void setNumSerieDosis(int numSerieDosis) {
-        this.numSerieDosis = numSerieDosis;
-    }
-
+    
     public String getMarca() {
         return marca;
     }
@@ -88,8 +79,7 @@ public class Vacuna {
     public Vacuna() {
     }
 
-    public Vacuna(int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
-        this.numSerieDosis = numSerieDosis;
+    public Vacuna( String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
         this.marca = marca;
         this.medida = medida;
         this.fechaVto = fechaVto;
@@ -98,9 +88,8 @@ public class Vacuna {
         this.estado = estado;
     }
 
-    public Vacuna(int idVacuna, int numSerieDosis, String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
+    public Vacuna(int idVacuna, String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
         this.idVacuna = idVacuna;
-        this.numSerieDosis = numSerieDosis;
         this.marca = marca;
         this.medida = medida;
         this.fechaVto = fechaVto;
