@@ -175,7 +175,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
         if (jTVac.getSelectedRow() >= 0) {
             vac = vacD.buscarVacunaId((int) jTVac.getValueAt(jTVac.getSelectedRow(), 0));
-            av.getjTNumS().setText(vac.getNumSerieDosis() + "");
             av.getjTMarca().setText(vac.getMarca());
             av.getjTMedida().setText(vac.getMedida() + "");
             av.getjDCFecha().setDate(Date.valueOf(vac.getFechaVto()));
@@ -206,9 +205,9 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         modelo.setNumRows(0);
         for (Vacuna v : listaVac) {
-            if (v.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || v.getNumSerieDosis() == Integer.parseInt(jTBuscador.getText())
+            if (v.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || v.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
-                modelo.addRow(new Object[]{v.getIdVacuna(), v.getNumSerieDosis(), v.getMarca(), v.getMedida(), v.getFechaVto()});
+                modelo.addRow(new Object[]{v.getIdVacuna(), v.getMarca(), v.getMedida(), v.getFechaVto()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
