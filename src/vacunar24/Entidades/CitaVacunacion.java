@@ -18,13 +18,15 @@ public class CitaVacunacion {
     private String centroVacunacion;
     private LocalDate fechaHoraColoc;
     private Vacuna dosis;
+    private Profesional prof;
+    private int numSerieDosis;
 
     public int getIdCitaVacunacion() {
         return idCitaVacunacion;
     }
 
-    public void setIdCitaVacunacion(int idCita) {
-        this.idCitaVacunacion = idCita;
+    public void setIdCitaVacunacion(int idCitaVacunacion) {
+        this.idCitaVacunacion = idCitaVacunacion;
     }
 
     public Ciudadano getPersona() {
@@ -55,8 +57,8 @@ public class CitaVacunacion {
         return centroVacunacion;
     }
 
-    public void setCentroVacunacion(String citaVacunacion) {
-        this.centroVacunacion = citaVacunacion;
+    public void setCentroVacunacion(String centroVacunacion) {
+        this.centroVacunacion = centroVacunacion;
     }
 
     public LocalDate getFechaHoraColoc() {
@@ -75,10 +77,26 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
+    public Profesional getProf() {
+        return prof;
+    }
+
+    public void setProf(Profesional prof) {
+        this.prof = prof;
+    }
+
+    public int getNumSerieDosis() {
+        return numSerieDosis;
+    }
+
+    public void setNumSerieDosis(int numSerieDosis) {
+        this.numSerieDosis = numSerieDosis;
+    }
+
     public CitaVacunacion() {
     }
 
-    public CitaVacunacion(int idCitaVacunacion, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
+    public CitaVacunacion(int idCitaVacunacion, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
         this.idCitaVacunacion = idCitaVacunacion;
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
@@ -86,16 +104,19 @@ public class CitaVacunacion {
         this.centroVacunacion = centroVacunacion;
         this.fechaHoraColoc = fechaHoraColoc;
         this.dosis = dosis;
+        this.prof = prof;
+        this.numSerieDosis = numSerieDosis;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis) {
+    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
         this.centroVacunacion = centroVacunacion;
         this.fechaHoraColoc = fechaHoraColoc;
         this.dosis = dosis;
+        this.prof = prof;
+        this.numSerieDosis = numSerieDosis;
     }
-    
-    
+
 }
