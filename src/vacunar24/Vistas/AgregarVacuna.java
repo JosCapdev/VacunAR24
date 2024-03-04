@@ -45,8 +45,6 @@ public class AgregarVacuna extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLT = new javax.swing.JLabel();
-        jTNumS = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jTMarca = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTMedida = new javax.swing.JTextField();
@@ -67,24 +65,18 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jLT.setForeground(new java.awt.Color(51, 51, 51));
         jLT.setText("DATOS DE LA VACUNA");
         jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-        jPanel1.add(jTNumS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("N° serie Dosis:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-        jPanel1.add(jTMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 140, -1));
+        jPanel1.add(jTMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Marca:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
         jPanel1.add(jTMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("cantidad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jLabel5.setText("Cantidad:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
@@ -97,7 +89,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, -1));
 
         jBLimpiar.setText("Limpiar Campos");
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,14 +97,14 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
         jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Medida:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
-        jPanel1.add(jSCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 140, -1));
+        jPanel1.add(jSCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +114,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
         );
 
         pack();
@@ -130,14 +122,13 @@ public class AgregarVacuna extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            int numSerie = Integer.parseInt(jTNumS.getText());
             String marca = jTMarca.getText();
             double medida = Double.parseDouble(jTMedida.getText());
             LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int cant = (int) jSCant.getValue();
-            vac = new Vacuna(numSerie,marca,medida,fecha,false,cant,true);
+            vac = new Vacuna(marca,medida,fecha,false,cant,true);
             if (mod) {
-                vac = new Vacuna(idMod,numSerie,marca,medida,fecha,false,cant,true);
+                vac = new Vacuna(idMod,marca,medida,fecha,false,cant,true);
                 vacD.modificarVacuna(vac);
                 mod = false;
                 act = true;
@@ -210,7 +201,6 @@ public class AgregarVacuna extends javax.swing.JDialog {
     private javax.swing.JButton jBLimpiar;
     private com.toedter.calendar.JDateChooser jDCFecha;
     private javax.swing.JLabel jLT;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -219,12 +209,9 @@ public class AgregarVacuna extends javax.swing.JDialog {
     private javax.swing.JSpinner jSCant;
     private javax.swing.JTextField jTMarca;
     private javax.swing.JTextField jTMedida;
-    private javax.swing.JTextField jTNumS;
     // End of variables declaration//GEN-END:variables
 
     public void limpiarCampos() {
-
-        jTNumS.setText("");
         jTMarca.setText("");
         jTMedida.setText("");
         jSCant.setValue(0);
@@ -279,14 +266,6 @@ public class AgregarVacuna extends javax.swing.JDialog {
 
     public void setjTMedida(javax.swing.JTextField jTMedida) {
         this.jTMedida = jTMedida;
-    }
-
-    public javax.swing.JTextField getjTNumS() {
-        return jTNumS;
-    }
-
-    public void setjTNumS(javax.swing.JTextField jTNumS) {
-        this.jTNumS = jTNumS;
     }
 
     public javax.swing.JSpinner getjSCant() {
