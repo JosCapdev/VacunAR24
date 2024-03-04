@@ -55,19 +55,18 @@ public class VacunaData {
     }
 
     public void modificarVacuna(Vacuna vac) {
-        String query = "UPDATE Vacuna SET numSerieDosis=?, marca=?, medida=?, fechaVto=?,"
+        String query = "UPDATE Vacuna SET marca=?, medida=?, fechaVto=?,"
                 + " colocada=?, cantidad=?, estado= ?  WHERE idVacuna=? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, vac.getNumSerieDosis());
-            ps.setString(2, vac.getMarca());
-            ps.setDouble(3, vac.getMedida());
-            ps.setDate(4, Date.valueOf(vac.getFechaVto()));
-            ps.setBoolean(5, vac.isColocada());
-            ps.setInt(6, vac.getCantidad());
-            ps.setBoolean(7, true);
-            ps.setInt(8, vac.getIdVacuna());
+            ps.setString(1, vac.getMarca());
+            ps.setDouble(2, vac.getMedida());
+            ps.setDate(3, Date.valueOf(vac.getFechaVto()));
+            ps.setBoolean(4, vac.isColocada());
+            ps.setInt(5, vac.getCantidad());
+            ps.setBoolean(6, true);
+            ps.setInt(7, vac.getIdVacuna());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Vacuna Modificada");
@@ -93,7 +92,7 @@ public class VacunaData {
     }
 
     public Vacuna buscarVacunaId(int id) {
-        String sql = "SELECT numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
+        String sql = "SELECT marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
                 + " WHERE idVacuna=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -102,7 +101,6 @@ public class VacunaData {
             if (rs.next()) {
                 vac = new Vacuna();
                 vac.setIdVacuna(id);
-                vac.setNumSerieDosis(rs.getInt("numSerieDosis"));
                 vac.setMarca(rs.getString("marca"));
                 vac.setMedida(rs.getDouble("medida"));
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
@@ -120,36 +118,9 @@ public class VacunaData {
         return vac;
     }
     
- public Vacuna buscarVacunaSerie(int serie) {
-        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
-                + " WHERE numSerieDosis=? AND estado = 1";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, serie);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                vac = new Vacuna();
-                vac.setIdVacuna(rs.getInt("idVacuna"));
-                vac.setNumSerieDosis(serie);
-                vac.setMarca(rs.getString("marca"));
-                vac.setMedida(rs.getDouble("medida"));
-                vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
-                vac.setColocada(rs.getBoolean("colocada"));
-                vac.setCantidad(rs.getInt("cantidad"));
-                vac.setEstado(true);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "no existe la Vacuna");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
-        }
-        return vac;
-    }   
     public ArrayList<Vacuna> listarVacunas() {
 
-        String sql = "SELECT idVacuna, numSerieDosis, marca, medida, fechaVto, colocada, cantidad FROM Vacuna WHERE estado=1";
+        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada, cantidad FROM Vacuna WHERE estado=1";
         ArrayList<Vacuna> vacunas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -158,7 +129,6 @@ public class VacunaData {
             while (rs.next()) {
                 vac = new Vacuna();
                 vac.setIdVacuna(rs.getInt("idVacuna"));
-                vac.setNumSerieDosis(rs.getInt("numSerieDosis"));
                 vac.setMarca(rs.getString("marca"));
                 vac.setMedida(rs.getDouble("medida"));
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
