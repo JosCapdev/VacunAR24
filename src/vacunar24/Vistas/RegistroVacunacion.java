@@ -9,8 +9,8 @@ import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vacunar24.Dao.CitaVacData;
-import vacunar24.Entidades.CitaVacunacion;
+import vacunar24.Dao.RegVacData;
+import vacunar24.Entidades.RegistroVacunados;
 
 /**
  *
@@ -18,9 +18,9 @@ import vacunar24.Entidades.CitaVacunacion;
  */
 public class RegistroVacunacion extends javax.swing.JInternalFrame {
 
-    private CitaVacunacion citaV;
-    private CitaVacData citaVD;
-    private ArrayList<CitaVacunacion> listaCitaV;
+    private RegistroVacunados regVac;
+    private RegVacData regVacD;
+    private ArrayList<RegistroVacunados> listaRegistro; 
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
@@ -30,9 +30,9 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
     private AgregarCita ac = new AgregarCita(f, true);
 
     public RegistroVacunacion() {
-        citaV = new CitaVacunacion();
-        citaVD = new CitaVacData();
-        listaCitaV = new ArrayList();
+        regVac = new RegistroVacunados();
+        regVacD = new RegVacData();
+        listaRegistro = new ArrayList();
         initComponents();
         armarCabecera();
         llenarTabla();
@@ -50,7 +50,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTCV = new javax.swing.JTable();
+        jTReg = new javax.swing.JTable();
         jBNuevo = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
@@ -66,7 +66,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("REGISTROS DE VACUNACION:");
 
-        jTCV.setModel(new javax.swing.table.DefaultTableModel(
+        jTReg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +77,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTCV);
+        jScrollPane1.setViewportView(jTReg);
 
         jBNuevo.setText("Nuevo Turno");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -155,11 +155,11 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
-        if (jTCV.getSelectedRow() >= 0) {
-            citaVD.eliminarCita((int) jTCV.getValueAt(jTCV.getSelectedRow(), 0));
+        if (jTReg.getSelectedRow() >= 0) {
+            regVacD.eliminarCita((int) jTReg.getValueAt(jTReg.getSelectedRow(), 0));
             actT();
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un turno en la tabla...");
+            JOptionPane.showMessageDialog(this, "Seleccione un registro de la tabla...");
         }
     }//GEN-LAST:event_jBElimActionPerformed
 
@@ -171,11 +171,11 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         modelo.setNumRows(0);
-        for (CitaVacunacion cv : listaCitaV) {
-            if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
-                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
-                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
+        for (RegistroVacunados regVac : listaRegistro) {
+            if (regVac.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || regVac.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+                    || regVac.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
+                modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
+                        , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
@@ -187,28 +187,28 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTBuscador;
-    private javax.swing.JTable jTCV;
+    private javax.swing.JTable jTReg;
     // End of variables declaration//GEN-END:variables
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Codigo");
         filaCabecera.add("idCiudadano");
         filaCabecera.add("Codigo refuerzo");
-        filaCabecera.add("FechaHoraTurno");
         filaCabecera.add("Centro Vacunatorio");
         filaCabecera.add("FechaHoraColocacion");
         filaCabecera.add("Dosis");
+        filaCabecera.add("N°SerieDosis");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-        jTCV.setModel(modelo);
+        jTReg.setModel(modelo);
     }
 
     private void llenarTabla() {
-        listaCitaV = citaVD.listarCitas();
-        listaCitaV.stream().forEach(cv -> {
-            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
-                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
+        listaRegistro = regVacD.listarRegistros();
+        listaRegistro.stream().forEach(cv -> {
+            modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
+                        , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
         });
     }
 
