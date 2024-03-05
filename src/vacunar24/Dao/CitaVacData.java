@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunar24.Entidades.CitaVacunacion;
@@ -66,27 +64,6 @@ public class CitaVacData {
         }
     }
 
-    public void guardarRegVac(CitaVacunacion citaV) {
-        String query = "UPDATE CitaVacunacion SET codRefuerzo = ?,fechaHoraColocada = ?,idVacuna = ?, "
-                + " idProfesional=?, numSerieDosis=? WHERE idCitaVacunacion = ?";
-
-        try {
-             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,citaV.getCodRefuerzo());
-            ps.setDate(2,Date.valueOf(citaV.getFechaHoraColoc()));
-            ps.setInt(3,citaV.getDosis().getIdVacuna());
-            ps.setInt(4,citaV.getProf().getIdProfesional());
-            ps.setInt(5, citaV.getNumSerieDosis());
-            ps.setInt(6, citaV.getIdCitaVacunacion());
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
-        }
-    }
-
     public void eliminarCita(int id) {
         String query = "DELETE FROM Citavacunacion WHERE idCitaVacunacion = ?";
         try {
@@ -103,8 +80,7 @@ public class CitaVacData {
     }
 
     public CitaVacunacion buscarCitaId(int id) {
-        String sql = "SELECT idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + "idVacuna,idProfesional,numSerieDosis FROM CitaVacunacion WHERE idCitaVacunacion = ? ";
+        String sql = "SELECT idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,idVacuna FROM CitaVacunacion WHERE idCitaVacunacion = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -116,13 +92,7 @@ public class CitaVacData {
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
-                if(rs.getDate("fechaHoraColocada")!=null){
-                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
-                }
                 citaV.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
-                citaV.setProf(profD.buscarProfesionalId(rs.getInt("idProfesional")));
-                citaV.setNumSerieDosis(rs.getInt("numSerieDosis"));
-
             } else {
                 JOptionPane.showMessageDialog(null, "Nuevo Paciente...");
             }
@@ -187,8 +157,7 @@ public class CitaVacData {
     }
     public ArrayList<CitaVacunacion> listarCitas() {
 
-        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,fechaHoraColocada,"
-                + " numSerieDosis FROM CitaVacunacion";
+        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion FROM CitaVacunacion";
         ArrayList<CitaVacunacion> citas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -202,12 +171,7 @@ public class CitaVacData {
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
-                if(rs.getDate("fechaHoraColocada")!=null){
-                citaV.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
-                }
                 citaV.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
-                citaV.setProf(profD.buscarProfesionalId(rs.getInt("idProfesional")));
-                citaV.setNumSerieDosis(rs.getInt("numSerieDosis"));
                 citas.add(citaV);
             }
             ps.close();
