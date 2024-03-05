@@ -175,7 +175,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
             if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
                 modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
-                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
@@ -196,7 +196,6 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         filaCabecera.add("Codigo refuerzo");
         filaCabecera.add("FechaHoraTurno");
         filaCabecera.add("Centro Vacunatorio");
-        filaCabecera.add("FechaHoraColocacion");
         filaCabecera.add("Dosis");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
@@ -208,7 +207,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         listaCitaV = citaVD.listarCitas();
         listaCitaV.stream().forEach(cv -> {
             modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
-                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getFechaHoraColoc(),cv.getDosis().getMarca()});
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
         });
     }
 
