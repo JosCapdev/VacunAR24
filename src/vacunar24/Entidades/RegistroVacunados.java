@@ -15,7 +15,7 @@ public class RegistroVacunados {
     private Ciudadano persona;
     private int codRefuerzo;
     private String centroVacunacion;
-    private LocalDate fechaHoraColoc;
+    private String fechaHoraColoc;
     private Vacuna dosis;
     private Profesional prof;
     private int numSerieDosis;
@@ -51,11 +51,11 @@ public class RegistroVacunados {
         this.centroVacunacion = centroVacunacion;
     }
 
-    public LocalDate getFechaHoraColoc() {
+    public String getFechaHoraColoc() {
         return fechaHoraColoc;
     }
 
-    public void setFechaHoraColoc(LocalDate fechaHoraColoc) {
+    public void setFechaHoraColoc(String fechaHoraColoc) {
         this.fechaHoraColoc = fechaHoraColoc;
     }
 
@@ -86,7 +86,7 @@ public class RegistroVacunados {
     public RegistroVacunados() {
     }
 
-    public RegistroVacunados(int idRegistroVacunados, Ciudadano persona, int codRefuerzo, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
+    public RegistroVacunados(int idRegistroVacunados, Ciudadano persona, int codRefuerzo, String centroVacunacion, String fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
         this.idRegistroVacunados = idRegistroVacunados;
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
@@ -97,7 +97,7 @@ public class RegistroVacunados {
         this.numSerieDosis = numSerieDosis;
     }
 
-    public RegistroVacunados(Ciudadano persona, int codRefuerzo, String centroVacunacion, LocalDate fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
+    public RegistroVacunados(Ciudadano persona, int codRefuerzo, String centroVacunacion, String fechaHoraColoc, Vacuna dosis, Profesional prof, int numSerieDosis) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.centroVacunacion = centroVacunacion;
