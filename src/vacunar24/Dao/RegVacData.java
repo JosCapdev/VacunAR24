@@ -6,16 +6,12 @@
 package vacunar24.Dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import vacunar24.Entidades.CitaVacunacion;
-import vacunar24.Entidades.Ciudadano;
-import vacunar24.Entidades.Profesional;
 import vacunar24.Entidades.RegistroVacunados;
 
 /**
@@ -25,17 +21,14 @@ import vacunar24.Entidades.RegistroVacunados;
 public class RegVacData {
      private Connection con = null;
      private RegistroVacunados regVac;
-     private Ciudadano c;
      private CiudadanoData cd;
      private VacunaData vacD;
-     private Profesional prof;
      private ProfesionalData profD;
      
 
     public RegVacData() {
         this.con = Conexion.getConexion();
         regVac = new RegistroVacunados();
-        c = new Ciudadano();
         cd = new CiudadanoData();
         vacD = new VacunaData();
     }
@@ -49,7 +42,7 @@ public class RegVacData {
             ps.setInt(1, regVac.getPersona().getIdCiudadano());
             ps.setInt(2,regVac.getCodRefuerzo());
             ps.setString(3, regVac.getCentroVacunacion());
-            ps.setDate(4,Date.valueOf(regVac.getFechaHoraColoc()));
+            ps.setString(4,regVac.getFechaHoraColoc());
             ps.setInt(5,regVac.getDosis().getIdVacuna());
             ps.setInt(6,regVac.getProf().getIdProfesional());
             ps.setInt(7, regVac.getNumSerieDosis());
@@ -95,7 +88,7 @@ public class RegVacData {
                 regVac.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 regVac.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 regVac.setCentroVacunacion(rs.getString("centroVacunacion"));
-                regVac.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                regVac.setFechaHoraColoc(rs.getString("fechaHoraColocada"));
                 regVac.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
                 regVac.setProf(profD.buscarProfesionalId(rs.getInt("idProfesional")));
                 regVac.setNumSerieDosis(rs.getInt("numSerieDosis"));
@@ -123,7 +116,7 @@ public class RegVacData {
                 regVac.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 regVac.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 regVac.setCentroVacunacion(rs.getString("centroVacunacion"));
-                regVac.setFechaHoraColoc(rs.getDate("fechaHoraColocada").toLocalDate());
+                regVac.setFechaHoraColoc(rs.getString("fechaHoraColocada"));
                 regVac.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
                 regVac.setProf(profD.buscarProfesionalId(rs.getInt("idProfesional")));
                 regVac.setNumSerieDosis(rs.getInt("numSerieDosis"));
@@ -136,4 +129,22 @@ public class RegVacData {
         return registro;
     }
     
+public int buscarUltCod(int id) {
+        String sql = "SELECT MAX(idRegistroVacunados) idRegistroVacunados FROM RegistroVacunados WHERE idCiudadano = ?";
+        int idF=0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                idF= rs.getInt("idRegistroVacunados");     
+            } else {
+                JOptionPane.showMessageDialog(null, "Nuevo Paciente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return idF;
+    }
 }
