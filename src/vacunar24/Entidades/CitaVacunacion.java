@@ -86,4 +86,9 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
+    @Override
+    public String toString() {
+        return "CitaVacunacion{" + "idCitaVacunacion=" + idCitaVacunacion + ", persona=" + persona + ", codRefuerzo=" + codRefuerzo + ", fechaHoraCita=" + fechaHoraCita + ", centroVacunacion=" + centroVacunacion + ", dosis=" + dosis + '}';
+    }
+
 }
