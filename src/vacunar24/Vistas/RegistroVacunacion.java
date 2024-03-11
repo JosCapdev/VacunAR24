@@ -51,7 +51,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTReg = new javax.swing.JTable();
-        jBNuevo = new javax.swing.JButton();
+        jBMod = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
 
@@ -79,14 +79,14 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTReg);
 
-        jBNuevo.setText("Nuevo Turno");
-        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jBMod.setText("Modificar Registro");
+        jBMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevoActionPerformed(evt);
+                jBModActionPerformed(evt);
             }
         });
 
-        jBElim.setText("Eliminar Turno");
+        jBElim.setText("Eliminar Registro");
         jBElim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBElimActionPerformed(evt);
@@ -114,9 +114,9 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
                         .addComponent(jTBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBMod, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(jBElim, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -131,7 +131,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBNuevo)
+                    .addComponent(jBMod)
                     .addComponent(jBElim))
                 .addGap(16, 16, 16))
         );
@@ -150,9 +150,9 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
         ac.show();
-    }//GEN-LAST:event_jBNuevoActionPerformed
+    }//GEN-LAST:event_jBModActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
         if (jTReg.getSelectedRow() >= 0) {
@@ -182,7 +182,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBElim;
-    private javax.swing.JButton jBNuevo;
+    private javax.swing.JButton jBMod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
