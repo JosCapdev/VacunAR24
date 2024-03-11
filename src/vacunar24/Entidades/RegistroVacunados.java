@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package vacunar24.Entidades;
-
-import java.time.LocalDate;
 /**
  *
  * @author Jose
