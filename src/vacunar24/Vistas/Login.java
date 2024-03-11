@@ -5,6 +5,8 @@
  */
 package vacunar24.Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jose
@@ -16,6 +18,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,10 +33,11 @@ public class Login extends javax.swing.JFrame {
         jPBackground = new javax.swing.JPanel();
         jPLog = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTPass = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCBUser = new javax.swing.JComboBox<>();
+        jBIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,8 +51,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Contraseña:");
         jPLog.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
-        jTextField2.setText("La clave es 123");
-        jPLog.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 350, -1));
+        jTPass.setText("La clave es 123");
+        jPLog.add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 350, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/login.png"))); // NOI18N
         jPLog.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, 89));
@@ -58,21 +62,29 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
         jPLog.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si ingresa un usuario Administrativo de Salud", "Si ingresaran profesionales de la salud", " " }));
-        jPLog.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 350, -1));
+        jCBUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si ingresa un usuario Administrativo de Salud", "Si ingresaran profesionales de la salud", " " }));
+        jPLog.add(jCBUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 350, -1));
+
+        jBIngresar.setText("Iniciar Sesion");
+        jBIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIngresarActionPerformed(evt);
+            }
+        });
+        jPLog.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 150, -1));
 
         javax.swing.GroupLayout jPBackgroundLayout = new javax.swing.GroupLayout(jPBackground);
         jPBackground.setLayout(jPBackgroundLayout);
         jPBackgroundLayout.setHorizontalGroup(
             jPBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPLog, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(jPLog, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
         );
         jPBackgroundLayout.setVerticalGroup(
             jPBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPBackgroundLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jPLog, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(jPLog, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,11 +95,27 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
+        if (jCBUser.getSelectedItem().equals("") || jCBUser.getSelectedItem().equals("")) {
+            JOptionPane.showMessageDialog(this, "Falta completar campos");
+        } else if (jCBUser.getSelectedItem().equals("Si ingresa un usuario Administrativo de Salud") & jTPass.getText().equals("123")) {
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            dispose();
+        }else if(jCBUser.getSelectedItem().equals("Si ingresaran profesionales de la salud") & jTPass.getText().equals("123")){
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Usuario o Contraseña invalido.");
+        jCBUser.setSelectedIndex(-1);
+        jTPass.setText("");
+        }
+    }//GEN-LAST:event_jBIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,12 +153,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jBIngresar;
+    private javax.swing.JComboBox<String> jCBUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPBackground;
     private javax.swing.JPanel jPLog;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTPass;
     // End of variables declaration//GEN-END:variables
 }
