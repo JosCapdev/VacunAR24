@@ -82,11 +82,12 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 70));
 
-        jPanelTurno.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelTurno.setBackground(new java.awt.Color(0, 51, 102));
         jPanelTurno.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
+        jPanelTurno.setForeground(new java.awt.Color(153, 153, 153));
 
         jLTurno.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLTurno.setForeground(new java.awt.Color(51, 153, 255));
+        jLTurno.setForeground(new java.awt.Color(153, 153, 153));
         jLTurno.setText("Turnos");
         jLTurno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,11 +120,11 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, -1));
 
-        jPanelCiudadano.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelCiudadano.setBackground(new java.awt.Color(0, 51, 102));
         jPanelCiudadano.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
 
         jLCiudadano.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLCiudadano.setForeground(new java.awt.Color(51, 153, 255));
+        jLCiudadano.setForeground(new java.awt.Color(153, 153, 153));
         jLCiudadano.setText("Ciudadanos");
         jLCiudadano.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -156,11 +157,11 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelCiudadano, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 130, 70));
 
-        jPanelProfesional.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelProfesional.setBackground(new java.awt.Color(0, 51, 102));
         jPanelProfesional.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
 
         jLProfesional.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLProfesional.setForeground(new java.awt.Color(51, 153, 255));
+        jLProfesional.setForeground(new java.awt.Color(153, 153, 153));
         jLProfesional.setText("Profesional");
         jLProfesional.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,11 +194,11 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 110, 70));
 
-        jPanelVacuna.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelVacuna.setBackground(new java.awt.Color(0, 51, 102));
         jPanelVacuna.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
 
         jLVacuna.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLVacuna.setForeground(new java.awt.Color(51, 153, 255));
+        jLVacuna.setForeground(new java.awt.Color(153, 153, 153));
         jLVacuna.setText("Vacuna");
         jLVacuna.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -265,11 +266,11 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1310, 700));
 
-        jPanelLaboratorio.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelLaboratorio.setBackground(new java.awt.Color(0, 51, 102));
         jPanelLaboratorio.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
 
         jLLaboratorio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLLaboratorio.setForeground(new java.awt.Color(51, 153, 255));
+        jLLaboratorio.setForeground(new java.awt.Color(153, 153, 153));
         jLLaboratorio.setText("Laboratorios");
         jLLaboratorio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -392,8 +393,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLTurnoMouseEntered
 
     private void jLTurnoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLTurnoMouseExited
-        jPanelTurno.setBackground(Color.WHITE);
-        jLTurno.setForeground(new Color(51, 153, 255));
+        jPanelTurno.setBackground(new Color(0,51, 102));
+        jLTurno.setForeground(new Color(153, 153, 153));
 
     }//GEN-LAST:event_jLTurnoMouseExited
 
@@ -403,8 +404,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLCiudadanoMouseEntered
 
     private void jLCiudadanoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCiudadanoMouseExited
-        jPanelCiudadano.setBackground(Color.WHITE);
-        jLCiudadano.setForeground(new Color(51, 153, 255));
+        jPanelCiudadano.setBackground(new Color(0,51, 102));
+        jLCiudadano.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLCiudadanoMouseExited
 
     private void jLProfesionalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLProfesionalMouseEntered
@@ -413,8 +414,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLProfesionalMouseEntered
 
     private void jLProfesionalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLProfesionalMouseExited
-        jPanelProfesional.setBackground(Color.WHITE);
-        jLProfesional.setForeground(new Color(51, 153, 255));
+        jPanelProfesional.setBackground(new Color(0,51, 102));
+        jLProfesional.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLProfesionalMouseExited
 
     private void jLVacunaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLVacunaMouseEntered
@@ -423,8 +424,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLVacunaMouseEntered
 
     private void jLVacunaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLVacunaMouseExited
-        jPanelVacuna.setBackground(Color.WHITE);
-        jLVacuna.setForeground(new Color(51, 153, 255));
+        jPanelVacuna.setBackground(new Color(0,51, 102));
+        jLVacuna.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLVacunaMouseExited
 
     private void jLLaboratorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLLaboratorioMouseEntered
@@ -433,8 +434,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLLaboratorioMouseEntered
 
     private void jLLaboratorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLLaboratorioMouseExited
-        jPanelLaboratorio.setBackground(Color.WHITE);
-        jLLaboratorio.setForeground(new Color(51, 153, 255));
+        jPanelLaboratorio.setBackground(new Color(0,51, 102));
+        jLLaboratorio.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLLaboratorioMouseExited
 
     private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
@@ -449,7 +450,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseExited
         jPanelHome.setBackground(new Color(0,51, 102));
-        jLHome.setForeground(new Color(51, 153, 255));
+        jLHome.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLHomeMouseExited
 
     public static void main(String args[]) {
