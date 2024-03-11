@@ -25,7 +25,7 @@ import vacunar24.Entidades.Vacuna;
  */
 public class AgregarCita extends javax.swing.JDialog {
 
-    private CitaVacunacion citaV;
+    private CitaVacunacion cita;
     private CitaVacData citaVD;
     private CiudadanoData cd;
     private VacunaData vacD;
@@ -40,7 +40,7 @@ public class AgregarCita extends javax.swing.JDialog {
 
     public AgregarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        citaV = new CitaVacunacion();
+        cita = new CitaVacunacion();
         citaVD = new CitaVacData();
         cd = new CiudadanoData();
         vacD = new VacunaData();
@@ -126,23 +126,24 @@ public class AgregarCita extends javax.swing.JDialog {
             int cod = 1;
             int idUlt = rvd.buscarUltCod(ciud.getIdCiudadano());
             regV = new RegistroVacunados();
-            citaV = new CitaVacunacion();
-            citaV.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
+            cita = new CitaVacunacion();
+            cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
             if (idUlt != 0) {
                 regV = rvd.buscarRegId(idUlt);
                 cod = regV.getCodRefuerzo() + 1;
-                citaV.setDosis(regV.getDosis());
-                citaV.setCentroVacunacion(regV.getCentroVacunacion());
+                cita.setDosis(regV.getDosis());
+                cita.setCentroVacunacion(regV.getCentroVacunacion());
             } else {
-                citaV.setDosis(buscarVacMayorCant());
-                citaV.setCentroVacunacion("Centro de " + ciud.getLocalidad());
+                cita.setDosis(buscarVacMayorCant());
+                cita.setCentroVacunacion("Centro de " + ciud.getLocalidad());
             }
-            citaV.setCodRefuerzo(cod);
-            citaV.setFechaHoraCita(fechaTurno().toString());
-            citaVD.guardarCita(citaV);
+            cita.setCodRefuerzo(cod);
+            cita.setFechaHoraCita(fechaTurno().toString());
+            System.out.println("sadsa"+cita);
+            citaVD.guardarCita(cita);
             act = true;
-            JOptionPane.showMessageDialog(null, "Turno Creado para " + citaV.getPersona().getNombre() + " "
-                    + citaV.getPersona().getApellido() + "\n" + "Dni: " + citaV.getPersona().getDni() + " Dosis: " + citaV.getCodRefuerzo());
+            JOptionPane.showMessageDialog(null, "Turno Creado para " + cita.getPersona().getNombre() + " "
+                    + cita.getPersona().getApellido() + "\n" + "Dni: " + cita.getPersona().getDni() + " Dosis: " + cita.getCodRefuerzo());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatibles");
         } catch (NullPointerException ex) {
@@ -220,8 +221,8 @@ public class AgregarCita extends javax.swing.JDialog {
     }
 
     public LocalDateTime fechaTurno() {
-        citaV = citaVD.buscarCitaId(citaVD.buscarUltTurno());
-        f1 = citaV.getFechaHoraCita() != null ? LocalDateTime.parse(citaV.getFechaHoraCita()) : null;
+        cita = citaVD.buscarCitaId(citaVD.buscarUltTurno());
+        f1 = cita.getFechaHoraCita() != null ? LocalDateTime.parse(cita.getFechaHoraCita()) : null;
         LocalDateTime fech = f1 != null ? f1 : LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
         if (fech.toLocalTime().isBefore(LocalTime.of(19, 30))
                 && fech.toLocalTime().isAfter(LocalTime.of(8, 00))) {
