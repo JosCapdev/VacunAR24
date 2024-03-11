@@ -41,7 +41,7 @@ public class CitaVacData {
 
     public void guardarCita(CitaVacunacion citaV) {
         String query = "INSERT INTO CitaVacunacion( idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,"
-                + " idVacuna=?) VALUES (?,?,?,?,?)";
+                + " idVacuna) VALUES (?,?,?,?,?)";
         try {           
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,citaV.getPersona().getIdCiudadano());
@@ -157,7 +157,7 @@ public class CitaVacData {
     }
     public ArrayList<CitaVacunacion> listarCitas() {
 
-        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion FROM CitaVacunacion";
+        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,idVacuna FROM CitaVacunacion";
         ArrayList<CitaVacunacion> citas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
