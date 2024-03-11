@@ -54,24 +54,23 @@ public class Menu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1320, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundPanel.setBackground(new java.awt.Color(0, 51, 102));
         backgroundPanel.setForeground(new java.awt.Color(0, 0, 0));
         backgroundPanel.setPreferredSize(new java.awt.Dimension(1250, 450));
         backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(51, 153, 255)));
         jPanel1.setForeground(new java.awt.Color(51, 153, 255));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/vacunar24.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 70));
+        backgroundPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 70));
 
         jPanelTurno.setBackground(new java.awt.Color(255, 255, 255));
         jPanelTurno.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
@@ -231,10 +230,10 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 120, 70));
 
-        jPFondoCel.setBackground(new java.awt.Color(51, 153, 255));
+        jPFondoCel.setBackground(new java.awt.Color(0, 51, 102));
         jPFondoCel.setPreferredSize(new java.awt.Dimension(667, 320));
 
-        Escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        Escritorio.setBackground(new java.awt.Color(153, 153, 153));
         Escritorio.setPreferredSize(new java.awt.Dimension(1024, 550));
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
@@ -303,11 +302,12 @@ public class Menu extends javax.swing.JFrame {
 
         backgroundPanel.add(jPanelLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 0, 130, 70));
 
-        jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHome.setBackground(new java.awt.Color(0, 51, 102));
         jPanelHome.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
+        jPanelHome.setForeground(new java.awt.Color(153, 153, 153));
 
         jLHome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLHome.setForeground(new java.awt.Color(51, 153, 255));
+        jLHome.setForeground(new java.awt.Color(153, 153, 153));
         jLHome.setText("Inicio");
         jLHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -448,7 +448,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLHomeMouseEntered
 
     private void jLHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseExited
-        jPanelHome.setBackground(Color.WHITE);
+        jPanelHome.setBackground(new Color(0,51, 102));
         jLHome.setForeground(new Color(51, 153, 255));
     }//GEN-LAST:event_jLHomeMouseExited
 
