@@ -52,6 +52,11 @@ public class Login extends javax.swing.JFrame {
         jPLog.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jTPass.setText("La clave es 123");
+        jTPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPassActionPerformed(evt);
+            }
+        });
         jPLog.add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 350, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/login.png"))); // NOI18N
@@ -116,6 +121,10 @@ public class Login extends javax.swing.JFrame {
         jTPass.setText("");
         }
     }//GEN-LAST:event_jBIngresarActionPerformed
+
+    private void jTPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPassActionPerformed
+        jTPass.setText("");
+    }//GEN-LAST:event_jTPassActionPerformed
 
     /**
      * @param args the command line arguments
