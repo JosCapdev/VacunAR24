@@ -25,7 +25,7 @@ import vacunar24.Entidades.Vacuna;
  */
 public class AgregarCita extends javax.swing.JDialog {
 
-    private CitaVacunacion cita;
+    private CitaVacunacion citaV;
     private CitaVacData citaVD;
     private CiudadanoData cd;
     private VacunaData vacD;
@@ -40,7 +40,7 @@ public class AgregarCita extends javax.swing.JDialog {
 
     public AgregarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        cita = new CitaVacunacion();
+        citaV = new CitaVacunacion();
         citaVD = new CitaVacData();
         cd = new CiudadanoData();
         vacD = new VacunaData();
@@ -125,8 +125,8 @@ public class AgregarCita extends javax.swing.JDialog {
             Ciudadano ciud = (Ciudadano) jCBC.getSelectedItem();
             int cod = 1;
             int idUlt = rvd.buscarUltCod(ciud.getIdCiudadano());
+            CitaVacunacion cita = new CitaVacunacion();
             regV = new RegistroVacunados();
-            cita = new CitaVacunacion();
             cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
             if (idUlt != 0) {
                 regV = rvd.buscarRegId(idUlt);
@@ -137,9 +137,9 @@ public class AgregarCita extends javax.swing.JDialog {
                 cita.setDosis(buscarVacMayorCant());
                 cita.setCentroVacunacion("Centro de " + ciud.getLocalidad());
             }
+
             cita.setCodRefuerzo(cod);
             cita.setFechaHoraCita(fechaTurno().toString());
-            System.out.println("sadsa"+cita);
             citaVD.guardarCita(cita);
             act = true;
             JOptionPane.showMessageDialog(null, "Turno Creado para " + cita.getPersona().getNombre() + " "
@@ -221,8 +221,8 @@ public class AgregarCita extends javax.swing.JDialog {
     }
 
     public LocalDateTime fechaTurno() {
-        cita = citaVD.buscarCitaId(citaVD.buscarUltTurno());
-        f1 = cita.getFechaHoraCita() != null ? LocalDateTime.parse(cita.getFechaHoraCita()) : null;
+        citaV = citaVD.buscarCitaId(citaVD.buscarUltTurno());
+        f1 = citaV.getFechaHoraCita() != null ? LocalDateTime.parse(citaV.getFechaHoraCita()) : null;
         LocalDateTime fech = f1 != null ? f1 : LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
         if (fech.toLocalTime().isBefore(LocalTime.of(19, 30))
                 && fech.toLocalTime().isAfter(LocalTime.of(8, 00))) {
