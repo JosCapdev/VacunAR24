@@ -56,7 +56,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         jBMod = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
-        jBPedido = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -110,8 +109,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBPedido.setText("Realizar un pedido");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,8 +125,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jBPedido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBMod)
                 .addGap(45, 45, 45)
@@ -149,8 +144,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAgregar)
                     .addComponent(jBMod)
-                    .addComponent(jBElim)
-                    .addComponent(jBPedido))
+                    .addComponent(jBElim))
                 .addGap(16, 16, 16))
         );
 
@@ -216,7 +210,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBElim;
     private javax.swing.JButton jBMod;
-    private javax.swing.JButton jBPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
