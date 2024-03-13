@@ -212,9 +212,15 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
             p.getEmail(),p.getCelular(),p.getMatricula(),p.isEstado()});
         });
     }
+    private void borrarFilas(){
+        int i = jTProf.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT(){
-        modelo.setNumRows(0);
-            llenarTabla();
-            ap.setAct(false);
+        borrarFilas();
+        llenarTabla();
+        ap.setAct(false);
     }
 }
