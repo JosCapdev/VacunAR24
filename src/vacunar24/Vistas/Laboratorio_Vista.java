@@ -236,9 +236,14 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
                 l.getPais(),l.getDomComercial(),l.isEstado()});
         });
     }
-
+    private void borrarFilas(){
+        int i = jTLab.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT() {
-        modelo.setNumRows(0);
+        borrarFilas();
         llenarTabla();
         al.setAct(false);
     }
