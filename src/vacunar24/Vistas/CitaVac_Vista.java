@@ -210,9 +210,14 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
                         , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
         });
     }
-
+    private void borrarFilas(){
+        int i = jTCV.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT() {
-        modelo.setNumRows(0);
+        borrarFilas();
         llenarTabla();
         ac.setAct(false);
     }
