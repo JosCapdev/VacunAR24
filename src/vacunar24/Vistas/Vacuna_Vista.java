@@ -29,7 +29,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     };
     private Frame f = JOptionPane.getFrameForComponent(this);
     private AgregarVacuna av = new AgregarVacuna(f, true);
-
+    private AgregarStockVacuna asv = new AgregarStockVacuna(f, true);
     public Vacuna_Vista() {
         vac = new Vacuna();
         vacD = new VacunaData();
@@ -56,6 +56,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         jBMod = new javax.swing.JButton();
         jBElim = new javax.swing.JButton();
         jTBuscador = new javax.swing.JTextField();
+        jBStock = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -79,9 +80,14 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTVac.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jTVacMouseMoved(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTVac);
 
-        jBAgregar.setText("Agregar vacuna");
+        jBAgregar.setText("Agregar  nueva vacuna");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarActionPerformed(evt);
@@ -109,6 +115,13 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
             }
         });
 
+        jBStock.setText("Agregar Stock");
+        jBStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBStockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,7 +137,9 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jBStock, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBMod)
                 .addGap(45, 45, 45)
@@ -144,7 +159,8 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAgregar)
                     .addComponent(jBMod)
-                    .addComponent(jBElim))
+                    .addComponent(jBElim)
+                    .addComponent(jBStock))
                 .addGap(16, 16, 16))
         );
 
@@ -191,7 +207,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBElimActionPerformed
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-        if (av.isAct()) {
+        if (av.isAct() || asv.isAct()) {
             actT();
         }
     }//GEN-LAST:event_jPanel1MouseMoved
@@ -206,10 +222,19 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
+    private void jBStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStockActionPerformed
+        asv.show();
+    }//GEN-LAST:event_jBStockActionPerformed
+
+    private void jTVacMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVacMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTVacMouseMoved
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBElim;
     private javax.swing.JButton jBMod;
+    private javax.swing.JButton jBStock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -237,10 +262,16 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 v.getFechaVto(), v.getCantidad(), v.isEstado()});
         });
     }
-
+    private void borrarFilas(){
+        int i = jTVac.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT() {
-        modelo.setNumRows(0);
+        borrarFilas();
         llenarTabla();
         av.setAct(false);
+        asv.setAct(false);
     }
 }
