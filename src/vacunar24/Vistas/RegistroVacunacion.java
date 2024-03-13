@@ -130,7 +130,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBMod)
                     .addComponent(jBElim))
                 .addGap(16, 16, 16))
@@ -211,10 +211,15 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
                         , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
         });
     }
-
+    private void borrarFilas(){
+        int i = jTReg.getRowCount()-1;
+        for(;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     private void actT() {
-        modelo.setNumRows(0);
+        borrarFilas();
         llenarTabla();
-        ac.setAct(false);
+        ar.setAct(false);
     }
 }
