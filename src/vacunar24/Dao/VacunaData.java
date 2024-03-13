@@ -22,6 +22,7 @@ import vacunar24.Entidades.Vacuna;
 public class VacunaData {
      private Connection con = null;
      private Vacuna vac;
+     private LaboratorioData labD;
 
     public VacunaData() {
         this.con = Conexion.getConexion();
@@ -30,7 +31,7 @@ public class VacunaData {
 
     public void guardarVacuna(Vacuna vac) {
         String query = "INSERT INTO Vacuna( marca, medida, fechaVto, colocada,"
-                + " cantidad, estado) VALUES (?,?,?,?,?,?)";
+                + " cantidad, idLaboratorio, estado) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, vac.getMarca());
@@ -38,7 +39,8 @@ public class VacunaData {
             ps.setDate(3, Date.valueOf(vac.getFechaVto()));
             ps.setBoolean(4, vac.isColocada());
             ps.setInt(5, vac.getCantidad());
-            ps.setBoolean(6, true);
+            ps.setInt(6, vac.getLab().getIdLaboratorio());
+            ps.setBoolean(7, true);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -56,7 +58,7 @@ public class VacunaData {
 
     public void modificarVacuna(Vacuna vac) {
         String query = "UPDATE Vacuna SET marca=?, medida=?, fechaVto=?,"
-                + " colocada=?, cantidad=?, estado= ?  WHERE idVacuna=? ";
+                + " colocada=?, cantidad=?, idLaboratorio=?, estado=?  WHERE idVacuna=? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
@@ -65,8 +67,9 @@ public class VacunaData {
             ps.setDate(3, Date.valueOf(vac.getFechaVto()));
             ps.setBoolean(4, vac.isColocada());
             ps.setInt(5, vac.getCantidad());
-            ps.setBoolean(6, true);
-            ps.setInt(7, vac.getIdVacuna());
+            ps.setInt(6, vac.getLab().getIdLaboratorio());
+            ps.setBoolean(7, true);
+            ps.setInt(8, vac.getIdVacuna());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Vacuna Modificada");
@@ -92,7 +95,7 @@ public class VacunaData {
     }
 
     public Vacuna buscarVacunaId(int id) {
-        String sql = "SELECT marca, medida, fechaVto, colocada, cantidad FROM Vacuna"
+        String sql = "SELECT marca, medida, fechaVto, colocada, cantidad, idLaboratorio FROM Vacuna"
                 + " WHERE idVacuna=? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -106,6 +109,7 @@ public class VacunaData {
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
                 vac.setColocada(rs.getBoolean("colocada"));
                 vac.setCantidad(rs.getInt("cantidad"));
+                vac.setLab(labD.buscarLaboratorioId(rs.getInt("idLaboratorio")));
                 vac.setEstado(true);
 
             } else {
@@ -120,7 +124,7 @@ public class VacunaData {
     
     public ArrayList<Vacuna> listarVacunas() {
 
-        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada, cantidad FROM Vacuna WHERE estado=1";
+        String sql = "SELECT idVacuna, marca, medida, fechaVto, colocada, cantidad, idLaboratorio FROM Vacuna WHERE estado=1";
         ArrayList<Vacuna> vacunas = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -134,6 +138,7 @@ public class VacunaData {
                 vac.setFechaVto(rs.getDate("fechaVto").toLocalDate());
                 vac.setColocada(rs.getBoolean("colocada"));
                 vac.setCantidad(rs.getInt("cantidad"));
+                vac.setLab(labD.buscarLaboratorioId(rs.getInt("idLaboratorio")));
                 vac.setEstado(true);
                 vacunas.add(vac);
             }
