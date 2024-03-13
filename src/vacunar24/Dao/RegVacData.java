@@ -59,7 +59,27 @@ public class RegVacData {
             JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
         }
     }
-
+    public void modificarRegistro(RegistroVacunados reg){
+         String query = "UPDATE RegistroVacunados SET idCiudadano=?,codRefuerzo=?,centroVacunacion=?,fechaHoraColocada=?,"
+                + "idVacuna=?,idProfesional=?,numSerieDosis=? WHERE idRegistroVacunados=?";
+         try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, regVac.getPersona().getIdCiudadano());
+            ps.setInt(2,regVac.getCodRefuerzo());
+            ps.setString(3, regVac.getCentroVacunacion());
+            ps.setString(4,regVac.getFechaHoraColoc());
+            ps.setInt(5,regVac.getDosis().getIdVacuna());
+            ps.setInt(6,regVac.getProf().getIdProfesional());
+            ps.setInt(7, regVac.getNumSerieDosis());
+            ps.setInt(8,regVac.getIdRegistroVacunados());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Registro Modificado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
+        }
+    }
     public void eliminarCita(int id) {
         String query = "DELETE FROM RegistroVacunados WHERE idRegistroVacunados = ?";
         try {
