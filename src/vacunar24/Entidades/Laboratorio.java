@@ -19,7 +19,7 @@ public class Laboratorio {
 
     @Override
     public String toString() {
-        return "Laboratorio{" + "idLaboratorio=" + idLaboratorio + ", cuit=" + cuit + ", nomLaboratorio=" + nomLaboratorio + ", pais=" + pais + ", domComercial=" + domComercial + ", estado=" + estado + '}';
+        return  nomLaboratorio + ", cuit=" + cuit + ", pais="+pais+ ", domComercial=" + domComercial + ", estado=" + estado + '}';
     }
 
     public int getIdLaboratorio() {
