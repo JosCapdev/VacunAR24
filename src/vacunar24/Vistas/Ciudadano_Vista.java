@@ -252,7 +252,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 c.getDomicilio(), c.getLocalidad(), c.getProvincia(), c.isEstado()});
         });
     }
-        private void borrarFilas(){
+    private void borrarFilas(){
         int i = jTCiud.getRowCount()-1;
         for(;i>=0;i--){
             modelo.removeRow(i);
