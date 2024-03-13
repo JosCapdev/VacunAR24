@@ -7,8 +7,11 @@ package vacunar24.Vistas;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import vacunar24.Dao.LaboratorioData;
 import vacunar24.Dao.VacunaData;
+import vacunar24.Entidades.Laboratorio;
 import vacunar24.Entidades.Vacuna;
 
 /**
@@ -22,15 +25,21 @@ public class AgregarVacuna extends javax.swing.JDialog {
     private boolean mod;
     private boolean act;
     private int idMod;
+    private Laboratorio lab;
+    private LaboratorioData labD;
+    private ArrayList<Laboratorio> listaLab;
 
     public AgregarVacuna(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         vac = new Vacuna();
         vacD = new VacunaData();
+        lab = new Laboratorio();
+        labD = new LaboratorioData();
         mod = false;
         act = false;
-        idMod=0;
+        idMod = 0;
         initComponents();
+        llenarDatos();
         this.setLocationRelativeTo(null);
     }
 
@@ -55,6 +64,8 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jDCFecha = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jSCant = new javax.swing.JSpinner();
+        jCLaboratorio = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,24 +75,24 @@ public class AgregarVacuna extends javax.swing.JDialog {
         jLT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLT.setForeground(new java.awt.Color(51, 51, 51));
         jLT.setText("DATOS DE LA VACUNA");
-        jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-        jPanel1.add(jTMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
+        jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        jPanel1.add(jTMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 140, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Marca:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-        jPanel1.add(jTMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 140, -1));
+        jLabel4.setText("Laboratorio:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel1.add(jTMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Cantidad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Fecha de Vencimiento:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +100,7 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 160, -1));
 
         jBLimpiar.setText("Limpiar Campos");
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,24 +108,31 @@ public class AgregarVacuna extends javax.swing.JDialog {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
-        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 160, 30));
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Medida:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
-        jPanel1.add(jSCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 140, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        jPanel1.add(jSCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 160, -1));
+
+        jPanel1.add(jCLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 360, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Marca:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,9 +144,10 @@ public class AgregarVacuna extends javax.swing.JDialog {
             double medida = Double.parseDouble(jTMedida.getText());
             LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int cant = (int) jSCant.getValue();
-            vac = new Vacuna(marca,medida,fecha,false,cant,true);
+            lab = (Laboratorio) jCLaboratorio.getSelectedItem();
+            vac = new Vacuna(marca, medida, fecha, false, cant, lab, true);
             if (mod) {
-                vac = new Vacuna(idMod,marca,medida,fecha,false,cant,true);
+                vac = new Vacuna(idMod, marca, medida, fecha, false, cant, lab, true);
                 vacD.modificarVacuna(vac);
                 mod = false;
                 act = true;
@@ -199,12 +218,14 @@ public class AgregarVacuna extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBLimpiar;
+    private javax.swing.JComboBox<Laboratorio> jCLaboratorio;
     private com.toedter.calendar.JDateChooser jDCFecha;
     private javax.swing.JLabel jLT;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSCant;
     private javax.swing.JTextField jTMarca;
@@ -275,5 +296,11 @@ public class AgregarVacuna extends javax.swing.JDialog {
     public void setjSCant(javax.swing.JSpinner jSCant) {
         this.jSCant = jSCant;
     }
-    
+
+    public void llenarDatos() {
+        listaLab = labD.listarLaboratorios();
+        for (Laboratorio item : listaLab) {
+            jCLaboratorio.addItem(item);
+        }
+    }
 }
