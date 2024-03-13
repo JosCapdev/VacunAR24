@@ -18,6 +18,7 @@ public class Vacuna {
     private LocalDate fechaVto;
     private boolean colocada;
     private int cantidad;
+    private Laboratorio lab;
     private boolean estado;
     
     public int getIdVacuna() {
@@ -76,27 +77,36 @@ public class Vacuna {
         this.estado = estado;
     }
 
+    public Laboratorio getLab() {
+        return lab;
+    }
+
+    public void setLab(Laboratorio lab) {
+        this.lab = lab;
+    }
+
     public Vacuna() {
     }
 
-    public Vacuna( String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaVto = fechaVto;
-        this.colocada = colocada;
-        this.cantidad = cantidad;
-        this.estado = estado;
-    }
-
-    public Vacuna(int idVacuna, String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, boolean estado) {
+    public Vacuna(int idVacuna, String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, Laboratorio lab, boolean estado) {
         this.idVacuna = idVacuna;
         this.marca = marca;
         this.medida = medida;
         this.fechaVto = fechaVto;
         this.colocada = colocada;
         this.cantidad = cantidad;
+        this.lab = lab;
         this.estado = estado;
     }
 
-   
+    public Vacuna(String marca, double medida, LocalDate fechaVto, boolean colocada, int cantidad, Laboratorio lab, boolean estado) {
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaVto = fechaVto;
+        this.colocada = colocada;
+        this.cantidad = cantidad;
+        this.lab = lab;
+        this.estado = estado;
+    }
+    
 }
