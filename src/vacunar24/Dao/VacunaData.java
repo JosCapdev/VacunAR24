@@ -132,6 +132,7 @@ public class VacunaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 vac = new Vacuna();
+                labD = new LaboratorioData();
                 vac.setIdVacuna(rs.getInt("idVacuna"));
                 vac.setMarca(rs.getString("marca"));
                 vac.setMedida(rs.getDouble("medida"));
