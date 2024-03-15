@@ -114,7 +114,9 @@ public class Login extends javax.swing.JFrame {
             menu.setVisible(true);
             dispose();
         }else if(jCBUser.getSelectedItem().equals("Si ingresaran profesionales de la salud") & jTPass.getText().equals("123")){
-            
+            MenuProf menuP = new MenuProf();
+            menuP.setVisible(true);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Usuario o Contraseña invalido.");
         jCBUser.setSelectedIndex(-1);
