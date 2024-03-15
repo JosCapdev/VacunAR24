@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Vistas/CitaVac_Vista.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Dao/CitaVacData.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Entidades/CitaVacunacion.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Dao/RegVacData.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Dao/VacunaData.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Vistas/AgregarCita.java</file>
-            <file>file:/C:/Users/Jose/Documents/NetBeansProjects/VacunAR24/src/vacunar24/Vistas/RegistroVacunacion.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
