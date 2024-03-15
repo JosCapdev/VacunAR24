@@ -13,7 +13,6 @@ import vacunar24.Dao.ProfesionalData;
 import vacunar24.Dao.RegVacData;
 import vacunar24.Dao.VacunaData;
 import vacunar24.Entidades.CitaVacunacion;
-import vacunar24.Entidades.Ciudadano;
 import vacunar24.Entidades.RegistroVacunados;
 
 /**
@@ -29,7 +28,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
     private ProfesionalData profD;
     private CiudadanoData cd;
     private VacunaData vd;
-    private boolean mod;
     private boolean act;
     private int idMod;
     private int idProf;
@@ -43,7 +41,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
         cita = new CitaVacunacion();
         citaD = new CitaVacData();
         cd = new CiudadanoData();
-        mod = false;
         act = false;
         idMod=0;
         idProf=0;
@@ -133,7 +130,7 @@ public class AgregarRegistro extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 160, -1));
 
         jBLimpiar.setText("Limpiar Campos");
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +138,7 @@ public class AgregarRegistro extends javax.swing.JDialog {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
+        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
         jPanel1.add(jTCiud, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 160, -1));
         jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 160, -1));
 
@@ -187,29 +184,28 @@ public class AgregarRegistro extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            if (mod) {
+//            if (mod) {
                 reg = rvd.buscarRegId(idMod);
                 reg.setPersona(cd.buscarCiudadanoId(Integer.parseInt(jTCiud.getText())));
                 reg.setCodRefuerzo(Integer.parseInt(jTCod.getText()));
                 reg.setCentroVacunacion(jTCentroVac.getText());
                 reg.setFechaHoraColoc(jDCFecha.toString());
                 reg.setDosis(vd.buscarVacunaId(Integer.parseInt(jTVac.getText())));
-                reg.setProf(colocaruncombox);
+                reg.setProf(profD.buscarProfesionalId(Integer.parseInt(jTProf.getText())));
                 rvd.modificarRegistro(reg);
-                mod = false;
                 act = true;
                 dispose();
-            } else {
-                cita=citaD.buscarCitaId(idMod);
-                reg.setPersona(cita.getPersona());
-                reg.setCodRefuerzo(cita.getCodRefuerzo());
-                reg.setCentroVacunacion(cita.getCentroVacunacion());
-                reg.setFechaHoraColoc(LocalDateTime.now().toString());
-                reg.setDosis(cita.getDosis());
-                reg.setProf(profD.buscarProfesionalId(idProf));
-                rvd.guardarRegVac(reg);
-                act = true;
-            }
+//            } else {
+//                cita=citaD.buscarCitaId(idMod);
+//                reg.setPersona(cita.getPersona());
+//                reg.setCodRefuerzo(cita.getCodRefuerzo());
+//                reg.setCentroVacunacion(cita.getCentroVacunacion());
+//                reg.setFechaHoraColoc(LocalDateTime.now().toString());
+//                reg.setDosis(cita.getDosis());
+//                reg.setProf(profD.buscarProfesionalId(idProf));
+//                rvd.guardarRegVac(reg);
+//                act = true;
+//            }
             limpiarCampos();
 
         } catch (NumberFormatException e) {
@@ -306,108 +302,17 @@ public class AgregarRegistro extends javax.swing.JDialog {
 
     public void limpiarCampos() {
 
-        jTNombre.setText("");
-        jTApellido.setText("");
-        jTDni.setText("");
-        jTMail.setText("");
+        jTCiud.setText("");
+        jTCod.setText("");
+        jTNSerie.setText("");
+        jTVac.setText("");
         jTCentroVac.setText("");
         jTProf.setText("");
-        jTTel.setText("");
-        jTPatolog.setText("");
-        jCBAmbito.setSelectedIndex(-1);
-        jCBProv.setSelectedIndex(-1);
+        jDCFecha.setDate(null);
         reg = null;
 
     }
-
-    public javax.swing.JComboBox<String> getjCBAmbito() {
-        return jCBAmbito;
-    }
-
-    public void setjCBAmbito(javax.swing.JComboBox<String> jCBAmbito) {
-        this.jCBAmbito = jCBAmbito;
-    }
-
-    public javax.swing.JComboBox<String> getjCBProv() {
-        return jCBProv;
-    }
-
-    public void setjCBProv(javax.swing.JComboBox<String> jCBProv) {
-        this.jCBProv = jCBProv;
-    }
-
-    public javax.swing.JTextField getjTApellido() {
-        return jTApellido;
-    }
-
-    public void setjTApellido(javax.swing.JTextField jTApellido) {
-        this.jTApellido = jTApellido;
-    }
-
-    public javax.swing.JTextField getjTDni() {
-        return jTDni;
-    }
-
-    public void setjTDni(javax.swing.JTextField jTDni) {
-        this.jTDni = jTDni;
-    }
-
-    public javax.swing.JTextField getjTDom() {
-        return jTProf;
-    }
-
-    public void setjTDom(javax.swing.JTextField jTDom) {
-        this.jTProf = jTDom;
-    }
-
-    public javax.swing.JTextField getjTLocalidad() {
-        return jTCentroVac;
-    }
-
-    public void setjTLocalidad(javax.swing.JTextField jTLocalidad) {
-        this.jTCentroVac = jTLocalidad;
-    }
-
-    public javax.swing.JTextField getjTMail() {
-        return jTMail;
-    }
-
-    public void setjTMail(javax.swing.JTextField jTMail) {
-        this.jTMail = jTMail;
-    }
-
-    public javax.swing.JTextField getjTNombre() {
-        return jTNombre;
-    }
-
-    public void setjTNombre(javax.swing.JTextField jTNombre) {
-        this.jTNombre = jTNombre;
-    }
-
-    public javax.swing.JTextField getjTPatolog() {
-        return jTPatolog;
-    }
-
-    public void setjTPatolog(javax.swing.JTextField jTPatolog) {
-        this.jTPatolog = jTPatolog;
-    }
-
-    public javax.swing.JTextField getjTTel() {
-        return jTTel;
-    }
-
-    public void setjTTel(javax.swing.JTextField jTTel) {
-        this.jTTel = jTTel;
-    }
-
-    public boolean isMod() {
-        return mod;
-    }
-
-    public void setMod(boolean mod) {
-        this.mod = mod;
-    }
-
+    
     public boolean isAct() {
         return act;
     }
@@ -422,6 +327,62 @@ public class AgregarRegistro extends javax.swing.JDialog {
 
     public void setIdMod(int idMod) {
         this.idMod = idMod;
+    }
+
+    public com.toedter.calendar.JDateChooser getjDCFecha() {
+        return jDCFecha;
+    }
+
+    public void setjDCFecha(com.toedter.calendar.JDateChooser jDCFecha) {
+        this.jDCFecha = jDCFecha;
+    }
+
+    public javax.swing.JTextField getjTCentroVac() {
+        return jTCentroVac;
+    }
+
+    public void setjTCentroVac(javax.swing.JTextField jTCentroVac) {
+        this.jTCentroVac = jTCentroVac;
+    }
+
+    public javax.swing.JTextField getjTCiud() {
+        return jTCiud;
+    }
+
+    public void setjTCiud(javax.swing.JTextField jTCiud) {
+        this.jTCiud = jTCiud;
+    }
+
+    public javax.swing.JTextField getjTCod() {
+        return jTCod;
+    }
+
+    public void setjTCod(javax.swing.JTextField jTCod) {
+        this.jTCod = jTCod;
+    }
+
+    public javax.swing.JTextField getjTNSerie() {
+        return jTNSerie;
+    }
+
+    public void setjTNSerie(javax.swing.JTextField jTNSerie) {
+        this.jTNSerie = jTNSerie;
+    }
+
+    public javax.swing.JTextField getjTProf() {
+        return jTProf;
+    }
+
+    public void setjTProf(javax.swing.JTextField jTProf) {
+        this.jTProf = jTProf;
+    }
+
+    public javax.swing.JTextField getjTVac() {
+        return jTVac;
+    }
+
+    public void setjTVac(javax.swing.JTextField jTVac) {
+        this.jTVac = jTVac;
     }
     
 }
