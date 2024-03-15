@@ -6,6 +6,7 @@
 package vacunar24.Vistas;
 
 import java.awt.Frame;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
         }
     };
     private Frame f = JOptionPane.getFrameForComponent(this);
-    private AgregarCita ac = new AgregarCita(f, true);
+    private AgregarRegistro ar = new AgregarRegistro(f, true);
 
     public RegistroVacunacion() {
         regVac = new RegistroVacunados();
@@ -151,7 +152,21 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
-        ac.show();
+        if (jTReg.getSelectedRow() >= 0) {
+            regVac = new RegistroVacunados();
+            regVac = regVacD.buscarRegId((int) jTReg.getValueAt(jTReg.getSelectedRow(), 0));
+            ar.getjTCiud().setText(regVac.getPersona().getIdCiudadano()+"");
+            ar.getjTCod().setText(regVac.getCodRefuerzo()+"");
+            ar.getjTCentroVac().setText(regVac.getCentroVacunacion());
+            ar.getjTVac().setText(regVac.getDosis().getIdVacuna()+"");
+            ar.getjTNSerie().setText(regVac.getNumSerieDosis()+"");
+            ar.getjTProf().setText(regVac.getProf().getIdProfesional()+"");
+            ar.getjDCFecha().setDate(Date.valueOf(regVac.getFechaHoraColoc()));
+            ar.setIdMod(regVac.getIdRegistroVacunados());
+            ar.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un registro en la tabla...");
+        }
     }//GEN-LAST:event_jBModActionPerformed
 
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
@@ -164,7 +179,7 @@ public class RegistroVacunacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBElimActionPerformed
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-        if (ac.isAct()) {
+        if (ar.isAct()) {
             actT();
         }
     }//GEN-LAST:event_jPanel1MouseMoved
