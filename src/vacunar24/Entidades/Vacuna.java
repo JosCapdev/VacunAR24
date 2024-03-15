@@ -108,5 +108,10 @@ public class Vacuna {
         this.lab = lab;
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return  marca + " medida: " + medida + ", laboratorio: " + lab + '}';
+    }
     
 }
