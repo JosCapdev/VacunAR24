@@ -245,7 +245,6 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
     }
     private void llenarTabla() {
         listaCiud = cd.listarCiudadanos();
-        listaCiud.add(new Ciudadano(1, "no tiene", "salud", "dom1", "ciudad", "mendoza", 1234123, "Juan", "Perez", "mail_1", "261", true));
         listaCiud.stream().forEach(c -> {
             modelo.addRow(new Object[]{c.getIdCiudadano(), c.getDni(),
                 c.getNombre(), c.getApellido(), c.getEmail(), c.getCelular(), c.getPatologia(), c.getAmbitoLab(),
