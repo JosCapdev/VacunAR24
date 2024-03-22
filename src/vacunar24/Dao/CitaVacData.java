@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunar24.Entidades.CitaVacunacion;
@@ -180,4 +182,32 @@ public class CitaVacData {
         return citas;
     }
     
+     public ArrayList<CitaVacunacion> listarCitasHoy() {
+
+        String sql = "SELECT idCitaVacunacion, idCiudadano, codRefuerzo, fechaHoraCita,centroVacunacion,idVacuna FROM CitaVacunacion";
+        ArrayList<CitaVacunacion> citas = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                citaV = new CitaVacunacion();
+                cd= new CiudadanoData();
+                LocalDateTime fech = LocalDateTime.parse(citaV.getFechaHoraCita());
+                if(fech.toLocalDate().isEqual(LocalDate.now())){
+                citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
+                citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
+                citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
+                citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
+                citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
+                citaV.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                citas.add(citaV);
+                }
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return citas;
+    }
 }
