@@ -6,12 +6,11 @@
 package vacunar24.Vistas;
 
 import java.awt.Frame;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vacunar24.Dao.RegVacData;
-import vacunar24.Entidades.RegistroVacunados;
+import vacunar24.Dao.CitaVacData;
+import vacunar24.Entidades.CitaVacunacion;
 
 /**
  *
@@ -19,9 +18,9 @@ import vacunar24.Entidades.RegistroVacunados;
  */
 public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
 
-    private RegistroVacunados regVac;
-    private RegVacData regVacD;
-    private ArrayList<RegistroVacunados> listaRegistro; 
+    private CitaVacunacion cv;
+    private CitaVacData cvd;
+    private ArrayList<CitaVacunacion> listaCitaV;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
@@ -31,9 +30,10 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
     private VacunarPaciente vp = new VacunarPaciente(f, true);
 
     public VacunarPaciente_VistaProf() {
-        regVac = new RegistroVacunados();
-        regVacD = new RegVacData();
-        listaRegistro = new ArrayList();
+        
+        cv = new CitaVacunacion();
+        cvd = new CitaVacData();
+        listaCitaV = new ArrayList();
         initComponents();
         armarCabecera();
         llenarTabla();
@@ -94,7 +94,7 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
             }
         });
 
-        jBNuevoPaciente.setText("Nuevo Paciente");
+        jBNuevoPaciente.setText("Paciente sin Turno");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,18 +153,29 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
-        modelo.setNumRows(0);
-        for (RegistroVacunados regVac : listaRegistro) {
-            if (regVac.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || regVac.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || regVac.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
-                modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
-                        , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
-            }
+        borrarFilas();
+        for (CitaVacunacion cv : listaCitaV) {
+            if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+                    || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
+                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getDni(), cv.getCodRefuerzo()
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});            }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
     private void VacunarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VacunarRegActionPerformed
-        vp.show();
+        if (jTCitas.getSelectedRow() >= 0) {
+            cv = new CitaVacunacion();
+            cv = cvd.buscarCitaId((int) jTCitas.getValueAt(jTCitas.getSelectedRow(), 0));
+            vp.getjTCiud().setText(cv.getPersona().getNombre()+" "+cv.getPersona().getApellido());
+            vp.getjTDni().setText(cv.getPersona().getDni()+"");
+            vp.getjTCentroVac().setText(cv.getCentroVacunacion());
+            vp.getjTCod().setText(cv.getCodRefuerzo()+"");
+            vp.getjTVac().setText(cv.getDosis().getMarca());
+            vp.setIdMod(cv.getIdCitaVacunacion());
+            vp.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un ciudadano en la tabla...");
+        }
     }//GEN-LAST:event_VacunarRegActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -178,13 +189,12 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-        filaCabecera.add("Codigo");
-        filaCabecera.add("idCiudadano");
+         filaCabecera.add("Codigo");
+        filaCabecera.add("Dni Ciudadano");
         filaCabecera.add("Codigo refuerzo");
+        filaCabecera.add("FechaHoraTurno");
         filaCabecera.add("Centro Vacunatorio");
-        filaCabecera.add("FechaHoraColocacion");
         filaCabecera.add("Dosis");
-        filaCabecera.add("N°SerieDosis");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
@@ -192,10 +202,10 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
-        listaRegistro = regVacD.listarRegistros();
-        listaRegistro.stream().forEach(cv -> {
-            modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
-                        , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
+        listaCitaV = cvd.listarCitasHoy();
+        listaCitaV.stream().forEach(cv -> {
+            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getDni(), cv.getCodRefuerzo()
+                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
         });
     }
     private void borrarFilas(){
