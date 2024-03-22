@@ -170,7 +170,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
-        modelo.setNumRows(0);
+        borrarFilas();
         for (CitaVacunacion cv : listaCitaV) {
             if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
