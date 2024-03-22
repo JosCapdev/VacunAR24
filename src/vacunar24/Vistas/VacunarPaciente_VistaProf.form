@@ -134,7 +134,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBNuevoPaciente">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nuevo Paciente"/>
+            <Property name="text" type="java.lang.String" value="Paciente sin Turno"/>
           </Properties>
         </Component>
       </SubComponents>
