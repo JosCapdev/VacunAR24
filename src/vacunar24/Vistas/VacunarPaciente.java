@@ -63,16 +63,15 @@ public class VacunarPaciente extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTCentroVac = new javax.swing.JTextField();
+        jTDni = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jBGuardar = new javax.swing.JButton();
-        jBLimpiar = new javax.swing.JButton();
         jTCiud = new javax.swing.JTextField();
         jTCod = new javax.swing.JTextField();
         jTNSerie = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTVac = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jTCentroVac = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,56 +102,38 @@ public class VacunarPaciente extends javax.swing.JDialog {
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Dni:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
-        jPanel1.add(jTCentroVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 160, -1));
+
+        jTDni.setEnabled(false);
+        jPanel1.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 160, -1));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("N°SerieVacuna:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
 
-        jBGuardar.setText("Guardar");
+        jBGuardar.setText("Confirmar Datos");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 160, -1));
 
-        jBLimpiar.setText("Limpiar Campos");
-        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        jTCiud.setEnabled(false);
         jPanel1.add(jTCiud, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 160, -1));
 
-        jTCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCodActionPerformed(evt);
-            }
-        });
+        jTCod.setEnabled(false);
         jPanel1.add(jTCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 160, -1));
-
-        jTNSerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNSerieActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTNSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 160, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Vacuna:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
-
-        jTVac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTVacActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 160, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 160, -1));
+
+        jTCentroVac.setEnabled(false);
+        jPanel1.add(jTCentroVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +155,7 @@ public class VacunarPaciente extends javax.swing.JDialog {
                 reg = rvd.buscarRegId(idMod);
                 reg.setPersona(cd.buscarCiudadanoId(Integer.parseInt(jTCiud.getText())));
                 reg.setCodRefuerzo(Integer.parseInt(jTCod.getText()));
-                reg.setCentroVacunacion(jTCentroVac.getText());
+                reg.setCentroVacunacion(jTDni.getText());
 //                reg.setFechaHoraColoc(jDCFecha.toString());
                 reg.setDosis(vd.buscarVacunaId(Integer.parseInt(jTVac.getText())));
 //                reg.setProf(profD.buscarProfesionalId(Integer.parseInt(jTProf.getText())));
@@ -201,22 +182,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
-
-    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-        limpiarCampos();
-    }//GEN-LAST:event_jBLimpiarActionPerformed
-
-    private void jTCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodActionPerformed
-
-    private void jTNSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNSerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTNSerieActionPerformed
-
-    private void jTVacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTVacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTVacActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,7 +230,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGuardar;
-    private javax.swing.JButton jBLimpiar;
     private javax.swing.JLabel jLT;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -277,9 +241,9 @@ public class VacunarPaciente extends javax.swing.JDialog {
     private javax.swing.JTextField jTCentroVac;
     private javax.swing.JTextField jTCiud;
     private javax.swing.JTextField jTCod;
+    private javax.swing.JTextField jTDni;
     private javax.swing.JTextField jTNSerie;
     private javax.swing.JTextField jTVac;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     public void limpiarCampos() {
@@ -288,7 +252,7 @@ public class VacunarPaciente extends javax.swing.JDialog {
         jTCod.setText("");
         jTNSerie.setText("");
         jTVac.setText("");
-        jTCentroVac.setText("");
+        jTDni.setText("");
         reg = null;
 
     }
@@ -310,11 +274,11 @@ public class VacunarPaciente extends javax.swing.JDialog {
     }
 
     public javax.swing.JTextField getjTCentroVac() {
-        return jTCentroVac;
+        return jTDni;
     }
 
     public void setjTCentroVac(javax.swing.JTextField jTCentroVac) {
-        this.jTCentroVac = jTCentroVac;
+        this.jTDni = jTCentroVac;
     }
 
     public javax.swing.JTextField getjTCiud() {
@@ -347,6 +311,14 @@ public class VacunarPaciente extends javax.swing.JDialog {
 
     public void setjTVac(javax.swing.JTextField jTVac) {
         this.jTVac = jTVac;
+    }
+
+    public javax.swing.JTextField getjTDni() {
+        return jTDni;
+    }
+
+    public void setjTDni(javax.swing.JTextField jTDni) {
+        this.jTDni = jTDni;
     }
     
 }
