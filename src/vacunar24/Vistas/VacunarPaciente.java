@@ -26,8 +26,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
     private CitaVacData citaD;
     private CitaVacunacion cita;
     private ProfesionalData profD;
-    private CiudadanoData cd;
-    private VacunaData vd;
     private boolean act;
     private int idMod;
     private int idProf;
@@ -40,7 +38,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
         rvd = new RegVacData();
         cita = new CitaVacunacion();
         citaD = new CitaVacData();
-        cd = new CiudadanoData();
         act = false;
         idMod=0;
         idProf=0;
