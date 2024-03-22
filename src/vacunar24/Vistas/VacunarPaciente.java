@@ -151,29 +151,18 @@ public class VacunarPaciente extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-//            if (mod) {
-                reg = rvd.buscarRegId(idMod);
-                reg.setPersona(cd.buscarCiudadanoId(Integer.parseInt(jTCiud.getText())));
-                reg.setCodRefuerzo(Integer.parseInt(jTCod.getText()));
-                reg.setCentroVacunacion(jTDni.getText());
-//                reg.setFechaHoraColoc(jDCFecha.toString());
-                reg.setDosis(vd.buscarVacunaId(Integer.parseInt(jTVac.getText())));
-//                reg.setProf(profD.buscarProfesionalId(Integer.parseInt(jTProf.getText())));
-                rvd.modificarRegistro(reg);
+                cita=citaD.buscarCitaId(idMod);
+                reg.setPersona(cita.getPersona());
+                reg.setCodRefuerzo(cita.getCodRefuerzo());
+                reg.setCentroVacunacion(cita.getCentroVacunacion());
+                reg.setFechaHoraColoc(LocalDateTime.now().toString());
+                reg.setDosis(cita.getDosis());
+                reg.setNumSerieDosis(Integer.parseInt(jTNSerie.getText()));
+                reg.setProf(profD.buscarProfesionalId(idProf));
+                rvd.guardarRegVac(reg);
                 act = true;
-                dispose();
-//            } else {
-//                cita=citaD.buscarCitaId(idMod);
-//                reg.setPersona(cita.getPersona());
-//                reg.setCodRefuerzo(cita.getCodRefuerzo());
-//                reg.setCentroVacunacion(cita.getCentroVacunacion());
-//                reg.setFechaHoraColoc(LocalDateTime.now().toString());
-//                reg.setDosis(cita.getDosis());
-//                reg.setProf(profD.buscarProfesionalId(idProf));
-//                rvd.guardarRegVac(reg);
-//                act = true;
-//            }
-            limpiarCampos();
+                JOptionPane.showMessageDialog(null, "Vacuna Colocada a " + reg.getPersona().getNombre() + " "
+                    + reg.getPersona().getApellido() + "\n" + "Dni: " + reg.getPersona().getDni() + " Dosis: " + reg.getCodRefuerzo());
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatible");
