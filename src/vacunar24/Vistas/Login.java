@@ -52,9 +52,9 @@ public class Login extends javax.swing.JFrame {
         jPLog.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jTPass.setText("La clave es 123");
-        jTPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPassActionPerformed(evt);
+        jTPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTPassMouseClicked(evt);
             }
         });
         jPLog.add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 350, -1));
@@ -124,9 +124,9 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBIngresarActionPerformed
 
-    private void jTPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPassActionPerformed
+    private void jTPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPassMouseClicked
         jTPass.setText("");
-    }//GEN-LAST:event_jTPassActionPerformed
+    }//GEN-LAST:event_jTPassMouseClicked
 
     /**
      * @param args the command line arguments
