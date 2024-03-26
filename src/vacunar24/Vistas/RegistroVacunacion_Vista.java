@@ -192,7 +192,7 @@ public class RegistroVacunacion_Vista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
-        modelo.setNumRows(0);
+        borrarFilas();
         for (RegistroVacunados regVac : listaRegistro) {
             if (regVac.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || regVac.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || String.valueOf(regVac.getPersona().getDni()).equals(jTBuscador.getText())){
