@@ -36,22 +36,27 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanelTurno = new javax.swing.JPanel();
         jLTurno = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanelCiudadano = new javax.swing.JPanel();
         jLCiudadano = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanelProfesional = new javax.swing.JPanel();
         jLProfesional = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanelVacuna = new javax.swing.JPanel();
         jLVacuna = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPFondoCel = new javax.swing.JPanel();
         Escritorio = new javax.swing.JPanel();
         jPanelLaboratorio = new javax.swing.JPanel();
         jLLaboratorio = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelHome = new javax.swing.JPanel();
         jLHome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
-        setPreferredSize(new java.awt.Dimension(1320, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backgroundPanel.setBackground(new java.awt.Color(0, 51, 102));
@@ -101,24 +106,33 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/calendar-multiple-check.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelTurnoLayout = new javax.swing.GroupLayout(jPanelTurno);
         jPanelTurno.setLayout(jPanelTurnoLayout);
         jPanelTurnoLayout.setHorizontalGroup(
             jPanelTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTurnoLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLTurno)
                 .addGap(16, 16, 16))
         );
         jPanelTurnoLayout.setVerticalGroup(
             jPanelTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTurnoLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLTurno)
+                .addGroup(jPanelTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelTurnoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelTurnoLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLTurno)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, -1));
+        backgroundPanel.add(jPanelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 130, -1));
 
         jPanelCiudadano.setBackground(new java.awt.Color(0, 51, 102));
         jPanelCiudadano.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -138,24 +152,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/account-multiple.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelCiudadanoLayout = new javax.swing.GroupLayout(jPanelCiudadano);
         jPanelCiudadano.setLayout(jPanelCiudadanoLayout);
         jPanelCiudadanoLayout.setHorizontalGroup(
             jPanelCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCiudadanoLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLCiudadano)
                 .addContainerGap())
         );
         jPanelCiudadanoLayout.setVerticalGroup(
             jPanelCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCiudadanoLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLCiudadano)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanelCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLCiudadano))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelCiudadano, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 130, 70));
+        backgroundPanel.add(jPanelCiudadano, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 150, 70));
 
         jPanelProfesional.setBackground(new java.awt.Color(0, 51, 102));
         jPanelProfesional.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -175,24 +195,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/enfermero_user.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelProfesionalLayout = new javax.swing.GroupLayout(jPanelProfesional);
         jPanelProfesional.setLayout(jPanelProfesionalLayout);
         jPanelProfesionalLayout.setHorizontalGroup(
             jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProfesionalLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLProfesional)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelProfesionalLayout.setVerticalGroup(
             jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfesionalLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLProfesional)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLProfesional))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 110, 70));
+        backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 140, 70));
 
         jPanelVacuna.setBackground(new java.awt.Color(0, 51, 102));
         jPanelVacuna.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -212,24 +238,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/injection.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelVacunaLayout = new javax.swing.GroupLayout(jPanelVacuna);
         jPanelVacuna.setLayout(jPanelVacunaLayout);
         jPanelVacunaLayout.setHorizontalGroup(
             jPanelVacunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVacunaLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVacunaLayout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLVacuna)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         jPanelVacunaLayout.setVerticalGroup(
             jPanelVacunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVacunaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLVacuna)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanelVacunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLVacuna))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 120, 70));
+        backgroundPanel.add(jPanelVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 0, 130, 70));
 
         jPFondoCel.setBackground(new java.awt.Color(0, 51, 102));
         jPFondoCel.setPreferredSize(new java.awt.Dimension(667, 320));
@@ -284,24 +316,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/laboratorio.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelLaboratorioLayout = new javax.swing.GroupLayout(jPanelLaboratorio);
         jPanelLaboratorio.setLayout(jPanelLaboratorioLayout);
         jPanelLaboratorioLayout.setHorizontalGroup(
             jPanelLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLaboratorioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLaboratorioLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLLaboratorio)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelLaboratorioLayout.setVerticalGroup(
             jPanelLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLaboratorioLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLLaboratorio)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanelLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 0, 130, 70));
+        backgroundPanel.add(jPanelLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 0, 140, 70));
 
         jPanelHome.setBackground(new java.awt.Color(0, 51, 102));
         jPanelHome.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
@@ -322,24 +360,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/home-outline.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
         jPanelHome.setLayout(jPanelHomeLayout);
         jPanelHomeLayout.setHorizontalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLHome)
                 .addGap(16, 16, 16))
         );
         jPanelHomeLayout.setVerticalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHomeLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLHome)
+                .addGap(14, 14, 14)
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLHome))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 110, -1));
+        backgroundPanel.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 120, -1));
 
         getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1300, 790));
 
@@ -494,7 +538,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLProfesional;
     private javax.swing.JLabel jLTurno;
     private javax.swing.JLabel jLVacuna;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPFondoCel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCiudadano;
