@@ -40,14 +40,19 @@ public class MenuProf extends javax.swing.JFrame {
         Escritorio = new javax.swing.JPanel();
         jPanelHome = new javax.swing.JPanel();
         jLHome = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanelRegistro = new javax.swing.JPanel();
         jLRegistroVac = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanelVacunar = new javax.swing.JPanel();
         jLVacunarPaciente = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanelInsumo = new javax.swing.JPanel();
         jLInsumo = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelOtros = new javax.swing.JPanel();
         jLOtros = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,21 +124,27 @@ public class MenuProf extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/home-outline.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
         jPanelHome.setLayout(jPanelHomeLayout);
         jPanelHomeLayout.setHorizontalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLHome)
-                .addGap(55, 55, 55))
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLHome, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHomeLayout.setVerticalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLHome)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLHome))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanelRegistro.setBackground(new java.awt.Color(0, 51, 102));
@@ -154,20 +165,26 @@ public class MenuProf extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/clipboard-8-24.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelRegistroLayout = new javax.swing.GroupLayout(jPanelRegistro);
         jPanelRegistro.setLayout(jPanelRegistroLayout);
         jPanelRegistroLayout.setHorizontalGroup(
             jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistroLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLRegistroVac)
-                .addGap(16, 16, 16))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLRegistroVac, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanelRegistroLayout.setVerticalGroup(
             jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLRegistroVac)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLRegistroVac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -188,20 +205,26 @@ public class MenuProf extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/calendar-multiple-check.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelVacunarLayout = new javax.swing.GroupLayout(jPanelVacunar);
         jPanelVacunar.setLayout(jPanelVacunarLayout);
         jPanelVacunarLayout.setHorizontalGroup(
             jPanelVacunarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVacunarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLVacunarPaciente)
-                .addGap(36, 36, 36))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLVacunarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanelVacunarLayout.setVerticalGroup(
             jPanelVacunarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVacunarLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLVacunarPaciente)
+                .addGap(27, 27, 27)
+                .addGroup(jPanelVacunarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLVacunarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -222,21 +245,27 @@ public class MenuProf extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/tool-box-24.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelInsumoLayout = new javax.swing.GroupLayout(jPanelInsumo);
         jPanelInsumo.setLayout(jPanelInsumoLayout);
         jPanelInsumoLayout.setHorizontalGroup(
             jPanelInsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInsumoLayout.createSequentialGroup()
-                .addContainerGap(183, Short.MAX_VALUE)
-                .addComponent(jLInsumo)
-                .addGap(20, 20, 20))
+            .addGroup(jPanelInsumoLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelInsumoLayout.setVerticalGroup(
             jPanelInsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInsumoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLInsumo)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanelInsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanelOtros.setBackground(new java.awt.Color(0, 51, 102));
@@ -256,21 +285,27 @@ public class MenuProf extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/book-open-page-variant.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelOtrosLayout = new javax.swing.GroupLayout(jPanelOtros);
         jPanelOtros.setLayout(jPanelOtrosLayout);
         jPanelOtrosLayout.setHorizontalGroup(
             jPanelOtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOtrosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLOtros)
-                .addGap(51, 51, 51))
+                .addGap(52, 52, 52)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelOtrosLayout.setVerticalGroup(
             jPanelOtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOtrosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLOtros)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGroup(jPanelOtrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPFondoCelLayout = new javax.swing.GroupLayout(jPFondoCel);
@@ -451,7 +486,12 @@ public class MenuProf extends javax.swing.JFrame {
     private javax.swing.JLabel jLOtros;
     private javax.swing.JLabel jLRegistroVac;
     private javax.swing.JLabel jLVacunarPaciente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPFondoCel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelHome;
