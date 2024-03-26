@@ -110,6 +110,11 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 470, 120, 40));
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -172,12 +177,17 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         for(Profesional p:listaProf){
             if(p.getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())||p.getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-               || p.getIdProfesional()== Integer.parseInt(jTBuscador.getText())){
+                    || String.valueOf(p.getIdProfesional()).equals(jTBuscador.getText()) ||
+                    String.valueOf(p.getDni()).equals(jTBuscador.getText())){
                 modelo.addRow(new Object[]{p.getIdProfesional(),p.getDni(),p.getNombre(),p.getApellido(),
             p.getEmail(),p.getCelular(),p.getMatricula(),p.isEstado()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
+
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
