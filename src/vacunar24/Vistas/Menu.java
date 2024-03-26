@@ -202,9 +202,9 @@ public class Menu extends javax.swing.JFrame {
         jPanelProfesionalLayout.setHorizontalGroup(
             jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLProfesional)
                 .addContainerGap())
         );
@@ -212,10 +212,10 @@ public class Menu extends javax.swing.JFrame {
             jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfesionalLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelProfesionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLProfesional))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jLProfesional, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 140, 70));
