@@ -80,11 +80,6 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTVac.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jTVacMouseMoved(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTVac);
 
         jBAgregar.setText("Agregar  nueva vacuna");
@@ -109,6 +104,11 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         });
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -216,7 +216,7 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         for (Vacuna v : listaVac) {
             if (v.getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || v.getIdVacuna() == Integer.parseInt(jTBuscador.getText())) {
+                    || String.valueOf(v.getIdVacuna()).equals(jTBuscador.getText())) {
                 modelo.addRow(new Object[]{v.getIdVacuna(), v.getMarca(), v.getMedida(), v.getFechaVto()});
             }
         }
@@ -226,9 +226,9 @@ public class Vacuna_Vista extends javax.swing.JInternalFrame {
         asv.show();
     }//GEN-LAST:event_jBStockActionPerformed
 
-    private void jTVacMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVacMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTVacMouseMoved
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
