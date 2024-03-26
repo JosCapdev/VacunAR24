@@ -223,7 +223,10 @@ public class AgregarCita extends javax.swing.JDialog {
     public LocalDateTime fechaTurno() {
         citaV = citaVD.buscarCitaId(citaVD.buscarUltTurno());
         f1 = citaV.getFechaHoraCita() != null ? LocalDateTime.parse(citaV.getFechaHoraCita()) : null;
-        LocalDateTime fech = f1 != null ? f1 : LocalDateTime.of(LocalDate.now(), LocalTime.of(8, 30));
+        LocalDateTime fech= f1;
+        if(f1==null || f1.isBefore(LocalDateTime.now())){
+            fech=LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(8, 30));
+        }
         if (fech.toLocalTime().isBefore(LocalTime.of(19, 30))
                 && fech.toLocalTime().isAfter(LocalTime.of(8, 00))) {
             fech = fech.plusMinutes(30);
