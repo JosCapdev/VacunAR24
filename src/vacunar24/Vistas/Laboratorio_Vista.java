@@ -102,6 +102,11 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
         });
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -198,12 +203,16 @@ public class Laboratorio_Vista extends javax.swing.JInternalFrame {
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         modelo.setNumRows(0);
         for (Laboratorio l : listaLab) {
-            if (l.getNomLaboratorio().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || l.getCuit() == Integer.parseInt(jTBuscador.getText())
-                    || l.getIdLaboratorio() == Integer.parseInt(jTBuscador.getText()) || l.getDomComercial().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())) {
+            if (l.getNomLaboratorio().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || String.valueOf(l.getCuit()).equals(jTBuscador.getText())
+                    || String.valueOf(l.getIdLaboratorio()).equals(jTBuscador.getText())|| l.getDomComercial().equals(jTBuscador.getText().toLowerCase())) {
                 modelo.addRow(new Object[]{l.getIdLaboratorio(),l.getCuit(),l.getNomLaboratorio(),l.getPais(),l.getDomComercial(),l.isEstado()});
             }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
+
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
