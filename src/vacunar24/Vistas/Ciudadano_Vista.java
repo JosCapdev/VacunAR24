@@ -203,7 +203,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
         borrarFilas();
         for(Ciudadano c:listaCiud){
             if(c.getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())||c.getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-               || c.getIdCiudadano()== Integer.parseInt(jTBuscador.getText())){
+               || String.valueOf(c.getIdCiudadano()).equals(jTBuscador.getText()) || String.valueOf(c.getDni()).equals(jTBuscador.getText())){
                 modelo.addRow(new Object[]{c.getIdCiudadano(), c.getDni(),c.getNombre(), c.getApellido(), c.getEmail(), c.getCelular(), c.getPatologia(), c.getAmbitoLab(),
                 c.getDomicilio(), c.getLocalidad(), c.getProvincia(), c.isEstado()});
             }
