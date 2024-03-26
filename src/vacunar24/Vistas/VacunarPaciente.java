@@ -8,10 +8,8 @@ package vacunar24.Vistas;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import vacunar24.Dao.CitaVacData;
-import vacunar24.Dao.CiudadanoData;
 import vacunar24.Dao.ProfesionalData;
 import vacunar24.Dao.RegVacData;
-import vacunar24.Dao.VacunaData;
 import vacunar24.Entidades.CitaVacunacion;
 import vacunar24.Entidades.RegistroVacunados;
 
@@ -155,7 +153,7 @@ public class VacunarPaciente extends javax.swing.JDialog {
                 reg.setFechaHoraColoc(LocalDateTime.now().toString());
                 reg.setDosis(cita.getDosis());
                 reg.setNumSerieDosis(Integer.parseInt(jTNSerie.getText()));
-                reg.setProf(profD.buscarProfesionalId(idProf));
+                reg.setProf(profD.buscarProfesionalId(3));
                 rvd.guardarRegVac(reg);
                 act = true;
                 JOptionPane.showMessageDialog(null, "Vacuna Colocada a " + reg.getPersona().getNombre() + " "
@@ -259,14 +257,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
         this.idMod = idMod;
     }
 
-    public javax.swing.JTextField getjTCentroVac() {
-        return jTDni;
-    }
-
-    public void setjTCentroVac(javax.swing.JTextField jTCentroVac) {
-        this.jTDni = jTCentroVac;
-    }
-
     public javax.swing.JTextField getjTCiud() {
         return jTCiud;
     }
@@ -305,6 +295,14 @@ public class VacunarPaciente extends javax.swing.JDialog {
 
     public void setjTDni(javax.swing.JTextField jTDni) {
         this.jTDni = jTDni;
+    }
+
+    public javax.swing.JTextField getjTCentroVac() {
+        return jTCentroVac;
+    }
+
+    public void setjTCentroVac(javax.swing.JTextField jTCentroVac) {
+        this.jTCentroVac = jTCentroVac;
     }
     
 }
