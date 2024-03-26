@@ -190,17 +190,18 @@ public class CitaVacData {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
+             LocalDateTime fech =null;
             while (rs.next()) {
                 citaV = new CitaVacunacion();
                 cd= new CiudadanoData();
-                LocalDateTime fech = LocalDateTime.parse(citaV.getFechaHoraCita());
-                if(fech.toLocalDate().isEqual(LocalDate.now())){
                 citaV.setIdCitaVacunacion(rs.getInt("idCitaVacunacion"));
                 citaV.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 citaV.setCodRefuerzo(rs.getInt("codRefuerzo"));
                 citaV.setFechaHoraCita(rs.getString("fechaHoraCita"));
                 citaV.setCentroVacunacion(rs.getString("centroVacunacion"));
                 citaV.setDosis(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                fech = LocalDateTime.parse(citaV.getFechaHoraCita());
+                if(fech.toLocalDate().isEqual(LocalDate.now())){
                 citas.add(citaV);
                 }
             }
