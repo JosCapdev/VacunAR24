@@ -6,7 +6,10 @@
 package vacunar24.Vistas;
 
 import java.awt.Frame;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vacunar24.Dao.CitaVacData;
@@ -94,6 +97,11 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         });
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -180,6 +188,10 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBElim;
     private javax.swing.JButton jBNuevo;
@@ -205,7 +217,8 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
 
     private void llenarTabla() {
         listaCitaV = citaVD.listarCitas();
-        listaCitaV.stream().forEach(cv -> {
+        Collections.sort(listaCitaV,(CitaVacunacion a, CitaVacunacion b)-> LocalDateTime.parse(a.getFechaHoraCita()).compareTo(LocalDateTime.parse(b.getFechaHoraCita())));
+        listaCitaV.forEach(cv -> {
             modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
                         , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
         });
