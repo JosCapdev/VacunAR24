@@ -132,6 +132,7 @@ public class RegVacData {
             while (rs.next()) {
                 regVac = new RegistroVacunados();
                 cd= new CiudadanoData();
+                profD = new ProfesionalData();
                 regVac.setIdRegistroVacunados(rs.getInt("idRegistroVacunados"));
                 regVac.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 regVac.setCodRefuerzo(rs.getInt("codRefuerzo"));
