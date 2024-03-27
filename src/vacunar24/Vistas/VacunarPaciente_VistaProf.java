@@ -156,7 +156,8 @@ public class VacunarPaciente_VistaProf extends javax.swing.JInternalFrame {
         borrarFilas();
         for (CitaVacunacion cv : listaCitaV) {
             if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || String.valueOf(cv.getPersona().getDni()).equals(jTBuscador.getText())){
+                    || String.valueOf(cv.getPersona().getDni()).equals(jTBuscador.getText()) || 
+                    String.valueOf(cv.getIdCitaVacunacion()).equals(jTBuscador.getText())){
                 modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getDni(), cv.getCodRefuerzo()
                         , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});            }
         }
