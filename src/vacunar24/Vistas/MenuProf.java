@@ -367,17 +367,17 @@ public class MenuProf extends javax.swing.JFrame {
     private void jLOtrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLOtrosMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
-        Vacuna_Vista vac = new Vacuna_Vista();
-        Escritorio.add(vac);
-        vac.setVisible(true);
+        Otros_VistaProf otr = new Otros_VistaProf();
+        Escritorio.add(otr);
+        otr.setVisible(true);
     }//GEN-LAST:event_jLOtrosMouseClicked
 
     private void jLInsumoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLInsumoMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
-        Profesional_Vista prof = new Profesional_Vista();
-        Escritorio.add(prof);
-        prof.setVisible(true);
+        Insumos_VistaProf ins = new Insumos_VistaProf();
+        Escritorio.add(ins);
+        ins.setVisible(true);
     }//GEN-LAST:event_jLInsumoMouseClicked
 
     private void jLRegistroVacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRegistroVacMouseClicked
