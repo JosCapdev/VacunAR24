@@ -6,14 +6,12 @@
 package vacunar24.Vistas;
 
 import java.awt.Frame;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vacunar24.Dao.RegVacData;
-import vacunar24.Entidades.CitaVacunacion;
 import vacunar24.Entidades.RegistroVacunados;
 
 /**
@@ -144,7 +142,7 @@ public class RegistroVacunacion_VistaProf extends javax.swing.JInternalFrame {
         for (RegistroVacunados regVac : listaRegistro) {
             if (regVac.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || regVac.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || String.valueOf(regVac.getPersona().getDni()).equals(jTBuscador.getText())){
-                modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
+                modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getDni(), regVac.getPersona().getNombre()+" "+regVac.getPersona().getApellido(), regVac.getCodRefuerzo()
                         , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
             }
         }
@@ -164,7 +162,8 @@ public class RegistroVacunacion_VistaProf extends javax.swing.JInternalFrame {
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Codigo");
-        filaCabecera.add("idCiudadano");
+        filaCabecera.add("Dni");
+        filaCabecera.add("Nombre y Apellido");
         filaCabecera.add("Codigo refuerzo");
         filaCabecera.add("Centro Vacunatorio");
         filaCabecera.add("FechaHoraColocacion");
@@ -180,7 +179,7 @@ public class RegistroVacunacion_VistaProf extends javax.swing.JInternalFrame {
         listaRegistro = regVacD.listarRegistros();
         Collections.sort(listaRegistro,(RegistroVacunados a, RegistroVacunados b)-> LocalDateTime.parse(a.getFechaHoraColoc()).compareTo(LocalDateTime.parse(b.getFechaHoraColoc())));
         listaRegistro.forEach(regVac -> {
-            modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
+            modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getDni(), regVac.getPersona().getNombre()+" "+regVac.getPersona().getApellido(),regVac.getCodRefuerzo()
                         , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
         });
     }
