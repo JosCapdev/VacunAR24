@@ -105,4 +105,9 @@ public class RegistroVacunados {
         this.numSerieDosis = numSerieDosis;
     }
 
+    @Override
+    public String toString() {
+        return "RegistroVacunados{" + "idRegistroVacunados=" + idRegistroVacunados + ", persona=" + persona + ", codRefuerzo=" + codRefuerzo + ", centroVacunacion=" + centroVacunacion + ", fechaHoraColoc=" + fechaHoraColoc + ", dosis=" + dosis + ", prof=" + prof + ", numSerieDosis=" + numSerieDosis + '}';
+    }
+
 }
