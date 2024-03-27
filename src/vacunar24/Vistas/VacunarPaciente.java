@@ -36,6 +36,7 @@ public class VacunarPaciente extends javax.swing.JDialog {
         rvd = new RegVacData();
         cita = new CitaVacunacion();
         citaD = new CitaVacData();
+        profD = new ProfesionalData();
         act = false;
         idMod=0;
         idProf=0;
@@ -153,12 +154,13 @@ public class VacunarPaciente extends javax.swing.JDialog {
                 reg.setFechaHoraColoc(LocalDateTime.now().toString());
                 reg.setDosis(cita.getDosis());
                 reg.setNumSerieDosis(Integer.parseInt(jTNSerie.getText()));
-                reg.setProf(profD.buscarProfesionalId(3));
+                reg.setProf(profD.buscarProfesionalId(2));
                 rvd.guardarRegVac(reg);
                 act = true;
                 JOptionPane.showMessageDialog(null, "Vacuna Colocada a " + reg.getPersona().getNombre() + " "
                     + reg.getPersona().getApellido() + "\n" + "Dni: " + reg.getPersona().getDni() + " Dosis: " + reg.getCodRefuerzo());
-
+                citaD.eliminarCita(idMod);
+                dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatible");
             limpiarCampos();
