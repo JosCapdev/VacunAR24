@@ -195,7 +195,8 @@ public class RegistroVacunacion_Vista extends javax.swing.JInternalFrame {
         borrarFilas();
         for (RegistroVacunados regVac : listaRegistro) {
             if (regVac.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || regVac.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || String.valueOf(regVac.getPersona().getDni()).equals(jTBuscador.getText())){
+                    || String.valueOf(regVac.getPersona().getDni()).equals(jTBuscador.getText()) || 
+                    String.valueOf(regVac.getIdRegistroVacunados()).equals(jTBuscador.getText())){
                 modelo.addRow(new Object[]{regVac.getIdRegistroVacunados(), regVac.getPersona().getIdCiudadano(), regVac.getCodRefuerzo()
                         , regVac.getCentroVacunacion(),regVac.getFechaHoraColoc(),regVac.getDosis().getMarca(),regVac.getNumSerieDosis()});
             }
