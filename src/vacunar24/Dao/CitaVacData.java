@@ -112,8 +112,6 @@ public class CitaVacData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 idF= rs.getInt("idCitaVacunacion");     
-            } else {
-                JOptionPane.showMessageDialog(null, "Nuevo Paciente");
             }
             ps.close();
         } catch (SQLException ex) {
