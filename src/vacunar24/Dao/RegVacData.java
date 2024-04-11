@@ -104,6 +104,7 @@ public class RegVacData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 regVac = new RegistroVacunados();
+                profD = new ProfesionalData();
                 regVac.setIdRegistroVacunados(id);
                 regVac.setPersona(cd.buscarCiudadanoId(rs.getInt("idCiudadano")));
                 regVac.setCodRefuerzo(rs.getInt("codRefuerzo"));
