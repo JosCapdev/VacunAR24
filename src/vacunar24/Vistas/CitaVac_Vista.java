@@ -181,8 +181,10 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         borrarFilas();
         for (CitaVacunacion cv : listaCitaV) {
             if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-                    || cv.getPersona().getDni() == Integer.parseInt(jTBuscador.getText())){
-                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
+                    || String.valueOf(cv.getPersona().getDni()).equals(jTBuscador.getText()) || 
+                    String.valueOf(cv.getIdCitaVacunacion()).equals(jTBuscador.getText()) || 
+                    String.valueOf(cv.getPersona().getIdCiudadano()).equals(jTBuscador.getText())){
+                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(),cv.getPersona().getDni(), cv.getCodRefuerzo()
                         , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
             }
         }
@@ -205,6 +207,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Codigo");
         filaCabecera.add("idCiudadano");
+        filaCabecera.add("Dni");
         filaCabecera.add("Codigo refuerzo");
         filaCabecera.add("FechaHoraTurno");
         filaCabecera.add("Centro Vacunatorio");
@@ -219,7 +222,7 @@ public class CitaVac_Vista extends javax.swing.JInternalFrame {
         listaCitaV = citaVD.listarCitas();
         Collections.sort(listaCitaV,(CitaVacunacion a, CitaVacunacion b)-> LocalDateTime.parse(a.getFechaHoraCita()).compareTo(LocalDateTime.parse(b.getFechaHoraCita())));
         listaCitaV.forEach(cv -> {
-            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(), cv.getCodRefuerzo()
+            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getIdCiudadano(),cv.getPersona().getDni(), cv.getCodRefuerzo()
                         , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
         });
     }
