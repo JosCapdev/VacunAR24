@@ -127,8 +127,8 @@ public class AgregarCita extends javax.swing.JDialog {
             int idUlt = rvd.buscarUltCod(ciud.getIdCiudadano());
             CitaVacunacion cita = new CitaVacunacion();
             regV = new RegistroVacunados();
-            cita.setPersona(cd.buscarCiudadanoId(ciud.getIdCiudadano()));
             if (idUlt != 0) {
+                rvd = new RegVacData();
                 regV = rvd.buscarRegId(idUlt);
                 cod = regV.getCodRefuerzo() + 1;
                 cita.setDosis(regV.getDosis());
@@ -138,6 +138,7 @@ public class AgregarCita extends javax.swing.JDialog {
                 cita.setCentroVacunacion("Centro de " + ciud.getLocalidad());
             }
 
+            cita.setPersona(ciud);
             cita.setCodRefuerzo(cod);
             cita.setFechaHoraCita(fechaTurno().toString());
             citaVD.guardarCita(cita);
