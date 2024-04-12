@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import vacunar24.Entidades.RegistroVacunados;
 import vacunar24.Entidades.Reporte;
 
 /**
@@ -57,10 +58,7 @@ public class ReporteData {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, id);
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Reporte revisado");
-            }
+            ps.executeUpdate();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
@@ -82,6 +80,26 @@ public class ReporteData {
         }
     }
     
+    public Reporte buscarRepId(int id) {
+        String sql = "SELECT asunto, descr, fech,revisado FROM Reporte WHERE idReporte = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                rep = new Reporte();
+                rep.setIdReporte(id);
+                rep.setAsunto(rs.getString("asunto"));
+                rep.setDescr(rs.getString("descr"));
+                rep.setFech(rs.getDate("fech").toLocalDate());
+                rep.setRev(rs.getBoolean("revisado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de Conexion..." + ex.getMessage());
+        }
+        return rep;
+    }
     public ArrayList<Reporte> listarReportes() {
         
         String sql = "SELECT idReporte, asunto, descr, fech,revisado FROM Reporte";
