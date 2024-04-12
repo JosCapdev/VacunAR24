@@ -367,7 +367,7 @@ public class MenuProf extends javax.swing.JFrame {
     private void jLOtrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLOtrosMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
-        Otros_VistaProf otr = new Otros_VistaProf();
+        Reporte_VistaProf otr = new Reporte_VistaProf();
         Escritorio.add(otr);
         otr.setVisible(true);
     }//GEN-LAST:event_jLOtrosMouseClicked
