@@ -272,7 +272,7 @@ public class MenuProf extends javax.swing.JFrame {
 
         jLOtros.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLOtros.setForeground(new java.awt.Color(153, 153, 153));
-        jLOtros.setText("Otros");
+        jLOtros.setText("Reporte");
         jLOtros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLOtrosMouseClicked(evt);
