@@ -38,6 +38,7 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         llenarTabla();
+        
     }
 
     /**
@@ -53,15 +54,15 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTRep = new javax.swing.JTable();
         jTDescr = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jBEnviar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTAsunt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTRep = new javax.swing.JTable();
+        jTAsunt = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -76,8 +77,34 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel2.setForeground(new java.awt.Color(102, 102, 102));
 
-        jTRep.setBackground(new java.awt.Color(153, 153, 153));
-        jTRep.setForeground(new java.awt.Color(153, 153, 153));
+        jTDescr.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Reportes enviados:");
+
+        jBEnviar.setText("Enviar Reporte");
+        jBEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEnviarActionPerformed(evt);
+            }
+        });
+
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Asunto:");
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Mensaje:");
+
         jTRep.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -94,32 +121,9 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
                 jTRepMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTRep);
-
-        jTDescr.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Reportes enviados:");
-
-        jBEnviar.setText("Enviar Reporte");
-        jBEnviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEnviarActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Eliminar");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Asunto:");
+        jScrollPane2.setViewportView(jTRep);
 
         jTAsunt.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Mensaje:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -127,33 +131,33 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(100, 100, 100))
+                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(64, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(jTDescr)
-                                .addComponent(jLabel4)
-                                .addComponent(jBEnviar)
-                                .addComponent(jTAsunt, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jBEnviar)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 35, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTDescr, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTAsunt))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTAsunt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTDescr, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,11 +165,11 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
                 .addComponent(jBEnviar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(12, 12, 12))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBEliminar)
+                .addGap(70, 70, 70))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -183,7 +187,7 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +197,8 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,7 +209,9 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -224,16 +230,29 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
         actT();
     }//GEN-LAST:event_jBEnviarActionPerformed
 
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        if (jTRep.getSelectedRow() >= 0) {
+            repD.eliminarReporte((int) jTRep.getValueAt(jTRep.getSelectedRow(), 0));
+            actT();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un reporte en la tabla...");
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
     private void jTRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTRepMouseClicked
-        int id = (int) jTRep.getValueAt(jTRep.getSelectedRow(), 0);
-        rep = repD.buscarRepId(id);
-        repV.setRep(rep);
-        repV.show();
+        if (jTRep.getSelectedRow() >= 0) {
+            rep=repD.buscarRepId((int) jTRep.getValueAt(jTRep.getSelectedRow(),0));
+            repV.getjLT().setText("REPORTE "+rep.getIdReporte());
+            repV.getjTAsunto().setText(rep.getAsunto());
+            repV.getjTDescr().setText(rep.getDescr());
+            repV.getjLFech().setText(rep.getFech().toString());
+            repV.show();
+        }
     }//GEN-LAST:event_jTRepMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBEnviar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -241,7 +260,7 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTAsunt;
     private javax.swing.JTextField jTDescr;
     private javax.swing.JTable jTRep;
@@ -262,9 +281,8 @@ public class Reporte_VistaProf extends javax.swing.JInternalFrame {
     private void llenarTabla() {
         listaReportes = repD.listarReportes();
         listaReportes.forEach(rep -> {
-            boolean rev = rep.isRev();
             modelo.addRow(new Object[]{rep.getIdReporte(), rep.getAsunto(), rep.getDescr(),
-                 rep.getFech(), rev ? "revisado" : "--"});
+                 rep.getFech(), rep.isRev() ? "revisado" : "--"});
         });
     }
 
