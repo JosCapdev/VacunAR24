@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import vacunar24.Dao.LaboratorioData;
 import vacunar24.Dao.VacunaData;
 import vacunar24.Entidades.Laboratorio;
 import vacunar24.Entidades.Vacuna;
@@ -22,7 +21,6 @@ public class AgregarStockVacuna extends javax.swing.JDialog {
 
     private Vacuna vac;
     private VacunaData vacD;
-    private boolean mod;
     private boolean act;
     private Laboratorio lab;
     private ArrayList<Vacuna> listaVac;
@@ -32,7 +30,6 @@ public class AgregarStockVacuna extends javax.swing.JDialog {
         vac = new Vacuna();
         vacD = new VacunaData();
         lab = new Laboratorio();
-        mod = false;
         act = false;
         initComponents();
         llenarDatos();
@@ -222,14 +219,6 @@ public class AgregarStockVacuna extends javax.swing.JDialog {
         jDCFecha.setDate(null);
         vac = null;
 
-    }
-
-    public boolean isMod() {
-        return mod;
-    }
-
-    public void setMod(boolean mod) {
-        this.mod = mod;
     }
 
     public boolean isAct() {
