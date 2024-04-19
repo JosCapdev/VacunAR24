@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import vacunar24.Entidades.RegistroVacunados;
 import vacunar24.Entidades.Reporte;
 
 /**
@@ -47,7 +46,7 @@ public class ReporteData {
                 JOptionPane.showMessageDialog(null, "No se pudo tener el ID...");
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Guardado!");
+            JOptionPane.showMessageDialog(null, "Reporte Enviado!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
         }
