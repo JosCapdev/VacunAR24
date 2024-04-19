@@ -35,7 +35,11 @@ public class InsumoData {
                 + " fech, enviado) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, ins.getVac().getIdVacuna());
+            if(ins.getVac()!=null){
+                ps.setInt(1, ins.getVac().getIdVacuna());
+            }else{
+                ps.setObject(1, null);
+            }
             ps.setString(2, ins.getOtros());
             ps.setString(3, ins.getCentroVacunacion());
             ps.setInt(4, ins.getAlcohol());
@@ -105,7 +109,9 @@ public class InsumoData {
                 ins = new Insumos();
                 vacD = new VacunaData();
                 ins.setIdInsumo(id);
-                ins.setVac(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                if(rs.getObject("idVacuna")!= null){
+                  ins.setVac(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                }
                 ins.setOtros(rs.getString("otros"));
                 ins.setCentroVacunacion(rs.getString("centroVacunacion"));
                 ins.setAlcohol(rs.getInt("alcohol"));
@@ -134,7 +140,9 @@ public class InsumoData {
                 ins = new Insumos();
                 vacD = new VacunaData();
                 ins.setIdInsumo(rs.getInt("idInsumo"));
-                ins.setVac(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                if(rs.getObject("idVacuna")!= null){
+                  ins.setVac(vacD.buscarVacunaId(rs.getInt("idVacuna")));
+                }
                 ins.setOtros(rs.getString("otros"));
                 ins.setCentroVacunacion(rs.getString("centroVacunacion"));
                 ins.setAlcohol(rs.getInt("alcohol"));
