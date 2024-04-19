@@ -75,5 +75,10 @@ public class Reporte {
         this.fech = fech;
         this.rev = rev;
     }
+
+    @Override
+    public String toString() {
+        return "Reporte{" + "idReporte=" + idReporte + ", asunto=" + asunto + ", descr=" + descr + ", fech=" + fech + ", rev=" + rev + '}';
+    }
   
 }
