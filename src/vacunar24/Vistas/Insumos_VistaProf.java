@@ -56,6 +56,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         jTInsumos = new javax.swing.JTable();
         jTBuscador = new javax.swing.JTextField();
         AgendarInsumo = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -95,6 +96,13 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
             }
         });
 
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,7 +119,9 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(AgendarInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +133,9 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(AgendarInsumo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgendarInsumo)
+                    .addComponent(jBEliminar))
                 .addGap(16, 16, 16))
         );
 
@@ -162,8 +174,18 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         insV.show();
     }//GEN-LAST:event_AgendarInsumoActionPerformed
 
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        if (jTInsumos.getSelectedRow() >= 0) {
+            insD.eliminarInsumo((int) jTInsumos.getValueAt(jTInsumos.getSelectedRow(), 0));
+            actT();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un Insumo en la tabla...");
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgendarInsumo;
+    private javax.swing.JButton jBEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
