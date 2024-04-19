@@ -6,11 +6,10 @@
 package vacunar24.Vistas;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import vacunar24.Dao.CiudadanoData;
 import vacunar24.Dao.InsumoData;
 import vacunar24.Dao.VacunaData;
-import vacunar24.Entidades.Ciudadano;
 import vacunar24.Entidades.Insumos;
 import vacunar24.Entidades.Vacuna;
 
@@ -24,6 +23,7 @@ public class AgregarInsumo extends javax.swing.JDialog {
     private InsumoData insD;
     private Vacuna vac;
     private VacunaData vacD;
+    private ArrayList<Vacuna>listaVac;
     private boolean act;
 
     ;
@@ -32,6 +32,7 @@ public class AgregarInsumo extends javax.swing.JDialog {
         super(parent, modal);
         ins = new Insumos();
         insD = new InsumoData();
+        listaVac = new ArrayList();
         act = false;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -49,7 +50,6 @@ public class AgregarInsumo extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLT = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTAlcohol = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTCentroVac = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -58,6 +58,7 @@ public class AgregarInsumo extends javax.swing.JDialog {
         jBGuardar = new javax.swing.JButton();
         jBLimpiar = new javax.swing.JButton();
         jCBVac = new javax.swing.JComboBox<>();
+        jSAlcohol = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,7 +74,6 @@ public class AgregarInsumo extends javax.swing.JDialog {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Vacunas:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
-        jPanel1.add(jTAlcohol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
@@ -108,7 +108,13 @@ public class AgregarInsumo extends javax.swing.JDialog {
         });
         jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
+        jCBVac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCBVacMouseClicked(evt);
+            }
+        });
         jPanel1.add(jCBVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 320, -1));
+        jPanel1.add(jSAlcohol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,13 +136,18 @@ public class AgregarInsumo extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-            vac = new Vacuna();
-            vac= (Vacuna) jCBVac.getSelectedItem();
-            int alcohol = Integer.parseInt(jTAlcohol.getText());
+            int alcohol = 0;
+            alcohol = (int) jSAlcohol.getValue();
             String centroVac = jTCentroVac.getText();
             String otros = jTOtros.getText();
             LocalDate fech = LocalDate.now();
-            ins = new Insumos(vac,otros,centroVac,alcohol,fech,false);
+            if((Vacuna)jCBVac.getSelectedItem()!= null){
+              vac = new Vacuna();
+              vac= (Vacuna)jCBVac.getSelectedItem();
+              ins = new Insumos(vac,otros,centroVac,alcohol,fech,false);
+            }else{
+              ins = new Insumos(otros,centroVac,alcohol,fech,false);
+            }
             insD.guardarInsumo(ins);
             act = true;
             limpiarCampos();
@@ -148,6 +159,11 @@ public class AgregarInsumo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jCBVacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCBVacMouseClicked
+        jCBVac.removeAllItems();
+        llenarDatosVac();
+    }//GEN-LAST:event_jCBVacMouseClicked
 
     /**
      * @param args the command line arguments
@@ -202,21 +218,29 @@ public class AgregarInsumo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTAlcohol;
+    private javax.swing.JSpinner jSAlcohol;
     private javax.swing.JTextField jTCentroVac;
     private javax.swing.JTextField jTOtros;
     // End of variables declaration//GEN-END:variables
 
     public void limpiarCampos() {
 
-        jTAlcohol.setText("");
+        jSAlcohol.setValue(0);
         jTCentroVac.setText("");
         jTOtros.setText("");
-        jCBVac.setSelectedIndex(-1);
+        jCBVac.removeAllItems();
         ins = null;
 
     }
 
+    public void llenarDatosVac() {
+        vacD = new VacunaData();
+        listaVac = vacD.listarVacunas();
+        for (Vacuna item : listaVac) {
+            jCBVac.addItem(item);
+        }
+    }
+    
     public Insumos getIns() {
         return ins;
     }
