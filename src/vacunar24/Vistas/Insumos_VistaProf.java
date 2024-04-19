@@ -9,9 +9,7 @@ import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vacunar24.Dao.CitaVacData;
 import vacunar24.Dao.InsumoData;
-import vacunar24.Entidades.CitaVacunacion;
 import vacunar24.Entidades.Insumos;
 
 /**
@@ -67,7 +65,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("REGISTRO Y CONTROL DE INSUMOS: ");
+        jLabel1.setText("REGISTRO Y CONTROL DE PEDIDOS DE INSUMOS: ");
 
         jTInsumos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +81,11 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTInsumos);
 
         jTBuscador.setText("Buscar...");
+        jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscadorMouseClicked(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -112,14 +115,14 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 538, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(AgendarInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 560, Short.MAX_VALUE)
                 .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
         );
@@ -164,9 +167,9 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         for (Insumos ins : listaInsumos) {
             if (ins.getOtros().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || ins.getVac().getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
                     || String.valueOf(ins.getIdInsumo()).equals(jTBuscador.getText())){
-                String vacuna = ins.getVac()!=null? ins.getVac().getMarca():"--";
+                String vacuna = ins.getVac().getIdVacuna()!=0? ins.getVac().getMarca():"--";
                 modelo.addRow(new Object[]{ins.getIdInsumo(),vacuna, ins.getOtros(),ins.getCentroVacunacion()
-                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Recibido":"--"});            }
+                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Enviado":"--"});            }
         }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
@@ -183,6 +186,10 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
+    private void jTBuscadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscadorMouseClicked
+        jTBuscador.setText("");
+    }//GEN-LAST:event_jTBuscadorMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgendarInsumo;
     private javax.swing.JButton jBEliminar;
@@ -198,9 +205,9 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         filaCabecera.add("Vacuna");
         filaCabecera.add("Otros");
         filaCabecera.add("Centro Vacunación");
-        filaCabecera.add("Alcohol");
+        filaCabecera.add("Alcoholx5Ltrs");
         filaCabecera.add("Fecha");
-        filaCabecera.add("Envío");
+        filaCabecera.add("Envio de insumo");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
@@ -212,7 +219,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         listaInsumos.forEach(ins -> {
             String vacuna = ins.getVac()!=null? ins.getVac().getMarca():"--";
             modelo.addRow(new Object[]{ins.getIdInsumo(),vacuna, ins.getOtros(),ins.getCentroVacunacion()
-                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Recibido":"--"});
+                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Enviado":"--"});
         });
     }
     private void borrarFilas(){
