@@ -5,7 +5,6 @@
  */
 package vacunar24.Vistas;
 
-import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import vacunar24.Dao.CitaVacData;
 import vacunar24.Dao.CiudadanoData;
@@ -116,12 +115,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("IdProfesional");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
-
-        jTProf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTProfActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTProf, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 160, -1));
 
         jBGuardar.setText("Guardar");
@@ -141,31 +134,13 @@ public class AgregarRegistro extends javax.swing.JDialog {
         jPanel1.add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
         jPanel1.add(jTCiud, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 160, -1));
         jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 160, -1));
-
-        jTCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCodActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 160, -1));
-
-        jTNSerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNSerieActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTNSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 160, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("IdVacuna:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
-
-        jTVac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTVacActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +159,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
-//            if (mod) {
                 reg = rvd.buscarRegId(idMod);
                 reg.setPersona(cd.buscarCiudadanoId(Integer.parseInt(jTCiud.getText())));
                 reg.setCodRefuerzo(Integer.parseInt(jTCod.getText()));
@@ -195,17 +169,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
                 rvd.modificarRegistro(reg);
                 act = true;
                 dispose();
-//            } else {
-//                cita=citaD.buscarCitaId(idMod);
-//                reg.setPersona(cita.getPersona());
-//                reg.setCodRefuerzo(cita.getCodRefuerzo());
-//                reg.setCentroVacunacion(cita.getCentroVacunacion());
-//                reg.setFechaHoraColoc(LocalDateTime.now().toString());
-//                reg.setDosis(cita.getDosis());
-//                reg.setProf(profD.buscarProfesionalId(idProf));
-//                rvd.guardarRegVac(reg);
-//                act = true;
-//            }
             limpiarCampos();
 
         } catch (NumberFormatException e) {
@@ -219,22 +182,6 @@ public class AgregarRegistro extends javax.swing.JDialog {
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jBLimpiarActionPerformed
-
-    private void jTProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTProfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTProfActionPerformed
-
-    private void jTCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodActionPerformed
-
-    private void jTNSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNSerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTNSerieActionPerformed
-
-    private void jTVacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTVacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTVacActionPerformed
 
     /**
      * @param args the command line arguments
