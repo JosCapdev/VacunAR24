@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vacunar24.Dao.CitaVacData;
+import vacunar24.Dao.InsumoData;
 import vacunar24.Entidades.CitaVacunacion;
+import vacunar24.Entidades.Insumos;
 
 /**
  *
@@ -18,22 +20,22 @@ import vacunar24.Entidades.CitaVacunacion;
  */
 public class Insumos_VistaProf extends javax.swing.JInternalFrame {
 
-    private CitaVacunacion cv;
-    private CitaVacData cvd;
-    private ArrayList<CitaVacunacion> listaCitaV;
+    private Insumos ins;
+    private InsumoData insD;
+    private ArrayList<Insumos> listaInsumos;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
         }
     };
     private Frame f = JOptionPane.getFrameForComponent(this);
-    private VacunarPaciente vp = new VacunarPaciente(f, true);
+    private AgregarInsumo insV = new AgregarInsumo(f, true);
 
     public Insumos_VistaProf() {
         
-        cv = new CitaVacunacion();
-        cvd = new CitaVacData();
-        listaCitaV = new ArrayList();
+        ins = new Insumos();
+        insD = new InsumoData();
+        listaInsumos = new ArrayList();
         initComponents();
         armarCabecera();
         llenarTabla();
@@ -51,9 +53,9 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTCitas = new javax.swing.JTable();
+        jTInsumos = new javax.swing.JTable();
         jTBuscador = new javax.swing.JTextField();
-        VacunarReg = new javax.swing.JButton();
+        AgendarInsumo = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -66,7 +68,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("REGISTRO Y CONTROL DE INSUMOS: ");
 
-        jTCitas.setModel(new javax.swing.table.DefaultTableModel(
+        jTInsumos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +79,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTCitas);
+        jScrollPane1.setViewportView(jTInsumos);
 
         jTBuscador.setText("Buscar...");
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -86,10 +88,10 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
             }
         });
 
-        VacunarReg.setText("Agendar  nuevo insumo");
-        VacunarReg.addActionListener(new java.awt.event.ActionListener() {
+        AgendarInsumo.setText("Agendar  nuevo insumo");
+        AgendarInsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VacunarRegActionPerformed(evt);
+                AgendarInsumoActionPerformed(evt);
             }
         });
 
@@ -108,7 +110,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(VacunarReg, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AgendarInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,7 +123,7 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(VacunarReg)
+                .addComponent(AgendarInsumo)
                 .addGap(16, 16, 16))
         );
 
@@ -140,69 +142,59 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-        if (vp.isAct()) {
+        if (insV.isAct()) {
             actT();
         }
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jTBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorKeyReleased
         borrarFilas();
-//        for (CitaVacunacion cv : listaCitaV) {
-//            if (cv.getPersona().getNombre().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || cv.getPersona().getApellido().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
-//                    || String.valueOf(cv.getPersona().getDni()).equals(jTBuscador.getText()) || 
-//                    String.valueOf(cv.getIdCitaVacunacion()).equals(jTBuscador.getText())){
-//                modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getDni(), cv.getCodRefuerzo()
-//                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});            }
-//        }
+        for (Insumos ins : listaInsumos) {
+            if (ins.getOtros().toLowerCase().startsWith(jTBuscador.getText().toLowerCase()) || ins.getVac().getMarca().toLowerCase().startsWith(jTBuscador.getText().toLowerCase())
+                    || String.valueOf(ins.getIdInsumo()).equals(jTBuscador.getText())){
+                String vacuna = ins.getVac()!=null? ins.getVac().getMarca():"--";
+                modelo.addRow(new Object[]{ins.getIdInsumo(),vacuna, ins.getOtros(),ins.getCentroVacunacion()
+                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Recibido":"--"});            }
+        }
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
-    private void VacunarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VacunarRegActionPerformed
-        if (jTCitas.getSelectedRow() >= 0) {
-            cv = new CitaVacunacion();
-            cv = cvd.buscarCitaId((int) jTCitas.getValueAt(jTCitas.getSelectedRow(), 0));
-            vp.getjTCiud().setText(cv.getPersona().getNombre()+" "+cv.getPersona().getApellido());
-            vp.getjTDni().setText(cv.getPersona().getDni()+"");
-            vp.getjTCentroVac().setText(cv.getCentroVacunacion());
-            vp.getjTCod().setText(cv.getCodRefuerzo()+"");
-            vp.getjTVac().setText(cv.getDosis().getMarca());
-            vp.setIdMod(cv.getIdCitaVacunacion());
-            vp.show();
-        } else {
-            JOptionPane.showMessageDialog(this, "Para un cachito falta Terminar!...");
-        }
-    }//GEN-LAST:event_VacunarRegActionPerformed
+    private void AgendarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendarInsumoActionPerformed
+        insV.show();
+    }//GEN-LAST:event_AgendarInsumoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VacunarReg;
+    private javax.swing.JButton AgendarInsumo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTBuscador;
-    private javax.swing.JTable jTCitas;
+    private javax.swing.JTable jTInsumos;
     // End of variables declaration//GEN-END:variables
     private void armarCabecera() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-         filaCabecera.add("Codigo");
-        filaCabecera.add("Nombre");
-        filaCabecera.add("Descripción");
-        filaCabecera.add("Cantidad");
-        filaCabecera.add("Fecha de Ingreso");
-        filaCabecera.add("Centro de Vacunación");
+        filaCabecera.add("Codigo");
+        filaCabecera.add("Vacuna");
+        filaCabecera.add("Otros");
+        filaCabecera.add("Centro Vacunación");
+        filaCabecera.add("Alcohol");
+        filaCabecera.add("Fecha");
+        filaCabecera.add("Envío");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-        jTCitas.setModel(modelo);
+        jTInsumos.setModel(modelo);
     }
 
     private void llenarTabla() {
-//        listaCitaV = cvd.listarCitasHoy();
-//        listaCitaV.stream().forEach(cv -> {
-//            modelo.addRow(new Object[]{cv.getIdCitaVacunacion(), cv.getPersona().getDni(), cv.getCodRefuerzo()
-//                        , cv.getFechaHoraCita(), cv.getCentroVacunacion(),cv.getDosis().getMarca()});
-//        });
+        listaInsumos = insD.listarInsumos();
+        listaInsumos.forEach(ins -> {
+            String vacuna = ins.getVac()!=null? ins.getVac().getMarca():"--";
+            modelo.addRow(new Object[]{ins.getIdInsumo(),vacuna, ins.getOtros(),ins.getCentroVacunacion()
+                        ,ins.getAlcohol(),ins.getFech(),ins.isEnviado()?"Recibido":"--"});
+        });
     }
     private void borrarFilas(){
-        int i = jTCitas.getRowCount()-1;
+        int i = jTInsumos.getRowCount()-1;
         for(;i>=0;i--){
             modelo.removeRow(i);
         }
@@ -210,6 +202,6 @@ public class Insumos_VistaProf extends javax.swing.JInternalFrame {
     private void actT() {
         borrarFilas();
         llenarTabla();
-        vp.setAct(false);
+        insV.setAct(false);
     }
 }
