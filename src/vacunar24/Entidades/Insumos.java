@@ -97,5 +97,14 @@ public class Insumos {
         this.fech = fech;
         this.enviado = enviado;
     }
+
+    public Insumos(String otros, String centroVacunacion, int alcohol, LocalDate fech, boolean enviado) {
+        this.otros = otros;
+        this.centroVacunacion = centroVacunacion;
+        this.alcohol = alcohol;
+        this.fech = fech;
+        this.enviado = enviado;
+    }
+    
     
 }
