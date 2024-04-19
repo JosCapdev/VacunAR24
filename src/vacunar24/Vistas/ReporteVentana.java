@@ -5,26 +5,15 @@
  */
 package vacunar24.Vistas;
 
-import vacunar24.Dao.CiudadanoData;
-import vacunar24.Dao.ReporteData;
-import vacunar24.Entidades.Reporte;
-
 /**
  *
  * @author Jose
  */
 public class ReporteVentana extends javax.swing.JDialog {
-
-    private Reporte rep;
-    private ReporteData repD;
     
-
     public ReporteVentana(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        rep = new Reporte();
-        repD = new ReporteData();
         initComponents();
-        llenarCampos();
         this.setLocationRelativeTo(null);
     }
 
@@ -53,7 +42,7 @@ public class ReporteVentana extends javax.swing.JDialog {
         jLT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLT.setForeground(new java.awt.Color(51, 51, 51));
         jLT.setText("REPORTE ");
-        jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 14, 180, -1));
+        jPanel1.add(jLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 160, -1));
 
         jTAsunto.setEditable(false);
         jPanel1.add(jTAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 370, -1));
@@ -143,21 +132,36 @@ public class ReporteVentana extends javax.swing.JDialog {
     private javax.swing.JTextField jTDescr;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarCampos() {
-
-        jLT.setText("REPORTE "+rep.getIdReporte());
-        jTAsunto.setText(rep.getAsunto());
-        jTDescr.setText(rep.getDescr());
-        jLFech.setText(rep.getFech().toString());
-        repD.revisarReporte(rep.getIdReporte());
+    public javax.swing.JLabel getjLFech() {
+        return jLFech;
     }
 
-    public Reporte getRep() {
-        return rep;
+    public void setjLFech(javax.swing.JLabel jLFech) {
+        this.jLFech = jLFech;
     }
 
-    public void setRep(Reporte rep) {
-        this.rep = rep;
+    public javax.swing.JLabel getjLT() {
+        return jLT;
+    }
+
+    public void setjLT(javax.swing.JLabel jLT) {
+        this.jLT = jLT;
+    }
+
+    public javax.swing.JTextField getjTAsunto() {
+        return jTAsunto;
+    }
+
+    public void setjTAsunto(javax.swing.JTextField jTAsunto) {
+        this.jTAsunto = jTAsunto;
+    }
+
+    public javax.swing.JTextField getjTDescr() {
+        return jTDescr;
+    }
+
+    public void setjTDescr(javax.swing.JTextField jTDescr) {
+        this.jTDescr = jTDescr;
     }
 
 
