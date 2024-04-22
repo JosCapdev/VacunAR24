@@ -18,6 +18,11 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Home_Vista homeV = new Home_Vista();
+        Escritorio.add(homeV);
+        homeV.setVisible(true);
         this.setLocationRelativeTo(null);
 
     }
@@ -54,6 +59,9 @@ public class Menu extends javax.swing.JFrame {
         jPanelHome = new javax.swing.JPanel();
         jLHome = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPRegistro = new javax.swing.JPanel();
+        jLRegistro = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(90, 48));
@@ -132,7 +140,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 130, -1));
+        backgroundPanel.add(jPanelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 130, -1));
 
         jPanelCiudadano.setBackground(new java.awt.Color(0, 51, 102));
         jPanelCiudadano.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -175,7 +183,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelCiudadano, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 150, 70));
+        backgroundPanel.add(jPanelCiudadano, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 150, 70));
 
         jPanelProfesional.setBackground(new java.awt.Color(0, 51, 102));
         jPanelProfesional.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -218,7 +226,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 140, 70));
+        backgroundPanel.add(jPanelProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 140, 70));
 
         jPanelVacuna.setBackground(new java.awt.Color(0, 51, 102));
         jPanelVacuna.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -245,7 +253,7 @@ public class Menu extends javax.swing.JFrame {
         jPanelVacunaLayout.setHorizontalGroup(
             jPanelVacunaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVacunaLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLVacuna)
@@ -261,7 +269,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 0, 130, 70));
+        backgroundPanel.add(jPanelVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 0, 120, 70));
 
         jPFondoCel.setBackground(new java.awt.Color(0, 51, 102));
         jPFondoCel.setPreferredSize(new java.awt.Dimension(667, 320));
@@ -277,7 +285,7 @@ public class Menu extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPFondoCelLayout = new javax.swing.GroupLayout(jPFondoCel);
@@ -292,11 +300,11 @@ public class Menu extends javax.swing.JFrame {
             jPFondoCelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPFondoCelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1310, 700));
+        backgroundPanel.add(jPFondoCel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1310, 670));
 
         jPanelLaboratorio.setBackground(new java.awt.Color(0, 51, 102));
         jPanelLaboratorio.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 153, 255)));
@@ -367,7 +375,7 @@ public class Menu extends javax.swing.JFrame {
         jPanelHomeLayout.setHorizontalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLHome)
@@ -383,9 +391,52 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        backgroundPanel.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 120, -1));
+        backgroundPanel.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 130, -1));
 
-        getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1300, 790));
+        jPRegistro.setBackground(new java.awt.Color(0, 51, 102));
+        jPRegistro.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 255)));
+
+        jLRegistro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLRegistro.setForeground(new java.awt.Color(153, 153, 153));
+        jLRegistro.setText("Registro");
+        jLRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLRegistroMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLRegistroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLRegistroMouseExited(evt);
+            }
+        });
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunar24/Imagenes/clipboard-8-24.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPRegistroLayout = new javax.swing.GroupLayout(jPRegistro);
+        jPRegistro.setLayout(jPRegistroLayout);
+        jPRegistroLayout.setHorizontalGroup(
+            jPRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPRegistroLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLRegistro)
+                .addGap(10, 10, 10))
+        );
+        jPRegistroLayout.setVerticalGroup(
+            jPRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPRegistroLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLRegistro))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        backgroundPanel.add(jPRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 130, 70));
+
+        getContentPane().add(backgroundPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1300, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -485,6 +536,9 @@ public class Menu extends javax.swing.JFrame {
     private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
+        Home_Vista homeV = new Home_Vista();
+        Escritorio.add(homeV);
+        homeV.setVisible(true);
     }//GEN-LAST:event_jLHomeMouseClicked
 
     private void jLHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseEntered
@@ -496,6 +550,24 @@ public class Menu extends javax.swing.JFrame {
         jPanelHome.setBackground(new Color(0,51, 102));
         jLHome.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_jLHomeMouseExited
+
+    private void jLRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRegistroMouseClicked
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        RegistroVacunacion_Vista regV = new RegistroVacunacion_Vista();
+        Escritorio.add(regV);
+        regV.setVisible(true);
+    }//GEN-LAST:event_jLRegistroMouseClicked
+
+    private void jLRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRegistroMouseEntered
+        jPRegistro.setBackground(new Color(51, 153, 255));
+        jLRegistro.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLRegistroMouseEntered
+
+    private void jLRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRegistroMouseExited
+        jPRegistro.setBackground(new Color(0,51, 102));
+        jLRegistro.setForeground(new Color(153, 153, 153));
+    }//GEN-LAST:event_jLRegistroMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -536,6 +608,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLHome;
     private javax.swing.JLabel jLLaboratorio;
     private javax.swing.JLabel jLProfesional;
+    private javax.swing.JLabel jLRegistro;
     private javax.swing.JLabel jLTurno;
     private javax.swing.JLabel jLVacuna;
     private javax.swing.JLabel jLabel1;
@@ -545,7 +618,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPFondoCel;
+    private javax.swing.JPanel jPRegistro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCiudadano;
     private javax.swing.JPanel jPanelHome;
