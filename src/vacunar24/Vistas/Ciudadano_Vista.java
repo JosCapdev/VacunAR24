@@ -91,7 +91,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 jBElimActionPerformed(evt);
             }
         });
-        jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1176, 482, 100, 40));
+        jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 470, 100, -1));
 
         jTBuscador.setText("Buscar...");
         jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +112,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 jBModActionPerformed(evt);
             }
         });
-        jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1044, 482, 110, 40));
+        jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 470, 110, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -125,7 +125,7 @@ public class Ciudadano_Vista extends javax.swing.JInternalFrame {
                 jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 190, -1));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 190, 30));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
