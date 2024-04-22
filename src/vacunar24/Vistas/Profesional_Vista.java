@@ -91,7 +91,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
                 jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 465, 190, 40));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 190, 30));
 
         jBElim.setText("Eliminar");
         jBElim.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
                 jBElimActionPerformed(evt);
             }
         });
-        jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 470, 100, 40));
+        jPanel1.add(jBElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 460, 100, -1));
 
         jBMod.setText("Modificar");
         jBMod.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
                 jBModActionPerformed(evt);
             }
         });
-        jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 470, 120, 40));
+        jPanel1.add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 460, 110, 30));
 
         jTBuscador.setText("Buscar...");
         jTBuscador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,7 +130,9 @@ public class Profesional_Vista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
