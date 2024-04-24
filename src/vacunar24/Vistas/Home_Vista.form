@@ -139,6 +139,9 @@
                       <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTRepMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -269,6 +272,9 @@
                       <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTInsumosMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
