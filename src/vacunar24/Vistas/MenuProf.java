@@ -432,6 +432,10 @@ public class MenuProf extends javax.swing.JFrame {
     private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
+        Home_Vista homeV = new Home_Vista();
+        Escritorio.setSize(900, 500);
+        Escritorio.add(homeV);
+        homeV.setVisible(true);
     }//GEN-LAST:event_jLHomeMouseClicked
 
     private void jLHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseEntered
