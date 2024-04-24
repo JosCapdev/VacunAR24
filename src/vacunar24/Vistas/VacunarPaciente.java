@@ -163,7 +163,6 @@ public class VacunarPaciente extends javax.swing.JDialog {
                 dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Datos incompatible");
-            limpiarCampos();
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Completar datos");
         }
