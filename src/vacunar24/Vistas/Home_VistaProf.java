@@ -7,6 +7,7 @@ package vacunar24.Vistas;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import vacunar24.Dao.CitaVacData;
 import vacunar24.Dao.InsumoData;
 import vacunar24.Dao.NotasData;
 import vacunar24.Entidades.Insumos;
@@ -22,6 +23,7 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
     private ArrayList<Insumos> listaInsumos;
     private Notas nota;
     private NotasData notaD;
+    private CitaVacData cd;
     private DefaultTableModel modelo1 = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
@@ -33,10 +35,12 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         listaInsumos = new ArrayList();
         notaD = new NotasData();
         nota= notaD.traerNotas();
+        cd = new CitaVacData();
         initComponents();
         armarCabeceraIns();
         llenarTablaIns();
         llenarNotif();
+        pacientesVac();
 
     }
 
@@ -63,10 +67,8 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         jT5 = new javax.swing.JTextField();
         jT6 = new javax.swing.JTextField();
         jT7 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLPacVac = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1300, 550));
@@ -83,7 +85,7 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("INSUMOS ENVIADOS HOY:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 250, 200, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 200, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
@@ -103,7 +105,7 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         jTInsumos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTInsumos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 280, 300, 180));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 300, 180));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -151,25 +153,15 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 690, 430));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("0");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 200, -1));
+        jLPacVac.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLPacVac.setForeground(new java.awt.Color(51, 51, 51));
+        jLPacVac.setText("0");
+        jPanel1.add(jLPacVac, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 120, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("PACIENTES A VACUNAR HOY:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 200, -1));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("PACIENTES A VACUNADOS HOY:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 240, -1));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("0");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 190, 200, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 290, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,12 +198,10 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLPacVac;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -255,8 +245,13 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         borrarFilasIns();
         llenarTablaIns();
         llenarNotif();
+        pacientesVac();
+        
     }
-    
+    private void pacientesVac(){
+        jLPacVac.setText(cd.listarCitasHoy().size()+"");
+        
+    }
     private void llenarNotif() {
         jT1.setEditable(false);
         jT2.setEditable(false);
@@ -269,8 +264,9 @@ public class Home_VistaProf extends javax.swing.JInternalFrame {
         jT2.setText(nota.getNot2());
         jT3.setText(nota.getNot3());
         jT4.setText(nota.getNot4());
-        jT5.setText(nota.getNot4());
+        jT5.setText(nota.getNot5());
         jT6.setText(nota.getNot6());
         jT7.setText(nota.getNot7());
     }
+       
 }
