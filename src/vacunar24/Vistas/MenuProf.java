@@ -20,6 +20,11 @@ public class MenuProf extends javax.swing.JFrame {
     public MenuProf() {
         initComponents();
         fecha();
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        Home_VistaProf homeV = new Home_VistaProf();
+        Escritorio.add(homeV);
+        homeV.setVisible(true);
         this.setLocationRelativeTo(null);
 
     }
@@ -432,8 +437,7 @@ public class MenuProf extends javax.swing.JFrame {
     private void jLHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLHomeMouseClicked
         Escritorio.removeAll();
         Escritorio.repaint();
-        Home_Vista homeV = new Home_Vista();
-        Escritorio.setSize(900, 500);
+        Home_VistaProf homeV = new Home_VistaProf();
         Escritorio.add(homeV);
         homeV.setVisible(true);
     }//GEN-LAST:event_jLHomeMouseClicked
