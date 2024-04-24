@@ -338,4 +338,22 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         llenarTablaIns();
         ag.setAct(false);
     }
+
+    public javax.swing.JTable getjTInsumos() {
+        return jTInsumos;
+    }
+
+    public void setjTInsumos(javax.swing.JTable jTInsumos) {
+        this.jTInsumos = jTInsumos;
+    }
+
+    public javax.swing.JTable getjTRep() {
+        return jTRep;
+    }
+
+    public void setjTRep(javax.swing.JTable jTRep) {
+        this.jTRep = jTRep;
+    }
+
+
 }
