@@ -5,9 +5,7 @@
  */
 package vacunar24;
 
-import vacunar24.Dao.CitaVacData;
-import vacunar24.Dao.RegVacData;
-import vacunar24.Entidades.RegistroVacunados;
+import vacunar24.Vistas.Login;
 
 /**
  *
@@ -19,7 +17,8 @@ public class VacunAR24 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         
+         Login log = new Login();
+         log.show();
        
     }
     
