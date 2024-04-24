@@ -21,8 +21,10 @@ import vacunar24.Entidades.Reporte;
  * @author Jose
  */
 public class Home_Vista extends javax.swing.JInternalFrame {
-
+    
+    private Reporte rep;
     private ReporteData repD;
+    private Insumos ins;
     private InsumoData insD;
     private ArrayList<Reporte> listaReportes;
     private ArrayList<Insumos> listaInsumos;
@@ -39,10 +41,12 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         }
     };
     private Frame f = JOptionPane.getFrameForComponent(this);
-    private AgregarCiudadano ag = new AgregarCiudadano(f, true);
-
+    private ReporteVentana repV = new ReporteVentana(f, true);
+    private InsumoVentana insV = new InsumoVentana(f, true);
     public Home_Vista() {
+        rep = new Reporte();
         repD = new ReporteData();
+        ins = new Insumos();
         insD = new InsumoData();
         listaReportes = new ArrayList();
         listaInsumos = new ArrayList();
@@ -111,6 +115,11 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         jTRep.setFocusable(false);
         jTRep.getTableHeader().setResizingAllowed(false);
         jTRep.getTableHeader().setReorderingAllowed(false);
+        jTRep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTRepMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTRep);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, 380, 150));
@@ -152,6 +161,11 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         jTInsumos.setFocusable(false);
         jTInsumos.getTableHeader().setResizingAllowed(false);
         jTInsumos.getTableHeader().setReorderingAllowed(false);
+        jTInsumos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTInsumosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTInsumos);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 380, 180));
@@ -259,9 +273,7 @@ public class Home_Vista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
-        if(ag.isAct()){
-            actT();
-        }
+         actT();
     }//GEN-LAST:event_jPanel1MouseMoved
 
     private void jBEliminarInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarInsActionPerformed
@@ -297,6 +309,33 @@ public class Home_Vista extends javax.swing.JInternalFrame {
     private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
         notaD.eliminarNot();
     }//GEN-LAST:event_jBElimActionPerformed
+
+    private void jTRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTRepMouseClicked
+        if (jTRep.getSelectedRow() >= 0) {
+            rep=repD.buscarRepId((int) jTRep.getValueAt(jTRep.getSelectedRow(),0));
+            repD.revisarReporte(rep.getIdReporte());
+            repV.getjLT().setText("REPORTE "+rep.getIdReporte());
+            repV.getjTAsunto().setText(rep.getAsunto());
+            repV.getjTDescr().setText(rep.getDescr());
+            repV.getjLFech().setText(rep.getFech().toString());
+            repV.show();
+        }
+    }//GEN-LAST:event_jTRepMouseClicked
+
+    private void jTInsumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTInsumosMouseClicked
+        if (jTInsumos.getSelectedRow() >= 0) {
+            ins=insD.buscarInsumoId((int) jTInsumos.getValueAt(jTInsumos.getSelectedRow(),0));
+            insV.getjLT().setText("PEDIDO INSUMO "+ins.getIdInsumo());
+            insV.setId(ins.getIdInsumo());
+            if(ins.getVac()!= null){
+                insV.getjTVac().setText(ins.getVac().getMarca());
+            }
+            insV.getjTOtros().setText(ins.getOtros());
+            insV.getjTAlcohol().setText(ins.getAlcohol()+"");
+            insV.getjLFech().setText(ins.getFech().toString());
+            insV.show();
+        }
+    }//GEN-LAST:event_jTInsumosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -378,7 +417,7 @@ public class Home_Vista extends javax.swing.JInternalFrame {
     private void borrarFilasIns(){
         int i = jTInsumos.getRowCount()-1;
         for(;i>=0;i--){
-            modelo.removeRow(i);
+            modelo1.removeRow(i);
         }
     }
     private void actT(){
@@ -386,7 +425,6 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         borrarFilasIns();
         llenarTabla();
         llenarTablaIns();
-        ag.setAct(false);
     }
 
     private void llenarNotas() {
