@@ -156,4 +156,21 @@ public class InsumoData {
         }
         return insumos;
     }
+    
+     public void NotifEnvio(int id) {
+        String query = "UPDATE Insumos SET enviado=1  WHERE idInsumo=? ";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Insumo enviado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion... " + ex.getMessage());
+        }
+    }
+    
 }
