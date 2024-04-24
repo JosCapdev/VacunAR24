@@ -266,8 +266,7 @@ public class Home_Vista extends javax.swing.JInternalFrame {
 
     private void jBEliminarInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarInsActionPerformed
         if (jTInsumos.getSelectedRow() >= 0) {
-            ag.setMod(true);
-            ag.show();
+            insD.eliminarInsumo((int) jTInsumos.getValueAt(jTInsumos.getSelectedRow(), 0));
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un Insumo en la tabla...");
         }
