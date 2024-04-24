@@ -9,11 +9,11 @@ import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vacunar24.Dao.CiudadanoData;
 import vacunar24.Dao.InsumoData;
+import vacunar24.Dao.NotasData;
 import vacunar24.Dao.ReporteData;
-import vacunar24.Entidades.Ciudadano;
 import vacunar24.Entidades.Insumos;
+import vacunar24.Entidades.Notas;
 import vacunar24.Entidades.Reporte;
 
 /**
@@ -26,6 +26,8 @@ public class Home_Vista extends javax.swing.JInternalFrame {
     private InsumoData insD;
     private ArrayList<Reporte> listaReportes;
     private ArrayList<Insumos> listaInsumos;
+    private Notas nota;
+    private NotasData notaD;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int row, int colum) {
             return false;
@@ -44,11 +46,14 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         insD = new InsumoData();
         listaReportes = new ArrayList();
         listaInsumos = new ArrayList();
+        notaD = new NotasData();
+        nota = notaD.traerNotas();
         initComponents();
         armarCabeceraIns();
         armarCabeceraRep();
         llenarTabla();
         llenarTablaIns();
+        llenarNotas();
 
     }
 
@@ -72,13 +77,15 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTInsumos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jTF1 = new javax.swing.JTextField();
+        jTF2 = new javax.swing.JTextField();
+        jTF3 = new javax.swing.JTextField();
+        jTF4 = new javax.swing.JTextField();
+        jTF5 = new javax.swing.JTextField();
+        jTF6 = new javax.swing.JTextField();
+        jTF7 = new javax.swing.JTextField();
+        jBEnviarNotf = new javax.swing.JButton();
+        jBElim = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -151,7 +158,21 @@ public class Home_Vista extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-        jTextField1.setText("                                                TITULO DEL AVISO");
+        jTF1.setText("                                                TITULO DEL AVISO");
+
+        jBEnviarNotf.setText("Enviar");
+        jBEnviarNotf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEnviarNotfActionPerformed(evt);
+            }
+        });
+
+        jBElim.setText("Eliminar");
+        jBElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBElimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -159,40 +180,51 @@ public class Home_Vista extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(184, 184, 184))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTF7, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTF6, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTF5, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTF4, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTF3, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTF2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(322, 322, 322)
+                        .addComponent(jBEnviarNotf, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBElim)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addComponent(jTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTF6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTF7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBEnviarNotf)
+                    .addComponent(jBElim))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 810, 430));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 810, 440));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
@@ -250,10 +282,29 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBEliminarRepActionPerformed
 
+    private void jBEnviarNotfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarNotfActionPerformed
+        String n1 = jTF1.getText();
+        String n2 = jTF2.getText();
+        String n3 = jTF3.getText();
+        String n4 = jTF4.getText();
+        String n5 = jTF5.getText();
+        String n6 = jTF6.getText();
+        String n7 = jTF7.getText();
+        nota = new Notas (n1,n2,n3,n4,n5,n6,n7);
+        notaD.eliminarNot();
+        notaD.guardarNot(nota);
+    }//GEN-LAST:event_jBEnviarNotfActionPerformed
+
+    private void jBElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBElimActionPerformed
+        notaD.eliminarNot();
+    }//GEN-LAST:event_jBElimActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBElim;
     private javax.swing.JButton jBEliminarIns;
     private javax.swing.JButton jBEliminarRep;
+    private javax.swing.JButton jBEnviarNotf;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -262,15 +313,15 @@ public class Home_Vista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTF1;
+    private javax.swing.JTextField jTF2;
+    private javax.swing.JTextField jTF3;
+    private javax.swing.JTextField jTF4;
+    private javax.swing.JTextField jTF5;
+    private javax.swing.JTextField jTF6;
+    private javax.swing.JTextField jTF7;
     private javax.swing.JTable jTInsumos;
     private javax.swing.JTable jTRep;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabeceraRep() {
@@ -339,21 +390,14 @@ public class Home_Vista extends javax.swing.JInternalFrame {
         ag.setAct(false);
     }
 
-    public javax.swing.JTable getjTInsumos() {
-        return jTInsumos;
+    private void llenarNotas() {
+        jTF1.setText(nota.getNot1());
+        jTF2.setText(nota.getNot2());
+        jTF3.setText(nota.getNot3());
+        jTF4.setText(nota.getNot4());
+        jTF5.setText(nota.getNot5());
+        jTF6.setText(nota.getNot6());
+        jTF7.setText(nota.getNot7());
     }
-
-    public void setjTInsumos(javax.swing.JTable jTInsumos) {
-        this.jTInsumos = jTInsumos;
-    }
-
-    public javax.swing.JTable getjTRep() {
-        return jTRep;
-    }
-
-    public void setjTRep(javax.swing.JTable jTRep) {
-        this.jTRep = jTRep;
-    }
-
 
 }
